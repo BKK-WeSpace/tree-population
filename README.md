@@ -19,3 +19,67 @@
 3. Open Pull Request to `main` branch
 4. Wait for approved
 5. Done!
+
+
+API Schema (ชั่วคราว อาจมีอัพเดท)
+
+```ts
+// /trees endpoint request
+interface TreesRequest {
+	location: [Location, Location, Location, Location];
+}
+
+// /trees endpoint response
+interface TreesResponse {
+	trees: Tree[];
+}
+
+// upload endpoint request 
+interface UploadRequest {
+	base64Image: string;
+}
+
+// upload endpoint response 
+// void, just check http response
+
+
+//////////////////////////////////////////////////
+
+interface Tree {
+	coord: Location;
+	species: Species;
+	carbonProfile: CarbonProfile;
+	appearance?: Appearance;
+	quote: Quote;
+}
+
+interface Quote {
+	quote?: string;
+	description?: string;
+}
+
+interface Appearance {
+	// HEX
+	color?: string;
+	imgLink?: string;
+
+}	
+
+interface CarbonProfile {
+	o2Emission: number;
+	carbonAbsorbtion: number;
+}
+
+
+interface Location {
+	long: number;
+	lat: number;
+}
+
+interface Species {
+	name: string;
+	scientificName: string;
+	species: string;
+
+}
+```
