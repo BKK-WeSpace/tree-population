@@ -25,8 +25,8 @@ export default function AboutUs() {
 
   return (
     <div>
-    <div>Fuck You</div>
-      <Button onClick={handleOpen}>Open modal</Button>
+    <div>Test About us</div>
+      <Button onClick={handleOpen}>About Us</Button>
         <Modal
             open={open}
             onClose={handleClose}
