@@ -18,7 +18,7 @@
 2. npm run dev
 
 ## How to contribute
-1. Fork
+1. Go to BKK-WeSpace/tree-population repository and click Fork button
 2. Developp
 3. Open a pull request to the `main` branch
 4. Wait for approval
