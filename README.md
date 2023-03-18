@@ -20,9 +20,10 @@
 ## How to contribute
 1. Go to BKK-WeSpace/tree-population repository and click Fork button
 2. Go to your repository and clone project
-3. Open a pull request to the `main` branch
-4. Wait for approval
-5. Done!
+3. Development
+4. Open a pull request to the `main` branch
+5. Wait for approval
+6. Done!
 
 
 <!-- TODO documentation -->
