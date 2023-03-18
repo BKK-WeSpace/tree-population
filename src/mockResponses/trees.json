@@ -1,5 +1,6 @@
 {
-  "trees": [
+  "type": "FeatureCollection",
+  "features": [
     {
       "type": "Feature",
       "geometry": {
@@ -7,6 +8,7 @@
         "coordinates": [13.731272, 100.541327]
       },
       "id": "tree_001",
+      "bbox": null,
       "properties": {
         "isVerified": true,
         "commonName": "Oak",
