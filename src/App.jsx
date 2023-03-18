@@ -9,7 +9,6 @@ function App() {
   return (
     <div className="App">
       <div>
-        <AboutUs />
         <a href="#" target="_blank">
           <img src="/logo.svg" className="logo" alt="WeSpace logo" />
         </a>
