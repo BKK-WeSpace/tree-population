@@ -14,12 +14,16 @@
 
 หากเราสามารถสร้างความใกล้ชิดของคนเมืองกับต้นไม้ได้ ในระยะยาวความตระหนักในเรื่องพื้นที่สีเขียวในภาคประชาชนจะมากขึ้น และส่งผลกระทบเชิงนโยบายอย่างยั่งยืนได้ (นักการเมืองก็ต้องตอบรับประชาชน ออกนโยบายที่สอดคล้อง) และเราก็จะมีเมืองที่ยั่งยืน (ใน 10-20 ปี)
 
-## How to run project
+## How to run the project
 1. npm install
 2. npm run dev
-## How to contributed
-1. Fork
-2. Development
-3. Open Pull Request to `main` branch
-4. Wait for approved
+
+## How to contribute
+1. Go to BKK-WeSpace/tree-population repository and click Fork button
+2. Developp
+3. Open a pull request to the `main` branch
+4. Wait for approval
 5. Done!
+
+
+<!-- TODO documentation -->

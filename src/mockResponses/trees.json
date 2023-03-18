@@ -1,0 +1,164 @@
+{
+  "trees": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [13.731272, 100.541327]
+      },
+      "properties": {
+        "commonName": "Jacaranda",
+        "species": "Jacaranda mimosifolia",
+        "genus": "Jacaranda",
+        "quote": {
+          "quote": "A thing of beauty is a joy forever.",
+          "description": "John Keats"
+        },
+        "appearance": {
+          "color": "#5a3e5a",
+          "imgLink": "https://via.placeholder.com/150"
+        },
+        "carbonProfile": {
+          "carbonAbsorption": {
+            "amount": 50,
+            "unit": "tonnes",
+            "per": "year"
+          },
+          "o2Emission": {
+            "amount": 25,
+            "unit": "tonnes",
+            "per": "year"
+          }
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [13.731037, 100.543322]
+      },
+      "properties": {
+        "commonName": "London Plane",
+        "species": "Platanus × acerifolia",
+        "genus": "Platanus",
+        "quote": {
+          "quote": "I am the Lorax. I speak for the trees.",
+          "description": "Dr. Seuss"
+        },
+        "appearance": {
+          "color": "#966f33",
+          "imgLink": "https://via.placeholder.com/150"
+        },
+        "carbonProfile": {
+          "carbonAbsorption": {
+            "amount": 70,
+            "unit": "tonnes",
+            "per": "year"
+          },
+          "o2Emission": {
+            "amount": 35,
+            "unit": "tonnes",
+            "per": "year"
+          }
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [13.727198, 100.544271]
+      },
+      "properties": {
+        "commonName": "Ginkgo",
+        "species": "Ginkgo biloba",
+        "genus": "Ginkgo",
+        "quote": {
+          "quote": "For in the true nature of things, if we rightly consider, every green tree is far more glorious than if it were made of gold and silver.",
+          "description": "Martin Luther"
+        },
+        "appearance": {
+          "color": "#008000",
+          "imgLink": "https://via.placeholder.com/150"
+        },
+        "carbonProfile": {
+          "carbonAbsorption": {
+            "amount": 30,
+            "unit": "tonnes",
+            "per": "year"
+          },
+          "o2Emission": {
+            "amount": 15,
+            "unit": "tonnes",
+            "per": "year"
+          }
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [13.732834, 100.538555]
+      },
+      "properties": {
+        "commonName": "California Live Oak",
+        "species": "Quercus agrifolia",
+        "genus": "Quercus",
+        "quote": {
+          "quote": "What we are doing to the forests of the world is but a mirror reflection of what we are doing to ourselves and to one another.",
+          "description": "Mahatma Gandhi"
+        },
+        "appearance": {
+          "color": "#6b4f39",
+          "imgLink": "https://via.placeholder.com/150"
+        },
+        "carbonProfile": {
+          "carbonAbsorption": {
+            "amount": 40,
+            "unit": "tonnes",
+            "per": "year"
+          },
+          "o2Emission": {
+            "amount": 20,
+            "unit": "tonnes",
+            "per": "year"
+          }
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [13.731578, 100.538521]
+      },
+      "properties": {
+        "commonName": "American Elm",
+        "species": "Ulmus americana",
+        "genus": "Ulmus",
+        "quote": {
+          "quote": "It is not so much for its beauty that the forest makes a claim upon men's hearts, as for that subtle something, that quality of air that emanation from old trees, that so wonderfully changes and renews a weary spirit.",
+          "description": "Robert Louis Stevenson"
+        },
+        "appearance": {
+          "color": "#008000",
+          "imgLink": "https://via.placeholder.com/150"
+        },
+        "carbonProfile": {
+          "carbonAbsorption": {
+            "amount": 60,
+            "unit": "tonnes",
+            "per": "year"
+          },
+          "o2Emission": {
+            "amount": 30,
+            "unit": "tonnes",
+            "per": "year"
+          }
+        }
+      }
+    }
+  ]
+}
