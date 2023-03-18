@@ -40,8 +40,9 @@ export default function AboutUs() {
                     </Typography>
                     <CloseSharpIcon onClick={handleClose} style={{cursor: "pointer", position:"absolute", right: "0"}} />
                 </div>
+                <p style={{ fontWeight: "bold", marginBottom:0, }}>we space</p>
 
-                <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+                <Typography id="modal-modal-description" sx={{ mt: 1}}>
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus sit amet semper ipsum. Ut rhoncus dapibus eros, nec varius justo molestie vitae. 
                         Vestibulum vel faucibus ante. Aenean viverra enim vitae magna dictum, 
                 </Typography>
