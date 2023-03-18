@@ -18,9 +18,8 @@
 2. npm run dev
 
 ## How to contribute
-    สวัสดีครับ Kloof ครับ
 1. Go to BKK-WeSpace/tree-population repository and click Fork button
-2. Developp
+2. Go to your repository and clone project
 3. Open a pull request to the `main` branch
 4. Wait for approval
 5. Done!
