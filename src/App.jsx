@@ -4,7 +4,6 @@ import {
 } from "react-router-dom";
 import './App.css';
 import router from './routes/Router';
-import useGetTrees from './data/hooks/useGetTrees';
 
 
 function App() {

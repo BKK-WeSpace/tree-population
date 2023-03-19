@@ -1,6 +1,7 @@
+import { FetchResult } from "../models/NetworkResult";
 import TreesRequestParams from "../models/TreesRequest";
 import { TreesResponse } from "../models/TreesResponse";
-import NetworkRequestHandler from "../repositories/NetworkRequestHandler";
+import NetworkRequestHandler from "./NetworkRequestHandler";
 
 export default class VallarisService {
   private static _networkHandler = new NetworkRequestHandler({
@@ -29,12 +30,14 @@ export default class VallarisService {
    *
    * config here: https://v2k-dev.vallarismaps.com/management/visual/style
    */
-  public static getMapStyle() {
+  public static getMapStyle(): FetchResult<string> {
     // TODO Replace Libre map style with the actual one we're gonna be using in prod.
     const styleId = "64169de4e89e47973094fc43";
 
-    return `https://v2k-dev.vallarismaps.com/core/api/styles/1.0-beta/styles/${styleId}?api_key=${
-      import.meta.env.VITE_VALLARIS_API_KEY
-    }`;
+    return {
+      result: `https://v2k-dev.vallarismaps.com/core/api/styles/1.0-beta/styles/${styleId}?api_key=${
+        import.meta.env.VITE_VALLARIS_API_KEY
+      }`,
+    };
   }
 }

@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import Pending from "../../types/Pending";
 
 export default function useFetch<T>({
   callback,
@@ -8,7 +9,7 @@ export default function useFetch<T>({
   callback: () => Promise<T>;
   defaultValue?: T;
   deps: any[];
-}): { isLoading: boolean; data: T | undefined } {
+}): Pending<T | undefined> {
   // Default to true because first time the loading should be true.
   const [isLoading, setIsLoading] = useState(true);
   const [data, setData] = useState<T | undefined>(defaultValue);
