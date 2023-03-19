@@ -5,10 +5,8 @@
       "type": "Feature",
       "geometry": {
         "type": "Point",
-        "coordinates": [13.731272, 100.541327]
+        "coordinates": [100.541327, 13.731272]
       },
-      "id": "tree_001",
-      "bbox": null,
       "properties": {
         "isVerified": true,
         "commonName": "Oak",
@@ -50,9 +48,8 @@
       "type": "Feature",
       "geometry": {
         "type": "Point",
-        "coordinates": [13.731037, 100.543322]
+        "coordinates": [100.543322, 13.731037]
       },
-      "id": "tree_002",
       "properties": {
         "isVerified": false,
         "commonName": "Birch",
@@ -94,9 +91,8 @@
       "type": "Feature",
       "geometry": {
         "type": "Point",
-        "coordinates": [13.727198, 100.544271]
+        "coordinates": [100.544271, 13.727198]
       },
-      "id": "tree_003",
       "properties": {
         "isVerified": true,
         "commonName": "Redwood",
@@ -138,9 +134,8 @@
       "type": "Feature",
       "geometry": {
         "type": "Point",
-        "coordinates": [13.731578, 100.538521]
+        "coordinates": [100.538521, 13.731578]
       },
-      "id": "tree_004",
       "properties": {
         "isVerified": false,
         "commonName": "Palm",
@@ -182,9 +177,8 @@
       "type": "Feature",
       "geometry": {
         "type": "Point",
-        "coordinates": [13.732834, 100.538555]
+        "coordinates": [100.538555, 13.732834]
       },
-      "id": "tree_005",
       "properties": {
         "isVerified": true,
         "commonName": "London Plane",
