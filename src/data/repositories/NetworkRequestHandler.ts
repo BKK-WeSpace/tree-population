@@ -8,6 +8,7 @@ export type NetworkHandlerArgs = _BaseNetworkHandlerArgs &
   Omit<RequestInit, keyof _BaseNetworkHandlerArgs>;
 
 // TODO write test cases for this handler.
+// Maybe we'll just move to React Query. We'll see.
 export default class NetworkRequestHandler {
   private _baseUrl: string;
 
