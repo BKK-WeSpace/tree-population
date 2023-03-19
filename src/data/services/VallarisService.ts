@@ -1,7 +1,7 @@
 import { FetchResult } from "../models/NetworkResult";
 import TreesRequestParams from "../models/TreesRequest";
 import { TreesResponse } from "../models/TreesResponse";
-import NetworkRequestHandler from "../repositories/NetworkRequestHandler";
+import NetworkRequestHandler from "./NetworkRequestHandler";
 
 export default class VallarisService {
   private static _networkHandler = new NetworkRequestHandler({

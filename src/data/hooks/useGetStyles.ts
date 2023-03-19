@@ -1,5 +1,5 @@
 import { FetchResult } from "../models/NetworkResult";
-import MapStylesRepository from "../repositories/MapStylesRepository";
+import VallarisService from "../services/VallarisService";
 import useFetch from "./useFetch";
 
 export default function useGetStyles(deps: any[] = []): {
@@ -7,7 +7,7 @@ export default function useGetStyles(deps: any[] = []): {
   isLoading: boolean;
 } {
   return useFetch<FetchResult<string>>({
-    callback: MapStylesRepository.getBaseMapstyle,
+    callback: () => Promise.resolve(VallarisService.getMapStyle()),
     deps,
   });
 }
