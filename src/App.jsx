@@ -1,10 +1,15 @@
-import { useState } from 'react'
+import { useState,useEffect } from 'react'
 import './App.css'
 import AboutUs from '../src/components/AboutUs/AboutUs'
 import reactLogo from './assets/react.svg'
+import useGetTrees from "./data/hooks/useGetTrees";
+
 
 function App() {
   const [count, setCount] = useState(0)
+
+  const {isLoading, trees} = useGetTrees(); // How to get tree from data hooks
+  console.log(isLoading, trees); // Delete this line when the frontend work begins.
 
   return (
     <div className="App">

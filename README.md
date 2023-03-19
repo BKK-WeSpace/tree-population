@@ -1,4 +1,4 @@
-# green-population
+# tree-population
 ## Story
 จำนวนต้นไม้ต่อประชากร 1 คน ควรอยู่ที่ 8 ต้นต่อ 1 คน ปัจจุบันไทยอยู่ที่ 3.3 ต้น/คน ขณะที่สิงคโปร์อยู่ราวๆ 40-50 ต้น/คน
 อาจกล่าวได้ว่าเมืองที่ประสบความสำเร็จในการพัฒนาเมืองสีเขียว ส่วนหนึ่งเป็นเพราะประสบความสำเร็จในเรื่องของการปลูกต้นไม้
@@ -18,12 +18,15 @@
 2. npm run dev
 
 ## How to contribute
-    สวัสดีครับ Kloof ครับ
 1. Go to BKK-WeSpace/tree-population repository and click Fork button
-2. Developp
-3. Open a pull request to the `main` branch
-4. Wait for approval
-5. Done!
+2. Go to your repository and clone project
+3. Development
+4. Open a pull request to the `main` branch
+5. Wait for approval
+6. Done!
+
+## Figma
+- [Design](https://www.figma.com/file/eoCuDZ0ZtF77zY3oBmjLwQ/WeSpace%F0%9F%8C%B2?node-id=0-1&t=FOW6QHro1SsHehlS-0)
 
 
 <!-- TODO documentation -->
