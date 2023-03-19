@@ -2,8 +2,8 @@ import { useState,useEffect } from 'react'
 import './App.css'
 import AboutUs from '../src/components/AboutUs/AboutUs'
 import reactLogo from './assets/react.svg'
+import Loading from './components/Loading'
 import useGetTrees from "./data/hooks/useGetTrees";
-
 
 function App() {
   const [count, setCount] = useState(0)
@@ -13,6 +13,7 @@ function App() {
 
   return (
     <div className="App">
+      <Loading/>
       <div>
         <a href="#" target="_blank">
           <img src="/logo.svg" className="logo" alt="WeSpace logo" />
