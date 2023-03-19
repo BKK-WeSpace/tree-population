@@ -13,9 +13,14 @@
 
 หากเราสามารถสร้างความใกล้ชิดของคนเมืองกับต้นไม้ได้ ในระยะยาวความตระหนักในเรื่องพื้นที่สีเขียวในภาคประชาชนจะมากขึ้น และส่งผลกระทบเชิงนโยบายอย่างยั่งยืนได้ (นักการเมืองก็ต้องตอบรับประชาชน ออกนโยบายที่สอดคล้อง) และเราก็จะมีเมืองที่ยั่งยืน (ใน 10-20 ปี)
 
+![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)
+![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white)
+![CSS3](https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white)
+![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white)
+
 ## How to run the project
-1. npm install
-2. npm run dev
+1. ``` $ npm install ```
+2. ``` $ npm run dev  ```
 
 ## How to contribute
 1. Go to BKK-WeSpace/tree-population repository and click Fork button
