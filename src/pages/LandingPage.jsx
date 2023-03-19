@@ -18,7 +18,7 @@ function LandingPage() {
   const {handleTheme,mode} = useTheme()
 
   const { isLoading, data } = useGetTrees(); // How to get tree from data hooks
-  console.log(isLoading, data); // Delete this line when the frontend work begins.
+  console.log(isLoading, data?.result, data?.error); // Delete this line when the frontend work begins.
 
   return (
 
