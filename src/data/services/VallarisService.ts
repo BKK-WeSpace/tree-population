@@ -23,4 +23,18 @@ export default class VallarisService {
 
     return data;
   }
+
+  /**
+   * Returns a pre-configured Libre map style
+   *
+   * config here: https://v2k-dev.vallarismaps.com/management/visual/style
+   */
+  public static getMapStyle() {
+    // TODO Replace Libre map style with the actual one we're gonna be using in prod.
+    const styleId = "64169de4e89e47973094fc43";
+
+    return `https://v2k-dev.vallarismaps.com/core/api/styles/1.0-beta/styles/${styleId}?api_key=${
+      import.meta.env.VITE_VALLARIS_API_KEY
+    }`;
+  }
 }

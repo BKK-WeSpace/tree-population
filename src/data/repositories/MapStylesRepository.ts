@@ -1,3 +1,7 @@
+import VallarisService from "../services/VallarisService";
+
 export default class MapStylesRepository {
-  // TODO connect to valaris service to get the styles.
+  public static getBaseMapstyle(): Promise<string> {
+    return Promise.resolve(VallarisService.getMapStyle());
+  }
 }
