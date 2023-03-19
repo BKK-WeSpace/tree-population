@@ -2,12 +2,14 @@ import { useState } from 'react'
 import './App.css'
 import AboutUs from '../src/components/AboutUs/AboutUs'
 import reactLogo from './assets/react.svg'
+import Loading from './components/Loading'
 
 function App() {
   const [count, setCount] = useState(0)
 
   return (
     <div className="App">
+      <Loading/>
       <div>
         <a href="#" target="_blank">
           <img src="/logo.svg" className="logo" alt="WeSpace logo" />
