@@ -1,34 +1,46 @@
 {
-  "trees": [
+  "type": "FeatureCollection",
+  "features": [
     {
       "type": "Feature",
       "geometry": {
         "type": "Point",
-        "coordinates": [13.731272, 100.541327]
+        "coordinates": [100.541327, 13.731272]
       },
       "properties": {
-        "commonName": "Jacaranda",
-        "species": "Jacaranda mimosifolia",
-        "genus": "Jacaranda",
+        "isVerified": true,
+        "commonName": "Oak",
+        "species": "Quercus",
+        "genus": "Fagaceae",
         "quote": {
-          "quote": "A thing of beauty is a joy forever.",
-          "description": "John Keats"
+          "quote": "The creation of a thousand forests is in one acorn.",
+          "description": "Ralph Waldo Emerson"
         },
-        "appearance": {
-          "color": "#5a3e5a",
-          "imgLink": "https://via.placeholder.com/150"
+        "code": "oak_001",
+        "isAlive": true,
+        "health": "healthy",
+        "crownSizeMeter": 3.2,
+        "crownShape": "Oval",
+        "lifeExpectancyYear": 200,
+        "descriptiveFeatures": "Large, deciduous tree",
+        "arboreals": ["Squirrels", "Birds"],
+        "extinctArboreals": [],
+        "hasEcobenefits": true,
+        "diameterAtBreastHeightInches": 24,
+        "archived": false,
+        "crownLightexposure": "Partial",
+        "location": {
+          "shortDescription": "Central Park",
+          "address": "Central Park",
+          "no": "",
+          "street": "",
+          "district": "",
+          "typeOfLandUse": "",
+          "areaCharacteristics": "Urban park"
         },
-        "carbonProfile": {
-          "carbonAbsorption": {
-            "amount": 50,
-            "unit": "tonnes",
-            "per": "year"
-          },
-          "o2Emission": {
-            "amount": 25,
-            "unit": "tonnes",
-            "per": "year"
-          }
+        "management": {
+          "urgency": "mid",
+          "decorations": "None"
         }
       }
     },
@@ -36,127 +48,171 @@
       "type": "Feature",
       "geometry": {
         "type": "Point",
-        "coordinates": [13.731037, 100.543322]
+        "coordinates": [100.543322, 13.731037]
       },
       "properties": {
+        "isVerified": false,
+        "commonName": "Birch",
+        "species": "Betula",
+        "genus": "Betulaceae",
+        "quote": {
+          "quote": "",
+          "description": ""
+        },
+        "code": "birch_001",
+        "isAlive": true,
+        "health": "unhealthy",
+        "crownSizeMeter": 2.4,
+        "crownShape": "Pyramidal",
+        "lifeExpectancyYear": 50,
+        "descriptiveFeatures": "Small, deciduous tree",
+        "arboreals": ["Birds"],
+        "extinctArboreals": ["Beavers"],
+        "hasEcobenefits": false,
+        "diameterAtBreastHeightInches": 12,
+        "archived": false,
+        "crownLightexposure": "None",
+        "location": {
+          "shortDescription": "Hyde Park",
+          "address": "Hyde Park",
+          "no": "",
+          "street": "",
+          "district": "",
+          "typeOfLandUse": "",
+          "areaCharacteristics": "Urban park"
+        },
+        "management": {
+          "urgency": "high",
+          "decorations": "None"
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [100.544271, 13.727198]
+      },
+      "properties": {
+        "isVerified": true,
+        "commonName": "Redwood",
+        "species": "Sequoia sempervirens",
+        "genus": "Cupressaceae",
+        "quote": {
+          "quote": "The redwoods, once seen, leave a mark or create a vision that stays with you always.",
+          "description": "John Steinbeck"
+        },
+        "code": "redwood_001",
+        "isAlive": true,
+        "health": "healthy",
+        "crownSizeMeter": 10.0,
+        "crownShape": "Conical",
+        "lifeExpectancyYear": 2000,
+        "descriptiveFeatures": "Tall, evergreen tree",
+        "arboreals": ["Deer", "Elk"],
+        "extinctArboreals": ["Mammoths", "Giant ground sloths"],
+        "hasEcobenefits": true,
+        "diameterAtBreastHeightInches": 120,
+        "archived": false,
+        "crownLightexposure": "Full",
+        "location": {
+          "shortDescription": "Golden Gate Park",
+          "address": "Golden Gate Park",
+          "no": "",
+          "street": "",
+          "district": "",
+          "typeOfLandUse": "",
+          "areaCharacteristics": "Urban park"
+        },
+        "management": {
+          "urgency": "low",
+          "decorations": "Lights"
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [100.538521, 13.731578]
+      },
+      "properties": {
+        "isVerified": false,
+        "commonName": "Palm",
+        "species": "Washingtonia robusta",
+        "genus": "Arecaceae",
+        "quote": {
+          "quote": "",
+          "description": ""
+        },
+        "code": "palm_001",
+        "isAlive": true,
+        "health": "healthy",
+        "crownSizeMeter": 6.0,
+        "crownShape": "Fan-shaped",
+        "lifeExpectancyYear": 100,
+        "descriptiveFeatures": "Tall, evergreen tree",
+        "arboreals": ["Birds"],
+        "extinctArboreals": [],
+        "hasEcobenefits": true,
+        "diameterAtBreastHeightInches": 24,
+        "archived": false,
+        "crownLightexposure": "Full",
+        "location": {
+          "shortDescription": "Orange County Great Park",
+          "address": "Orange County Great Park",
+          "no": "",
+          "street": "",
+          "district": "",
+          "typeOfLandUse": "",
+          "areaCharacteristics": "Urban park"
+        },
+        "management": {
+          "urgency": "mid",
+          "decorations": "Banners"
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [100.538555, 13.732834]
+      },
+      "properties": {
+        "isVerified": true,
         "commonName": "London Plane",
         "species": "Platanus × acerifolia",
-        "genus": "Platanus",
+        "genus": "Platanaceae",
         "quote": {
-          "quote": "I am the Lorax. I speak for the trees.",
-          "description": "Dr. Seuss"
+          "quote": "I wandered lonely as a cloud / That floats on high o'er vales and hills, / When all at once I saw a crowd, / A host, of golden daffodils",
+          "description": "William Wordsworth"
         },
-        "appearance": {
-          "color": "#966f33",
-          "imgLink": "https://via.placeholder.com/150"
+        "code": "londonplane_001",
+        "isAlive": true,
+        "health": "healthy",
+        "crownSizeMeter": 15.0,
+        "crownShape": "Broadly conical",
+        "lifeExpectancyYear": 250,
+        "descriptiveFeatures": "Large deciduous tree with flaky bark",
+        "arboreals": ["Squirrels", "Woodpeckers"],
+        "extinctArboreals": [],
+        "hasEcobenefits": true,
+        "diameterAtBreastHeightInches": 72,
+        "archived": false,
+        "crownLightexposure": "Full",
+        "location": {
+          "shortDescription": "Hyde Park",
+          "address": "Hyde Park",
+          "no": "",
+          "street": "",
+          "district": "Westminster",
+          "typeOfLandUse": "Park",
+          "areaCharacteristics": "Urban park"
         },
-        "carbonProfile": {
-          "carbonAbsorption": {
-            "amount": 70,
-            "unit": "tonnes",
-            "per": "year"
-          },
-          "o2Emission": {
-            "amount": 35,
-            "unit": "tonnes",
-            "per": "year"
-          }
-        }
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [13.727198, 100.544271]
-      },
-      "properties": {
-        "commonName": "Ginkgo",
-        "species": "Ginkgo biloba",
-        "genus": "Ginkgo",
-        "quote": {
-          "quote": "For in the true nature of things, if we rightly consider, every green tree is far more glorious than if it were made of gold and silver.",
-          "description": "Martin Luther"
-        },
-        "appearance": {
-          "color": "#008000",
-          "imgLink": "https://via.placeholder.com/150"
-        },
-        "carbonProfile": {
-          "carbonAbsorption": {
-            "amount": 30,
-            "unit": "tonnes",
-            "per": "year"
-          },
-          "o2Emission": {
-            "amount": 15,
-            "unit": "tonnes",
-            "per": "year"
-          }
-        }
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [13.732834, 100.538555]
-      },
-      "properties": {
-        "commonName": "California Live Oak",
-        "species": "Quercus agrifolia",
-        "genus": "Quercus",
-        "quote": {
-          "quote": "What we are doing to the forests of the world is but a mirror reflection of what we are doing to ourselves and to one another.",
-          "description": "Mahatma Gandhi"
-        },
-        "appearance": {
-          "color": "#6b4f39",
-          "imgLink": "https://via.placeholder.com/150"
-        },
-        "carbonProfile": {
-          "carbonAbsorption": {
-            "amount": 40,
-            "unit": "tonnes",
-            "per": "year"
-          },
-          "o2Emission": {
-            "amount": 20,
-            "unit": "tonnes",
-            "per": "year"
-          }
-        }
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [13.731578, 100.538521]
-      },
-      "properties": {
-        "commonName": "American Elm",
-        "species": "Ulmus americana",
-        "genus": "Ulmus",
-        "quote": {
-          "quote": "It is not so much for its beauty that the forest makes a claim upon men's hearts, as for that subtle something, that quality of air that emanation from old trees, that so wonderfully changes and renews a weary spirit.",
-          "description": "Robert Louis Stevenson"
-        },
-        "appearance": {
-          "color": "#008000",
-          "imgLink": "https://via.placeholder.com/150"
-        },
-        "carbonProfile": {
-          "carbonAbsorption": {
-            "amount": 60,
-            "unit": "tonnes",
-            "per": "year"
-          },
-          "o2Emission": {
-            "amount": 30,
-            "unit": "tonnes",
-            "per": "year"
-          }
+        "management": {
+          "urgency": "high",
+          "decorations": "Christmas lights"
         }
       }
     }
