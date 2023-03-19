@@ -1,10 +1,8 @@
 import { useState, useMemo } from 'react';
-import { ThemeProvider, createTheme } from '@mui/material/styles';
+
 import Typography from '@mui/material/Typography';
-// import IconButton from '@mui/material/IconButton';
-// import Brightness4Icon from '@mui/icons-material/Brightness4';
-// import Brightness7Icon from '@mui/icons-material/Brightness7';
-import { getDesignTokens } from './theme/theme';
+import Box from '@mui/material/Box';
+
 import Button from '@mui/material/Button';
 
 import './App.css';
@@ -13,68 +11,55 @@ import reactLogo from './assets/react.svg';
 import Loading from './components/Loading';
 
 import useGetTrees from './data/hooks/useGetTrees';
+import { useTheme } from './theme/ThemeContext';
 
-// const lightTheme = createTheme({
-//   palette: {
-//     primary: {
-//       main: '#94B044',
-//     },
-//     secondary: {
-//       main: '#edf2ff',
-//     },
-//   },
-// });
-
-// const darkTheme = createTheme({
-//   palette: {
-//     mode: 'dark',
-//      primary: {
-//       main: '#94B044',
-//     },
-//   },
-// });
 
 function App() {
   const [count, setCount] = useState(0);
-  const [mode,setMode] = useState('light')
+  const {handleTheme,mode} = useTheme()
 
   const { isLoading, trees } = useGetTrees(); // How to get tree from data hooks
   console.log(isLoading, trees); // Delete this line when the frontend work begins.
 
-  const theme = useMemo(() => createTheme(getDesignTokens(mode)), [mode]);
-
-  const handleTheme = () => setMode(mode==='light'? 'dark' : 'light')
-
   return (
-    <ThemeProvider theme={theme}>
-    <div className='App'>
-        <head>
 
-        </head>
-        <Loading />
-        <div>
+    <Box className='App' sx={{
+    
+      width: "100%",
+      bgcolor: "background.default",
+      color: "text.primary",
+    
+    }}>
+        <header className='navbar'>
+          <nav>
+            {/* TODO change  button to toggle button for theme toggle */}
+          <Button variant="outlined" onClick={handleTheme}  sx={{border:'none'}}>Theme : {mode.toUpperCase()}</Button>
+          </nav>
+        </header>
+ 
+        <main>
           <a href='#' target='_blank'>
             <img src='/logo.svg' className='logo' alt='WeSpace logo' />
           </a>
           <a href='https://reactjs.org' target='_blank'>
             <img src={reactLogo} className='logo react' alt='React logo' />
           </a>
-        </div>
+        </main>
         <h1>WeSpace + React</h1>
         <div className='card'>
-          <button onClick={() => setCount((count) => count + 1)}>
+          <Button  variant="contained" color="grey"  sx={{border:'none'}}onClick={() => setCount((count) => count + 1)}>
             current Number of tree is : {count}
-          </button>
-          <Button variant="outlined" onClick={handleTheme}>Theme : {mode.toUpperCase()}</Button>
+          </Button>
+         
           
         </div>
-        <Typography variant='h5' color='primary'>
+        <Typography variant='h5' color='primary' >
             Bangkok OpenSource - Tree Mapping{' '}
           </Typography>
         <AboutUs />
- 
-    </div>
-    </ThemeProvider>
+
+    </Box>
+
   );
 }
 
