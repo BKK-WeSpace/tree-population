@@ -1,8 +1,9 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
+import { useState,useEffect } from 'react'
 import './App.css'
-import { useEffect } from 'react'
+import AboutUs from '../src/components/AboutUs/AboutUs'
+import reactLogo from './assets/react.svg'
 import useGetTrees from "./data/hooks/useGetTrees";
+
 
 function App() {
   const [count, setCount] = useState(0)
@@ -29,6 +30,7 @@ function App() {
           Edit <code>src/App.jsx</code> and save to test HMR
         </p>
       </div>
+      <AboutUs />
     </div>
   )
 }
