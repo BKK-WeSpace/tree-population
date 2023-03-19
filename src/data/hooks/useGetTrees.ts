@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import Trees from "../../types/Trees";
-import TreeRepository from "../repositories/TreesRepositories";
+import TreeDataRepository from "../repositories/TreeDataRepository";
 
 export default function useGetTrees(
   boundingBox?: [number, number, number, number],
@@ -11,7 +11,7 @@ export default function useGetTrees(
 
   async function fetchTrees() {
     setIsLoading(true);
-    const trees = await TreeRepository.getTreesWithinBound({ boundingBox });
+    const trees = await TreeDataRepository.getTreesWithinBound({ boundingBox });
     setIsLoading(false);
     setTrees(trees);
   }
