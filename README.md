@@ -27,7 +27,7 @@
 # Hack Section
 Hacked by Kloof!
 Hacked by Kloof!
-Hacked by Kloof!
+Hacked by Kloof2222!
 
 ## Figma
 - [Design](https://www.figma.com/file/eoCuDZ0ZtF77zY3oBmjLwQ/WeSpace%F0%9F%8C%B2?node-id=0-1&t=FOW6QHro1SsHehlS-0)
