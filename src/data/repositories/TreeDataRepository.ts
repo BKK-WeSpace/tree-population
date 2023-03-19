@@ -1,5 +1,4 @@
-import Trees from "../../types/Trees";
-import { NetworkResult } from "../models/NetworkResult";
+import { FetchResult } from "../models/NetworkResult";
 import TreesRequestParams from "../models/TreesRequest";
 import { TreesResponse } from "../models/TreesResponse";
 import VallarisService from "../services/VallarisService";
@@ -8,7 +7,7 @@ export default class TreeDataRepository {
   // TreesRequestBody
   static async getTreesWithinBound(
     treesRequest?: TreesRequestParams
-  ): Promise<NetworkResult<TreesResponse>> {
+  ): Promise<FetchResult<TreesResponse>> {
     const data = await VallarisService.getAllTrees({
       limit: treesRequest?.limit ?? 1000,
       boundingBox: treesRequest?.boundingBox,

@@ -1,9 +1,9 @@
-export type NetworkResult<T> = {
-  error?: NetworkError;
+export type FetchResult<T> = {
+  error?: FetchError;
   result?: T;
 };
 
-export class NetworkError {
+export class FetchError {
   response?: Response;
   error?: Error;
   type: "Generic" | "Client" | "Server";

@@ -1,4 +1,4 @@
-import { NetworkError, NetworkResult } from "../models/NetworkResult";
+import { FetchError, FetchResult } from "../models/NetworkResult";
 
 type _BaseNetworkHandlerArgs = {
   method: "GET" | "POST" | "PUT" | "DELETE";
@@ -18,7 +18,7 @@ export default class NetworkRequestHandler {
     this._baseUrl = baseUrl;
   }
 
-  async handle<T>(args: NetworkHandlerArgs): Promise<NetworkResult<T>> {
+  async handle<T>(args: NetworkHandlerArgs): Promise<FetchResult<T>> {
     let { path, queryParams, ...rest } = args;
 
     path ??= "";
@@ -38,7 +38,7 @@ export default class NetworkRequestHandler {
       const response = await fetch(this._baseUrl + path + paramString, rest);
 
       if (!response.ok) {
-        return { error: new NetworkError({ response }) };
+        return { error: new FetchError({ response }) };
       }
 
       const result = await response.json();
@@ -48,7 +48,7 @@ export default class NetworkRequestHandler {
       };
     } catch (e) {
       return {
-        error: new NetworkError({ error: e }),
+        error: new FetchError({ error: e }),
       };
     }
   }
