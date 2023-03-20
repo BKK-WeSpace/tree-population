@@ -1,5 +1,7 @@
 # tree-population
+
 ## Story
+
 จำนวนต้นไม้ต่อประชากร 1 คน ควรอยู่ที่ 8 ต้นต่อ 1 คน ปัจจุบันไทยอยู่ที่ 3.3 ต้น/คน ขณะที่สิงคโปร์อยู่ราวๆ 40-50 ต้น/คน
 อาจกล่าวได้ว่าเมืองที่ประสบความสำเร็จในการพัฒนาเมืองสีเขียว ส่วนหนึ่งเป็นเพราะประสบความสำเร็จในเรื่องของการปลูกต้นไม้
 
@@ -19,22 +21,23 @@
 ![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white)
 
 ## How to run the project
-1. ``` $ npm install ```
-2. ``` $ npm run dev  ```
+
+1. `$ npm install`
+2. `$ npm run dev `
 
 ## How to contribute
+
 1. Go to BKK-WeSpace/tree-population repository and click Fork button
 2. Go to your repository and clone project
 3. Development
 4. Open a pull request to the `main` branch
 5. Wait for approval
-6. Done!
+6. Finished!
 
 ## Figma
-- [Design](https://www.figma.com/file/eoCuDZ0ZtF77zY3oBmjLwQ/WeSpace%F0%9F%8C%B2?node-id=0-1&t=FOW6QHro1SsHehlS-0)
 
+- [Design](https://www.figma.com/file/eoCuDZ0ZtF77zY3oBmjLwQ/WeSpace%F0%9F%8C%B2?node-id=0-1&t=FOW6QHro1SsHehlS-0)
 
 <!-- TODO documentation -->
 
 <!-- TODO CI/CD -->
-
