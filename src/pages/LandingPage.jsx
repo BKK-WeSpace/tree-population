@@ -12,6 +12,8 @@ import reactLogo from '../assets/react.svg';
 import useGetTrees from '../data/hooks/useGetTrees';
 import { useTheme } from '../theme/ThemeContext';
 
+import CardModal from '../components/CardModal/CardModal';
+
 
 function LandingPage() {
   const [count, setCount] = useState(0);
@@ -19,6 +21,15 @@ function LandingPage() {
 
   const { isLoading, data } = useGetTrees({}); // How to get tree from data hooks
   console.log(isLoading, data?.result, data?.error); // Delete this line when the frontend work begins.
+  const [modalOpen, setModalOpen] = useState(false);
+
+  const handleOpenModal = () => {
+    setModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setModalOpen(false);
+  };
 
   return (
 
@@ -56,7 +67,14 @@ function LandingPage() {
             Bangkok OpenSource - Tree Mapping{' '}
           </Typography>
         <AboutUs />
-
+        <button onClick={handleOpenModal}>รายละเอียด</button>
+      <CardModal
+        image="https://medthai.com/wp-content/uploads/2013/08/%E0%B8%95%E0%B9%89%E0%B8%99%E0%B8%9E%E0%B8%B0%E0%B8%A2%E0%B8%AD%E0%B8%A1.jpg"
+        name="พยอม"
+        height="100cm"
+        isOpen={modalOpen}
+        onClose={handleCloseModal}
+      />
     </Box>
 
   );
