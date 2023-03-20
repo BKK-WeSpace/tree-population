@@ -1,6 +1,6 @@
 # tree-population
 
-![](https://discord.com/channels/1062609208106832002/1079653610402615366)
+[![](https://dcbadge.vercel.app/api/server/jMvnNHBH)](https://discord.gg/jMvnNHBH)
 
 ## Story
 
