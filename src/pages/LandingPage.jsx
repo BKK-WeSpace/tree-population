@@ -7,6 +7,7 @@ import Button from '@mui/material/Button';
 
 import '../styles/LandingPage.css';
 import AboutUs from '../components/AboutUs/AboutUs';
+import ContributeUs from '../components/ContributeUs/ContributeUs';
 import reactLogo from '../assets/react.svg';
 
 import useGetTrees from '../data/hooks/useGetTrees';
@@ -56,6 +57,7 @@ function LandingPage() {
             Bangkok OpenSource - Tree Mapping{' '}
           </Typography>
         <AboutUs />
+        <ContributeUs />
 
     </Box>
 
