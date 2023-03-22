@@ -7,6 +7,7 @@ import Button from '@mui/material/Button';
 
 import '../styles/LandingPage.css';
 import AboutUs from '../components/AboutUs/AboutUs';
+import ContributeUs from '../components/ContributeUs/ContributeUs';
 import reactLogo from '../assets/react.svg';
 
 import useGetTrees from '../data/hooks/useGetTrees';
@@ -67,6 +68,7 @@ function LandingPage() {
             Bangkok OpenSource - Tree Mapping{' '}
           </Typography>
         <AboutUs />
+        <ContributeUs />
         <button onClick={handleOpenModal}>รายละเอียด</button>
       <CardModal
         image="https://medthai.com/wp-content/uploads/2013/08/%E0%B8%95%E0%B9%89%E0%B8%99%E0%B8%9E%E0%B8%B0%E0%B8%A2%E0%B8%AD%E0%B8%A1.jpg"
