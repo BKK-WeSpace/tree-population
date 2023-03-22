@@ -10,7 +10,7 @@ export default function useGetTrees({
   deps = [],
 }: {
   request?: TreesRequestParams;
-  deps: any[];
+  deps?: any[];
 }) {
   return useFetch<FetchResult<Tree[]>>({
     callback: async () => {

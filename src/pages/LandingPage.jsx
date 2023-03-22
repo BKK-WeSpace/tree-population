@@ -35,35 +35,36 @@ function LandingPage() {
 
   return (
 
-    <Box className='landing-container' sx={{
+    // <Box className='landing-container' sx={{
     
-      width: "100%",
-      bgcolor: "background.default",
-      color: "text.primary",
+    //   width: "100%",
+    //   bgcolor: "background.default",
+    //   color: "text.primary",
     
-    }}>
-        <header className='navbar'>
-          <nav>
-            {/* TODO change  button to toggle button for theme toggle */}
-          <Button variant="outlined" onClick={handleTheme}  sx={{border:'none'}}>Theme : {mode.toUpperCase()}</Button>
-          </nav>
-        </header>
+    // }}>
+    //     <header className='navbar'>
+    //       <nav>
+    //         {/* TODO change  button to toggle button for theme toggle */}
+    //       <Button variant="outlined" onClick={handleTheme}  sx={{border:'none'}}>Theme : {mode.toUpperCase()}</Button>
+    //       </nav>
+    //     </header>
  
-        {/* <main>
-          <a href='#' target='_blank'>
-            <img src='/logo.svg' className='logo' alt='WeSpace logo' />
-          </a>
-          <a href='https://reactjs.org' target='_blank'>
-            <img src={reactLogo} className='logo react' alt='React logo' />
-          </a>
-        </main>
-        <h1>WeSpace + React</h1>
-        <div className='card'>
-          <Button  variant="contained" color="grey"  sx={{border:'none'}}onClick={() => setCount((count) => count + 1)}>
-            current Number of tree is : {count}
-          </Button>
+    //     {/* <main>
+    //       <a href='#' target='_blank'>
+    //         <img src='/logo.svg' className='logo' alt='WeSpace logo' />
+    //       </a>
+    //       <a href='https://reactjs.org' target='_blank'>
+    //         <img src={reactLogo} className='logo react' alt='React logo' />
+    //       </a>
+    //     </main>
+    //     <h1>WeSpace + React</h1>
+    //     <div className='card'>
+    //       <Button  variant="contained" color="grey"  sx={{border:'none'}}onClick={() => setCount((count) => count + 1)}>
+    //         current Number of tree is : {count}
+    //       </Button>
          
           
+<<<<<<< HEAD
         </div>
         <Typography variant='h5' color='primary' >
             Bangkok OpenSource - Tree Mapping{' '}
@@ -78,10 +79,25 @@ function LandingPage() {
         isOpen={modalOpen}
         onClose={handleCloseModal}
       /> */}
+=======
+    //     </div>
+    //     <Typography variant='h5' color='primary' >
+    //         Bangkok OpenSource - Tree Mapping{' '}
+    //       </Typography>
+    //     <AboutUs />
+    //     <button onClick={handleOpenModal}>รายละเอียด</button>
+    //   <CardModal
+    //     image="https://medthai.com/wp-content/uploads/2013/08/%E0%B8%95%E0%B9%89%E0%B8%99%E0%B8%9E%E0%B8%B0%E0%B8%A2%E0%B8%AD%E0%B8%A1.jpg"
+    //     name="พยอม"
+    //     height="100cm"
+    //     isOpen={modalOpen}
+    //     onClose={handleCloseModal}
+    //   /> */}
+>>>>>>> 2e7faba (fixed map)
       
       <TreesMap/>
       
-    </Box>
+    // </Box>
     
 
   );
