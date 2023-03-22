@@ -14,14 +14,15 @@ import useGetTrees from '../data/hooks/useGetTrees';
 import { useTheme } from '../theme/ThemeContext';
 
 import CardModal from '../components/CardModal/CardModal';
+import TreesMap from '../components/TreesMap';
 
 
 function LandingPage() {
   const [count, setCount] = useState(0);
   const {handleTheme,mode} = useTheme()
 
-  const { isLoading, data } = useGetTrees({}); // How to get tree from data hooks
-  console.log(isLoading, data?.result, data?.error); // Delete this line when the frontend work begins.
+  // const { isLoading, data } = useGetTrees({}); // How to get tree from data hooks
+  // console.log(isLoading, data?.result, data?.error); // Delete this line when the frontend work begins.
   const [modalOpen, setModalOpen] = useState(false);
 
   const handleOpenModal = () => {
@@ -48,7 +49,7 @@ function LandingPage() {
           </nav>
         </header>
  
-        <main>
+        {/* <main>
           <a href='#' target='_blank'>
             <img src='/logo.svg' className='logo' alt='WeSpace logo' />
           </a>
@@ -76,8 +77,12 @@ function LandingPage() {
         height="100cm"
         isOpen={modalOpen}
         onClose={handleCloseModal}
-      />
+      /> */}
+      
+      <TreesMap/>
+      
     </Box>
+    
 
   );
 }
