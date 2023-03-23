@@ -6,11 +6,20 @@ export type FetchResult<T> = {
 
 export class FetchError {
   error?: Error;
+  message?: string;
   type: "Generic" | "Client" | "Server";
-  constructor({ response, error }: { response?: Response; error?: any }) {
+  constructor({
+    responseCode = "",
+    error,
+    message,
+  }: {
+    responseCode?: string;
+    error?: any;
+    message?: string;
+  }) {
     this.error = error;
-    const responseString = response?.status.toString() ?? "";
-    switch (responseString[0]) {
+    this.message = message;
+    switch (responseCode[0]) {
       case "4":
         this.type = "Client";
         break;

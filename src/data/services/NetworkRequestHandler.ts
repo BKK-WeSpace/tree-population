@@ -46,7 +46,15 @@ export default class NetworkRequestHandler {
         const response = await fetch(this._baseUrl + path + paramString, rest);
 
         if (!response.ok) {
-          resolve({ error: new FetchError({ response }) });
+          const responseError = await response.json();
+          resolve({
+            error: new FetchError({
+              message: responseError.description,
+              responseCode: responseError.code,
+            }),
+            response,
+          });
+          return;
         }
 
         const result = await response.json();

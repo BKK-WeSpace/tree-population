@@ -1,5 +1,3 @@
 import Tree from "../../types/Trees";
 
-export default interface UpdateTreeInfoBody {
-  tree: Tree;
-}
+export default interface UpdateTreeInfoBody extends Tree {}

@@ -50,7 +50,12 @@ export default class VallarisService {
   ): Promise<FetchResult<void>> {
     const result = await VallarisService._networkHandler.handle<void>({
       method: "PUT",
-      path: `features/1.0/collections/${VallarisService._collectionId}/items/${request.tree.id}`,
+      headers: {
+        // @ts-ignore
+        "api-key": import.meta.env.VITE_VALLARIS_API_KEY,
+        "content-type": "application/json",
+      },
+      path: `/features/1.0-beta/collections/${VallarisService._collectionId}/items/${request.id}`,
       body: JSON.stringify(request),
     });
 

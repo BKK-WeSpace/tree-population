@@ -1,17 +1,14 @@
 import { FetchResult } from "../models/NetworkResult";
 import UpdateTreeInfoBody from "../models/UpdateTreeInfoBody";
 import VallarisService from "../services/VallarisService";
-import useFetch from "./useFetch";
+import useFetchCallback from "./useFetchCallback";
 
-export default function useUpdateTree({
-  request,
-  deps,
-}: {
-  request: UpdateTreeInfoBody;
-  deps?: any[];
-}) {
-  return useFetch<FetchResult<void>>({
-    callback: async () => await VallarisService.updateTreeData(request),
+/**
+ *  A hook that returns a callback to update the tree
+ */
+export default function useUpdateTree({ deps }: { deps?: any[] }) {
+  return useFetchCallback<FetchResult<void>, UpdateTreeInfoBody>({
+    callback: async (request) => await VallarisService.updateTreeData(request),
     deps,
   });
 }
