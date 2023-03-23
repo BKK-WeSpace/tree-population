@@ -1,14 +1,8 @@
-export type FetchResult<T> =
-  | {
-      result?: never;
-      error: FetchError;
-      response?: Response;
-    }
-  | {
-      result: T;
-      response: Response;
-      error?: never;
-    };
+export type FetchResult<T> = {
+  result?: T;
+  error?: FetchError;
+  response?: Response;
+};
 
 export class FetchError {
   error?: Error;

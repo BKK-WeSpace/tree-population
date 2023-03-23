@@ -1,5 +1,6 @@
-import { FeatureCollection, Point } from "geojson";
-import { TreeProperties } from "../../types/Trees";
+import Tree from "../../types/Trees";
 
-export interface TreesResponse
-  extends FeatureCollection<Point, Partial<TreeProperties>> {}
+export interface TreesResponse {
+  type: "FeatureCollection";
+  features: Tree[];
+}

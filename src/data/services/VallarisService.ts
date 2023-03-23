@@ -1,6 +1,7 @@
 import { FetchResult } from "../models/NetworkResult";
 import TreesRequestParams from "../models/TreesRequest";
 import { TreesResponse } from "../models/TreesResponse";
+import UpdateTreeInfoBody from "../models/UpdateTreeInfoBody";
 import NetworkRequestHandler from "./NetworkRequestHandler";
 
 export default class VallarisService {
@@ -14,6 +15,7 @@ export default class VallarisService {
       method: "GET",
       path: `/features/1.0/collections/${VallarisService._collectionId}/items`,
       headers: {
+        // @ts-ignore
         "api-key": import.meta.env.VITE_VALLARIS_API_KEY,
       },
       queryParams: {
@@ -35,9 +37,23 @@ export default class VallarisService {
     const styleId = "64169de4e89e47973094fc43";
 
     return {
+      response: new Response(),
       result: `https://v2k-dev.vallarismaps.com/core/api/styles/1.0-beta/styles/${styleId}?api_key=${
+        // @ts-ignore
         import.meta.env.VITE_VALLARIS_API_KEY
       }`,
     };
+  }
+
+  public static async updateTreeData(
+    request: UpdateTreeInfoBody
+  ): Promise<FetchResult<void>> {
+    const result = await VallarisService._networkHandler.handle<void>({
+      method: "PUT",
+      path: `features/1.0/collections/${VallarisService._collectionId}/items/${request.tree.id}`,
+      body: JSON.stringify(request),
+    });
+
+    return result;
   }
 }

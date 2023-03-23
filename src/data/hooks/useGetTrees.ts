@@ -6,10 +6,10 @@ import useFetch from "./useFetch";
 
 export default function useGetTrees({
   request,
-  deps = [],
+  deps,
 }: {
   request?: TreesRequestParams;
-  deps: any[];
+  deps?: any[];
 }) {
   return useFetch<FetchResult<Tree[]>>({
     callback: async () => {
@@ -18,17 +18,11 @@ export default function useGetTrees({
         limit: request?.limit ?? 1000,
       });
 
-      if (response.result) {
-        return {
-          response: response.response!,
-          result: response.result.features! as Tree[],
-        };
-      } else {
-        return {
-          error: response.error!,
-          response: response.result,
-        };
-      }
+      return {
+        response: response.response,
+        error: response.error,
+        result: response.result?.features,
+      };
     },
     deps,
   });
