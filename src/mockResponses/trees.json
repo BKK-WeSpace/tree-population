@@ -3,6 +3,7 @@
   "features": [
     {
       "type": "Feature",
+      "id": "1234",
       "geometry": {
         "type": "Point",
         "coordinates": [100.541327, 13.731272]
@@ -46,6 +47,7 @@
     },
     {
       "type": "Feature",
+      "id": "12345",
       "geometry": {
         "type": "Point",
         "coordinates": [100.543322, 13.731037]
@@ -89,6 +91,7 @@
     },
     {
       "type": "Feature",
+      "id": "123456",
       "geometry": {
         "type": "Point",
         "coordinates": [100.544271, 13.727198]
@@ -132,6 +135,7 @@
     },
     {
       "type": "Feature",
+      "id": "1234567",
       "geometry": {
         "type": "Point",
         "coordinates": [100.538521, 13.731578]
@@ -175,6 +179,7 @@
     },
     {
       "type": "Feature",
+      "id": "12345678",
       "geometry": {
         "type": "Point",
         "coordinates": [100.538555, 13.732834]
