@@ -1,4 +1,3 @@
-import Pending from "../../types/Pending";
 import { default as Tree } from "../../types/Trees";
 import { FetchResult } from "../models/NetworkResult";
 import TreesRequestParams from "../models/TreesRequest";
@@ -19,10 +18,17 @@ export default function useGetTrees({
         limit: request?.limit ?? 1000,
       });
 
-      return {
-        error: response.error,
-        result: response.result?.features,
-      };
+      if (response.result) {
+        return {
+          response: response.response!,
+          result: response.result.features! as Tree[],
+        };
+      } else {
+        return {
+          error: response.error!,
+          response: response.result,
+        };
+      }
     },
     deps,
   });

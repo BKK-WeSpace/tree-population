@@ -1,14 +1,19 @@
-export type FetchResult<T> = {
-  error?: FetchError;
-  result?: T;
-};
+export type FetchResult<T> =
+  | {
+      result?: never;
+      error: FetchError;
+      response?: Response;
+    }
+  | {
+      result: T;
+      response: Response;
+      error?: never;
+    };
 
 export class FetchError {
-  response?: Response;
   error?: Error;
   type: "Generic" | "Client" | "Server";
   constructor({ response, error }: { response?: Response; error?: any }) {
-    this.response = response;
     this.error = error;
     const responseString = response?.status.toString() ?? "";
     switch (responseString[0]) {
@@ -23,3 +28,5 @@ export class FetchError {
     }
   }
 }
+
+export class TimeoutError extends FetchError {}

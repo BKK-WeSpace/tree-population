@@ -8,7 +8,7 @@ export default interface Tree extends Omit<Feature<Point>, "properties"> {
   /**
    * The id of this tree in the Vallaris database.
    */
-  id?: string;
+  id: string;
   properties?: Partial<TreeProperties>;
 }
 

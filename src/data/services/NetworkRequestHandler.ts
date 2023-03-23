@@ -1,9 +1,10 @@
-import { FetchError, FetchResult } from "../models/NetworkResult";
+import { FetchError, FetchResult, TimeoutError } from "../models/NetworkResult";
 
 type _BaseNetworkHandlerArgs = {
   method: "GET" | "POST" | "PUT" | "DELETE";
   path?: string;
   queryParams?: Record<string, any>;
+  timeoutSeconds?: number;
 };
 
 export type NetworkHandlerArgs = _BaseNetworkHandlerArgs &
@@ -19,7 +20,9 @@ export default class NetworkRequestHandler {
   }
 
   async handle<T>(args: NetworkHandlerArgs): Promise<FetchResult<T>> {
-    let { path, queryParams, ...rest } = args;
+    let { path, queryParams, timeoutSeconds, ...rest } = args;
+
+    timeoutSeconds ??= 10;
 
     path ??= "";
     if (path && path[0] != "/") path += "/";
@@ -35,17 +38,21 @@ export default class NetworkRequestHandler {
     }
 
     try {
-      const response = await fetch(this._baseUrl + path + paramString, rest);
+      return new Promise(async (resolve, _) => {
+        setTimeout(() => {
+          resolve({ error: new TimeoutError({}) });
+        }, timeoutSeconds! * 1000);
 
-      if (!response.ok) {
-        return { error: new FetchError({ response }) };
-      }
+        const response = await fetch(this._baseUrl + path + paramString, rest);
 
-      const result = await response.json();
+        if (!response.ok) {
+          resolve({ error: new FetchError({ response }) });
+        }
 
-      return {
-        result: result as T,
-      };
+        const result = await response.json();
+
+        resolve({ result: result as T, response: response });
+      });
     } catch (e) {
       return {
         error: new FetchError({ error: e }),
