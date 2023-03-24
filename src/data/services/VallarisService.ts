@@ -4,6 +4,7 @@ import { TreesResponse } from "../models/TreesResponse";
 import UpdateTreeInfoBody from "../models/UpdateTreeInfoBody";
 import NetworkRequestHandler from "./NetworkRequestHandler";
 
+// TODO implement simple caching with a map to prevent multiple network calls. Thsi way, we can just think of all trees as server state and fetch on demand (whenever).
 export default class VallarisService {
   private static _networkHandler = new NetworkRequestHandler({
     baseUrl: "https://v2k-dev.vallarismaps.com/core/api",

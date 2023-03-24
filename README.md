@@ -36,6 +36,9 @@
 5. Wait for approval
 6. Done!
 
+## How to contribute (for memebers)
+Either do the steps above or pick an issue you would like to work on and assign it to yourself.
+
 ## Documentation
 
 - [Notion](https://supparat-leelee.notion.site/WeSpace-Home-3a7de14b35d243808e7e9e8d652ab88d)
