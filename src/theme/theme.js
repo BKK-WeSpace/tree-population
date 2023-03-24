@@ -10,6 +10,26 @@ const getDesignTokens = (mode) => ({
         main: lightGreen[900],
       }),
     },
+    secondary : {
+      light: '#ECE2DF',
+      main: '#A0705F',
+      dark: '##604339'
+    },
+    error : {
+      light: '#FFD7D8',
+      main: '#E03A3E',
+      dark: '#911108'
+    },
+    warning : {
+      light: '#FFF2CC',
+      main: '#FCB827',
+      dark: '#997300'
+    },
+    success : {
+      light: '#DBF0DC',
+      main: '#4DB251',
+      dark: '#2E6B30'
+    },
     ...(mode === 'dark' && {
       background: {
         default: grey[900],
@@ -25,7 +45,8 @@ const getDesignTokens = (mode) => ({
         : {
             primary: '#fff',
             secondary: grey[500],
-          }),
+          }
+        ),
     },
   },
 });
