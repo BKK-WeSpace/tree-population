@@ -1,17 +1,25 @@
 export type FetchResult<T> = {
-  error?: FetchError;
   result?: T;
+  error?: FetchError;
+  response?: Response;
 };
 
 export class FetchError {
-  response?: Response;
   error?: Error;
+  message?: string;
   type: "Generic" | "Client" | "Server";
-  constructor({ response, error }: { response?: Response; error?: any }) {
-    this.response = response;
+  constructor({
+    responseCode = "",
+    error,
+    message,
+  }: {
+    responseCode?: string;
+    error?: any;
+    message?: string;
+  }) {
     this.error = error;
-    const responseString = response?.status.toString() ?? "";
-    switch (responseString[0]) {
+    this.message = message;
+    switch (responseCode[0]) {
       case "4":
         this.type = "Client";
         break;
@@ -23,3 +31,5 @@ export class FetchError {
     }
   }
 }
+
+export class TimeoutError extends FetchError {}

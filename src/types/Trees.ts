@@ -5,6 +5,10 @@ import { Feature, Point } from "geojson";
  */
 export default interface Tree extends Omit<Feature<Point>, "properties"> {
   // Have to overwrite it like this to force it to be optional.
+  /**
+   * The id of this tree in the Vallaris database.
+   */
+  id: string;
   properties?: Partial<TreeProperties>;
 }
 
