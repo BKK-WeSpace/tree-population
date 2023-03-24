@@ -5,7 +5,7 @@ import React, { useState } from "react";
 const sideBarWidth = 372;
 // TODO apply drawer?
 export default function RightSideBar() {
-  const [showSidebar, setShowSidebar] = useState(false);
+  const [showSidebar, setShowSidebar] = useState(true);
 
   function toggleShowOrHide() {
     setShowSidebar((s) => !s);

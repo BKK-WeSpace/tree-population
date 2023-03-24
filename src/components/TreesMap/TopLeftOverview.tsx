@@ -3,6 +3,8 @@ import React from "react";
 
 // TODO style this; apply theme, responsive, etc.
 export default function TopLeftOverview() {
+  // will have to get from the useTrees hook.
+  const treesInTheArea = 350;
   return (
     <Box
       sx={{
@@ -36,7 +38,7 @@ export default function TopLeftOverview() {
           boxShadow: "0px 4px 8px rgba(109, 143, 12, 0.11)",
         }}
       >
-        Test
+        Trees in the area {treesInTheArea}
       </Box>
     </Box>
   );
