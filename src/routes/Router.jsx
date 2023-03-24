@@ -11,4 +11,5 @@ export default createBrowserRouter([
     path: '/collect',
     element: <TreeCollectPage />,
   },
+
 ]);
