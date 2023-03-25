@@ -123,7 +123,7 @@ function FunFactSection({ sx }: { sx?: SxProps }) {
             height: "164px",
             background: "grey",
             borderRadius: "10px",
-            margin: "auto",
+            margin: "29px",
           }}
         >
           <img src={treeImage} alt="treeImage"/>
