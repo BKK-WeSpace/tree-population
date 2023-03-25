@@ -1,7 +1,10 @@
 export type FetchResult<T> = {
   result?: T;
   error?: FetchError;
-  response?: Response;
+  /**
+   * Whether or not the returned value is from the local cache.
+   */
+  fromCache: boolean;
 };
 
 export class FetchError {

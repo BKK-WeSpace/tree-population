@@ -19,8 +19,7 @@ export default function useGetTrees({
       });
 
       return {
-        response: response.response,
-        error: response.error,
+        ...response,
         result: response.result?.features,
       };
     },
