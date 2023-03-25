@@ -2,11 +2,12 @@ import { Button, ButtonBase, Divider } from "@mui/material";
 import { Box, SxProps } from "@mui/system";
 import React, { useState } from "react";
 //@ts-ignore
-import treeImage from "../../assets/treeImage.png";
+import TreeImage from "../../assets/treeImage.png";
 //@ts-ignore
-import logoWespace from "../../assets/logoWespace.png"
+import DefaultImage from "../../common/DefaultImage"
 //@ts-ignore
-import defaultImage from "../../assets/defaultImage.png"
+import LogoWespace from "../../common/LogoWespace";
+
 
 const sideBarWidth = 372;
 // TODO apply drawer?
@@ -107,8 +108,9 @@ function FunFactSection({ sx }: { sx?: SxProps }) {
           justifyContent: "space-between",
         }}
       >
-        <img src={logoWespace} alt="logoWespace" style={{ width: "98px", height: "18px", top: "28px", left: "1092px"}} />
-        <img src={defaultImage} alt="defaultImage" style={{ width: "24px", height: "24px", top: "24px", left: "1384px"}} />
+        <LogoWespace alt="logoWespace" style={{ width: "98px", height: "18px", top: "28px", left: "1092px"}}></LogoWespace>
+        {/* <img src={logoWespace} alt="logoWespace" style={{ width: "98px", height: "18px", top: "28px", left: "1092px"}} /> */}
+        <DefaultImage alt="defaultImage" style={{ width: "24px", height: "24px", top: "24px", left: "1384px"}}></DefaultImage>
       </Box>
       <Box
         sx={{
@@ -126,7 +128,7 @@ function FunFactSection({ sx }: { sx?: SxProps }) {
             margin: "29px",
           }}
         >
-          <img src={treeImage} alt="treeImage"/>
+          <img src={TreeImage} alt="treeImage"/>
         </Box>
         <p style={{ color: "#65792D", fontSize: '24px', fontWeight: "bold" }}>รู้หรือไม่?</p>
         <p>
