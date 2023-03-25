@@ -11,6 +11,9 @@ import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 
+import CupImage from "../../common/CupImage";
+import VerifiedImage from "../../common/VerifiedImage";
+
 //@ts-ignore
 import TreeImage from "../../assets/treeImage.png";
 
@@ -276,6 +279,8 @@ function AllTreesTab({ trees }) {
               name={tree.properties.commonName}
               status={tree.properties.isAlive}
               treeImg={treeList[i]}
+              isVerified={tree.properties.isVerified}
+              isReward={tree.properties.isReward}
             />
           ))}
       </div>
@@ -296,6 +301,8 @@ function FindTreesTab({ trees }) {
               name={tree.properties.commonName}
               status={false}
               treeImg={treeList[i]}
+              isVerified={tree.properties.isVerified}
+              isReward={tree.properties.isReward}
             />
           ))}
       </div>
@@ -314,7 +321,7 @@ function Search() {
   );
 }
 
-function TreeCard({ name, status, treeImg, isFindTheTreeTab }) {
+function TreeCard({ name, status, treeImg, isFindTheTreeTab, isVerified, isReward }) {
   return (
     <div className="tree-card">
       {isFindTheTreeTab ? (
@@ -325,7 +332,8 @@ function TreeCard({ name, status, treeImg, isFindTheTreeTab }) {
 
       <div className="box">
         <div className="tree-detail">
-          <div className="tree-title">{name}</div>
+          <div className="tree-title"><span>{name}</span>{isVerified && <VerifiedImage/>}{isReward && <CupImage/>}</div>
+          {/* <div className="tree-title">{name}</div> */}
           <div className="tree-status">
             <p className="status-prompt">tree status:</p>
             <TreeStatus status={status} isFindTheTreeTab={isFindTheTreeTab} />

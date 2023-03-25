@@ -9,6 +9,7 @@
         "coordinates": [100.541327, 13.731272]
       },
       "properties": {
+        "isReward": true,
         "isVerified": true,
         "commonName": "Oak",
         "species": "Quercus",
