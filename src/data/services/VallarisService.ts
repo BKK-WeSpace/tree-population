@@ -11,7 +11,7 @@ export default class VallarisService {
   private static _networkHandler = new NetworkRequestHandler({
     baseUrl: "https://v2k-dev.vallarismaps.com/core/api",
   });
-  private static _collectionId = "64169999e89e47973094f506";
+  private static _collectionId = "641eb96d476571350cabeac3";
 
   public static async getAllTrees(
     request?: TreesRequestParams,
@@ -43,7 +43,7 @@ export default class VallarisService {
    */
   public static getMapStyle(): FetchResult<string> {
     // TODO Replace Libre map style with the actual one we're gonna be using in prod.
-    const styleId = "64149d10dc84d7b8cd687c5e";
+    const styleId = "641ef0e2dd63c244d85b099a";
 
     return {
       result: `https://v2k-dev.vallarismaps.com/core/api/styles/1.0-beta/styles/${styleId}?api_key=${
