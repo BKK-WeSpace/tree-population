@@ -1,6 +1,5 @@
 import {
 	CommonColor,
-	ColorLevel,
 	GreyColorLevel,
 	Text,
 	Background,
@@ -23,30 +22,30 @@ const primary: PaletteColorOptions = {
 	// contrastText: "#fff",
 };
 
-const secondary: ColorLevel = {
+const secondary: PaletteColorOptions = {
 	main: "#9c27b0",
 	light: "#ba68c8",
 	dark: "#7b1fa2",
 };
 
-const error: ColorLevel = {
+const error: PaletteColorOptions = {
 	main: "#E03A3E",
 	light: "#FFD7D8",
 	dark: "#911108",
 };
 
-const warning: ColorLevel = {
+const warning: PaletteColorOptions = {
 	main: "#FCB827",
 	light: "#FFF2CC",
 	dark: "#997300",
 };
 
-const success: ColorLevel = {
+const success: PaletteColorOptions = {
 	main: "#4DB251",
 	light: "#DBF0DC",
 	dark: "#2E6B30",
 };
-const info: ColorLevel = {
+const info: PaletteColorOptions = {
 	main: "#0288d1",
 	light: "#03a9f4",
 	dark: "#01579b",

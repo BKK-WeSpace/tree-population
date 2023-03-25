@@ -1,4 +1,3 @@
-import Pending from "../../types/Pending";
 import { default as Tree } from "../../types/Trees";
 import { FetchResult } from "../models/NetworkResult";
 import TreesRequestParams from "../models/TreesRequest";
@@ -7,10 +6,10 @@ import useFetch from "./useFetch";
 
 export default function useGetTrees({
   request,
-  deps = [],
+  deps,
 }: {
   request?: TreesRequestParams;
-  deps: any[];
+  deps?: any[];
 }) {
   return useFetch<FetchResult<Tree[]>>({
     callback: async () => {
@@ -20,6 +19,7 @@ export default function useGetTrees({
       });
 
       return {
+        response: response.response,
         error: response.error,
         result: response.result?.features,
       };

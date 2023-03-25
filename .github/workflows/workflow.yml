@@ -1,6 +1,6 @@
 name: "Run TODO to Issue"
 on:
-  push:
+  pull_request:
   workflow_dispatch:
     inputs:
       MANUAL_COMMIT_REF:
