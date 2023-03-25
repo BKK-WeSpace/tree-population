@@ -8,11 +8,10 @@ import MapOutlinedIcon from "@mui/icons-material/MapOutlined";
 import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 
-import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
-import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
-
 import CupImage from "../../common/CupImage";
 import VerifiedImage from "../../common/VerifiedImage";
+import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
+import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 
 //@ts-ignore
 import TreeImage from "../../assets/treeImage.png";
@@ -88,7 +87,7 @@ export default function RightSideBar() {
       <TabSwitcher
         children={[
           {
-            jsx: <AllTreesTab trees={data} />,
+            jsx: <AllTreesTab trees={data?.result?.features} />,
             // TODO title for All Trees
             sectionTitle: "All Trees",
           },
@@ -153,7 +152,7 @@ function FunFactSection({ sx }: { sx?: SxProps }) {
           justifyContent: "space-between",
         }}
       >
-        <LogoWespace />
+        <LogoWespace></LogoWespace>
         <Button
           variant="contained"
           style={{
@@ -188,6 +187,19 @@ function FunFactSection({ sx }: { sx?: SxProps }) {
             marginBottom: "24px",
           }}
         >
+          <img
+            src={TreeImage}
+            alt="treeImage"
+            style={{
+              width: "324px",
+              height: "138px",
+              background: "grey",
+              borderRadius: "10px",
+              top: "24px",
+              left: "24px",
+              objectFit: "cover",
+            }}
+          />
           <img
             src={TreeImage}
             alt="treeImage"
@@ -288,8 +300,9 @@ function AllTreesTab({ trees }) {
       <Search />
       <div className="treeCardContainer">
         {trees != undefined &&
-          trees.result.map((tree, i) => (
+          trees.map((tree, i) => (
             <TreeCard
+              key={i}
               isFindTheTreeTab={false}
               name={tree.properties.commonName}
               status={tree.properties.isAlive}
@@ -335,7 +348,14 @@ function Search() {
   );
 }
 
-function TreeCard({ name, status, treeImg, isFindTheTreeTab, isVerified, isReward }) {
+function TreeCard({
+  name,
+  status,
+  treeImg,
+  isFindTheTreeTab,
+  isVerified,
+  isReward,
+}) {
   return (
     <div className="tree-card">
       {isFindTheTreeTab ? (
@@ -354,7 +374,11 @@ function TreeCard({ name, status, treeImg, isFindTheTreeTab, isVerified, isRewar
 
       <div className="box">
         <div className="tree-detail">
-          <div className="tree-title"><span>{name}</span>{isVerified && <VerifiedImage/>}{isReward && <CupImage/>}</div>
+          <div className="tree-title">
+            <span>{name}</span>
+            {isVerified && <VerifiedImage />}
+            {isReward && <CupImage />}
+          </div>
           {/* <div className="tree-title">{name}</div> */}
           <div className="tree-status">
             <p className="status-prompt">tree status:</p>

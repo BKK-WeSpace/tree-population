@@ -3,6 +3,7 @@ import TreesRequestParams from "../models/TreesRequest";
 import { TreesResponse } from "../models/TreesResponse";
 import UpdateTreeInfoBody from "../models/UpdateTreeInfoBody";
 import NetworkRequestHandler from "./NetworkRequestHandler";
+import mockJson from "../../mockResponses/trees.json";
 
 import mockTree from "../../mockResponses/trees.json";
 
@@ -16,7 +17,8 @@ export default class VallarisService {
   public static async getAllTrees(
     request?: TreesRequestParams,
     fromCacheIfExists = true
-  ) {
+  ): Promise<FetchResult<TreesResponse>> {
+    return { result: mockJson as TreesResponse, fromCache: true };
     const path = `/features/1.0/collections/${VallarisService._collectionId}/items`;
     const data = await VallarisService._networkHandler.handle<TreesResponse>({
       fromCacheIfExists,

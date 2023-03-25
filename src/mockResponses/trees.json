@@ -11,7 +11,7 @@
       "properties": {
         "isReward": true,
         "isVerified": true,
-        "commonName": "Oak",
+        "commonName": null,
         "species": "Quercus",
         "genus": "Fagaceae",
         "quote": {
