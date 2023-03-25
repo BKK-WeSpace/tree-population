@@ -3,7 +3,7 @@
     justify-content: space-between;
     background-color: #F5F5F5;
     padding: 15px;
-    margin: 20px;
+    margin: 20px 15px 0px 15px;
     border-radius: 10px;
     color: #808080;
 }
@@ -12,16 +12,50 @@
     overflow-y: scroll;
 }
 
-.tree-card {}
+.tree-card {
+    display: flex;
+    padding: 15px;
+    border-style: none none solid none;
+    border-width: 1px;
+    border-color: #d4d4d4;
+    height: 150px;
+}
 
-.tree-detail {}
+.tree-image {
+    width: 120px;
+    height: 120px;
+    background-color: aqua;
+}
+
+.box {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-end;
+    width: 70%;
+
+}
+
+.tree-detail {
+    width: 95%;
+    align-items: flex-start;
+    display: flex;
+    flex-direction: column;
+    margin-left: 15px;
+
+}
 
 .tree-title {
     color: black;
     font-size: 20px;
+    font-weight: 700;
 }
 
-.tree-status {}
+.tree-status {
+    display: flex;
+    align-items: center;
+    height: 20px
+}
 
 .status-prompt {
     color: #808080;
@@ -29,16 +63,46 @@
 }
 
 
-.call-to-action-container {}
+.call-to-action-container {
+    display: flex;
+    width: 100%;
+    align-items: flex-end;
+    justify-content: flex-end;
+}
 
 .status-tag {
-    padding: 10px
+    padding: 10px;
+    left: 79px;
+    top: 0px;
+    border-radius: 25px;
+    padding: 0px 8px 0px 8px;
+
 }
 
-.status-tag-active {
-    color: red
+.tag-active {
+    /* width: 45px;
+    height: 24px; */
+    margin-left: 8px;
+    left: 79px;
+    top: 0px;
+    font-size: 12px;
+    font-weight: 700;
+    border-radius: 25px;
+    padding: 2px 8px 2px 8px;
+    color: #4DB251;
+    background-color: #DBF0DC;
 }
 
-.status-tag-inactive {
-    color: gray
+.tag-inactive {
+    /* width: 45px;
+    height: 24px; */
+    margin-left: 8px;
+    left: 79px;
+    top: 0px;
+    font-size: 12px;
+    font-weight: 700;
+    border-radius: 25px;
+    padding: 0px 8px 0px 8px;
+    color: #4DB251;
+    background-color: #DBF0DC;
 }
