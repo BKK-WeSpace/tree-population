@@ -1,16 +1,39 @@
 import { Button, ButtonBase, Divider } from "@mui/material";
 import { Box, SxProps } from "@mui/system";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import useGetTrees from "../../data/hooks/useGetTrees";
+
+import SearchIcon from "@mui/icons-material/Search";
+import MapOutlinedIcon from "@mui/icons-material/MapOutlined";
+import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
+
 //@ts-ignore
 import TreeImage from "../../assets/treeImage.png";
+
+//@ts-ignore
+import Tree1 from "../../assets/tree1.png";
+
+//@ts-ignore
+import Tree2 from "../../assets/tree2.png";
+
+//@ts-ignore
+import Tree3 from "../../assets/tree3.png";
+
+//@ts-ignore
+import DefaultImage from "../../common/DefaultImage";
+
 //@ts-ignore
 import LogoWespace from "../../common/LogoWespace";
 
+import "./style/RightSideBar.css";
+
+const treeList = [Tree1, Tree2, Tree3, Tree1, Tree2];
 
 const sideBarWidth = 372;
 // TODO apply drawer?
 export default function RightSideBar() {
   const [showSidebar, setShowSidebar] = useState(true);
+  let { isLoading, data } = useGetTrees({});
 
   function toggleShowOrHide() {
     setShowSidebar((s) => !s);
@@ -18,6 +41,7 @@ export default function RightSideBar() {
 
   return (
     <Box
+      className="treeCardContainer"
       sx={{
         position: "fixed",
         width: sideBarWidth + "px",
@@ -42,7 +66,7 @@ export default function RightSideBar() {
       <TabSwitcher
         children={[
           {
-            jsx: <AllTreesTab />,
+            jsx: <AllTreesTab trees={data} />,
             // TODO title for All Trees
             sectionTitle: "All Trees",
           },
@@ -139,15 +163,17 @@ function FunFactSection({ sx }: { sx?: SxProps }) {
             left: "24px"
           }}/>
         </Box>
-        <p style={{ color: "#65792D", fontSize: '24px', fontWeight: "bold" }}>รู้หรือไม่?</p>
+        <p style={{ color: "#65792D", fontSize: "24px", fontWeight: "bold" }}>
+          รู้หรือไม่?
+        </p>
         <p>
-        ปัจจุบันต้นไม้ในกรุงเทพฯ ได้รับการดูแลที่ไม่ดีนัก 
-        เพราะข้อมูลที่น้อย และมีค่าใช้จ่ายสูงในการดูแล
-            <br/>
-            <br/>
-        ช่วยกันเก็บข้อมูลต้นไม้เพื่อให้น้องต้นไม้
-            <br/>
-                 ได้รับการดูแลที่ถูกต้อง 
+          ปัจจุบันต้นไม้ในกรุงเทพฯ ได้รับการดูแลที่ไม่ดีนัก เพราะข้อมูลที่น้อย
+          และมีค่าใช้จ่ายสูงในการดูแล
+          <br />
+          <br />
+          ช่วยกันเก็บข้อมูลต้นไม้เพื่อให้น้องต้นไม้
+          <br />
+          ได้รับการดูแลที่ถูกต้อง
         </p>
       </Box>
     </Box>
@@ -217,11 +243,88 @@ function TabSwitcher({
 }
 
 // TODO implement <AllTreesTab/>
-function AllTreesTab() {
-  return <p style={{ color: "green" }}>All Trees Tab</p>;
+function AllTreesTab({ trees }) {
+  return (
+    <div style={{ backgroundColor: "white" }}>
+      <Search />
+      <div className="treeCardContainer">
+        {trees != undefined &&
+          trees.result.map((tree, i) => (
+            <TreeCard
+              name={tree.properties.commonName}
+              status={tree.properties.isAlive}
+              treeImg={treeList[i]}
+            />
+          ))}
+      </div>
+    </div>
+  );
 }
 
 // TODO implement <FindTreesTab/>
 function FindTreesTab() {
-  return <p style={{ color: "green" }}>Find Trees Tab</p>;
+  return <p style={{ color: "green" }}> Find Trees Tab</p>;
+}
+
+function Search() {
+  return (
+    <div>
+      <div className="searchBar">
+        found 200 trees <SearchIcon />
+      </div>
+    </div>
+  );
+}
+
+function TreeCard({ name, status, treeImg }) {
+  return (
+    <div className="tree-card">
+      <img src={treeImg} alt="treeImage" />
+
+      <div className="box">
+        <div className="tree-detail">
+          <div className="tree-title">{name}</div>
+          <div className="tree-status">
+            <p className="status-prompt">tree status :</p>
+            <TreeStatus status={status} />
+          </div>
+        </div>
+
+        <div className="call-to-action-container">
+          <div></div>
+          <div>
+            <Button
+              style={{
+                color: "#94B044",
+                fontWeight: "700",
+                borderRadius: "8px",
+                padding: "4px 10px",
+              }}
+              variant="outlined"
+              endIcon={<MapOutlinedIcon />}
+            >
+              นำทาง
+            </Button>
+            <Button
+              style={{
+                color: "white",
+                fontWeight: "700",
+                borderRadius: "8px",
+                marginLeft: "6px",
+                padding: "4px 10px",
+              }}
+              variant="contained"
+              endIcon={<FavoriteBorderOutlinedIcon />}
+            >
+              กอดน้อง
+            </Button>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function TreeStatus({ status }) {
+  return <p className={`tag-${true ? "active" : "inactive"}`}>arrive</p>;
 }
