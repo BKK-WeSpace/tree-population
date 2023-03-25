@@ -47,6 +47,9 @@ Either do the steps above or pick an issue you would like to work on and assign 
 
 - [Design](https://www.figma.com/file/eoCuDZ0ZtF77zY3oBmjLwQ/WeSpace%F0%9F%8C%B2?node-id=0-1&t=FOW6QHro1SsHehlS-0)
 
+## Font
+- Font use "LINE Seed Sans TH"
+- To use Bold font in HTML tag (use font-weight: "bold") and MUI Component (fontWeight: "bold") 
 <!-- TODO documentation -->
 
 <!-- TODO CI/CD -->
