@@ -7,6 +7,9 @@ import SearchIcon from "@mui/icons-material/Search";
 import MapOutlinedIcon from "@mui/icons-material/MapOutlined";
 import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
 
+import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
+import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
+
 //@ts-ignore
 import TreeImage from "../../assets/treeImage.png";
 
@@ -56,7 +59,7 @@ export default function RightSideBar() {
     >
       <SidebarToggle
         onClick={toggleShowOrHide}
-        icon={<p>{showSidebar ? ">" : "<"}</p>}
+        icon={<p>{showSidebar ? <ArrowForwardIosIcon style={{ fontSize: "15px"}}></ArrowForwardIosIcon> : <ArrowBackIosNewIcon style={{ fontSize: "15px"}}></ArrowBackIosNewIcon>}</p>}
       />
       <FunFactSection
         sx={{
@@ -96,10 +99,10 @@ function SidebarToggle({
     <ButtonBase
       onClick={onClick}
       sx={{
-        position: "absolute",
+        position: "fixed",
         borderRadius: "50%",
-        width: "40px",
-        height: "40px",
+        width: "45px",
+        height: "45px",
         color: "black",
         background: "white",
         top: "147px",
@@ -158,9 +161,9 @@ function FunFactSection({ sx }: { sx?: SxProps }) {
             height: "138px",
             background: "grey",
             borderRadius: "10px",
-            // margin: "29px",
             top: "24px",
-            left: "24px"
+            left: "24px",
+            objectFit: "cover"
           }}/>
         </Box>
         <p style={{ color: "#65792D", fontSize: "24px", fontWeight: "bold" }}>
@@ -269,6 +272,7 @@ function FindTreesTab() {
 function Search() {
   return (
     <div>
+      <br/>
       <div className="searchBar">
         found 200 trees <SearchIcon />
       </div>
