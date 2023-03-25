@@ -242,12 +242,23 @@ function Search() {
 
 function TreeCard({ name, status }) {
   return (
-    <div className="treeCard">
-      <div>
-        <div>{name}</div>
-        <div>{status.toString()}</div>
-      </div>
+    <div className="tree-card">
       <div></div>
+      <div className="">
+        <div className="tree-detail">
+          <div className="tree-title">{name}</div>
+          <div className="tree-status">
+            <p className="status-prompt">tree status :</p> {status.toString()}
+          </div>
+        </div>
+        <div className="call-to-action-container"></div>
+      </div>
     </div>
+  );
+}
+
+function treeStatus({ status }) {
+  return (
+    <div className={`status-tag-${status ? "-active" : "-inactive"}`}></div>
   );
 }
