@@ -13,15 +13,14 @@ const TreesMap: React.FC<TreesMapProps> = () => {
     100.537682, 13.80949,
   ]);
 
+  const { data: style } = useGetStyles([]);
+
   useEffect(() => {
+    if (!style?.result) return;
     const map = new maplibregl.Map({
       container: "map",
       center: latLong,
-      // TODO put this style in VallarisService
-      style:
-        "https://v2k-dev.vallarismaps.com/core/api/styles/1.0-beta/styles/64149d10dc84d7b8cd687c5e?api_key=" +
-        // @ts-ignore
-        import.meta.env.VITE_VALLARIS_API_KEY,
+      style: style!.result,
       zoom: 10,
       attributionControl: false,
     });
@@ -29,7 +28,7 @@ const TreesMap: React.FC<TreesMapProps> = () => {
     return () => {
       map.remove();
     };
-  }, []);
+  }, [style]);
 
   // TODO change all hard-coded values to use MUI themes
   return (
