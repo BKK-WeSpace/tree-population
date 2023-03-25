@@ -1,10 +1,30 @@
 import { Box } from "@mui/material";
-import React from "react";
+import useGetTrees from "../../data/hooks/useGetTrees";
+import * as React from "react";
+import InputLabel from "@mui/material/InputLabel";
+import MenuItem from "@mui/material/MenuItem";
+import FormHelperText from "@mui/material/FormHelperText";
+import FormControl from "@mui/material/FormControl";
+import Select, { SelectChangeEvent } from "@mui/material/Select";
 
 // TODO style this; apply theme, responsive, etc.
 export default function TopLeftOverview() {
-  // will have to get from the useTrees hook.
-  const treesInTheArea = 350;
+  const { data, isLoading } = useGetTrees({});
+  // will have to get from the useGetTrees hook.
+  const treesInTheArea = isLoading ? "loading..." : data?.result?.length;
+  // get array of area from ?
+  const serveyArea = ["สวนลุมพินี", "สวนเบญ", "สวนจตุจักร", "สวนสนุก", "สวนน้ำ"];
+
+  console.log(data);
+
+  const [age, setAge] = React.useState("");
+
+  const handleChange = (event: SelectChangeEvent) => {
+    setAge(event.target.value);
+  };
+
+
+
   return (
     <Box
       sx={{
@@ -26,7 +46,31 @@ export default function TopLeftOverview() {
           color: "black",
         }}
       >
-        Test
+        
+        <div>
+          พื้นที่สำรวจ
+          <FormControl sx={{ m: 1, minWidth: 120 }}>
+            <Select
+              // value={serveyArea[0]}
+              onChange={handleChange}
+              displayEmpty
+              inputProps={{ "aria-label": "Without label" }}
+              defaultValue="option1"
+              sx={{
+                color: 'black'
+              }}
+            >
+              <MenuItem value="">
+                <em>All</em>
+              </MenuItem>
+              <MenuItem value={serveyArea[0]}>{serveyArea[0]}</MenuItem>
+              <MenuItem value={serveyArea[1]}>{serveyArea[1]}</MenuItem>
+              <MenuItem value={serveyArea[2]}>{serveyArea[2]}</MenuItem>
+              <MenuItem value={serveyArea[3]}>{serveyArea[3]}</MenuItem>
+            </Select>
+            <FormHelperText>Without label</FormHelperText>
+          </FormControl>
+        </div>
       </Box>
       <Box
         sx={{
@@ -38,7 +82,7 @@ export default function TopLeftOverview() {
           boxShadow: "0px 4px 8px rgba(109, 143, 12, 0.11)",
         }}
       >
-        Trees in the area {treesInTheArea}
+        จำนวนต้นไม้ในพื้นที่ {treesInTheArea}
       </Box>
     </Box>
   );
