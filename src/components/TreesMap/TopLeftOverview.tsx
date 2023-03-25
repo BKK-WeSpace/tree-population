@@ -1,4 +1,4 @@
-import { Box, Container, Typography } from "@mui/material";
+import { Box, Container, Grid, Stack, Typography } from "@mui/material";
 import useGetTrees from "../../data/hooks/useGetTrees";
 import * as React from "react";
 import InputLabel from "@mui/material/InputLabel";
@@ -6,7 +6,8 @@ import MenuItem from "@mui/material/MenuItem";
 import FormHelperText from "@mui/material/FormHelperText";
 import FormControl from "@mui/material/FormControl";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
-import KeyboardArrowDownOutlinedIcon from '@mui/icons-material/KeyboardArrowDownOutlined';
+import KeyboardArrowDownOutlinedIcon from "@mui/icons-material/KeyboardArrowDownOutlined";
+import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline';
 
 // TODO style this; apply theme, responsive, etc.
 export default function TopLeftOverview() {
@@ -14,8 +15,14 @@ export default function TopLeftOverview() {
   // will have to get from the useGetTrees hook.
   const treesInTheArea = isLoading ? "loading..." : data?.result?.length;
   // get array of area from ?
-  const serveyArea = ["สวนลุมพินี", "สวนเบญ", "สวนจตุจักร", "สวนสนุก", "สวนน้ำ"];
-  const currentArea = serveyArea[0]
+  const serveyArea = [
+    "สวนลุมพินี",
+    "สวนเบญ",
+    "สวนจตุจักร",
+    "สวนสนุก",
+    "สวนน้ำ",
+  ];
+  const currentArea = serveyArea[0];
 
   console.log(data);
 
@@ -24,8 +31,6 @@ export default function TopLeftOverview() {
   const handleChange = (event: SelectChangeEvent) => {
     setAge(event.target.value);
   };
-
-
 
   return (
     <Box
@@ -48,21 +53,36 @@ export default function TopLeftOverview() {
           color: "black",
         }}
       >
-        <Container>
-         <Typography
-         sx = {{
-          fontSize: '16px'
-         }}
-         >พื้นที่สำรวจ</Typography>
-          <FormControl sx={{
-            color: 'black' ,
-            minWidth: 150 ,
-            maxWidth: 150,
-            textAlign:"left",
-            mx:2
-            }}>
+        <Grid
+        container
+        spacing={0}
+        direction="row"
+        alignItems="center"
+        justifyContent="center"
+        margin={2}
+        >
+          <Typography display='flex' flexGrow={1}
+            sx={{
+              fontSize: "16px",
+              color:"#65792D",
+              fontWeight:'Bold'
+            }}
+            marginLeft={2}
+          >
+            พื้นที่สำรวจ
+          </Typography>
+          <FormControl
+            sx={{
+              color: "black",
+              minWidth: 150,
+              maxWidth: 150,
+              textAlign: "left",
+              mx: 2,
+              fontWeight:'Bold'
+            }}
+          >
             <Select
-            IconComponent={KeyboardArrowDownOutlinedIcon}
+              IconComponent={KeyboardArrowDownOutlinedIcon}
               // value={serveyArea[0]}
               onChange={handleChange}
               displayEmpty
@@ -70,8 +90,8 @@ export default function TopLeftOverview() {
               defaultValue="option1"
               sx={{
                 "& .MuiSvgIcon-root": { color: "#333333" },
-                color: '#333333',
-                backgroundColor: 'white',
+                color: "#333333",
+                backgroundColor: "white",
                 boxShadow: "none",
                 ".MuiOutlinedInput-notchedOutline": { border: 0 },
                 "&.MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline":
@@ -84,19 +104,19 @@ export default function TopLeftOverview() {
                   },
               }}
             >
-
-            <MenuItem value="">
-              <em>All</em>
-            </MenuItem>
-            <MenuItem value={serveyArea[0]}>{serveyArea[0]}</MenuItem>
-            <MenuItem value={serveyArea[1]}>{serveyArea[1]}</MenuItem>
-            <MenuItem value={serveyArea[2]}>{serveyArea[2]}</MenuItem>
-            <MenuItem value={serveyArea[3]}>{serveyArea[3]}</MenuItem>
+              <MenuItem value="">
+                <em>All</em>
+              </MenuItem>
+              <MenuItem value={serveyArea[0]}>{serveyArea[0]}</MenuItem>
+              <MenuItem value={serveyArea[1]}>{serveyArea[1]}</MenuItem>
+              <MenuItem value={serveyArea[2]}>{serveyArea[2]}</MenuItem>
+              <MenuItem value={serveyArea[3]}>{serveyArea[3]}</MenuItem>
             </Select>
           </FormControl>
-          </Container>
+        </Grid>
+
       </Box>
-      
+
       <Box
         sx={{
           color: "black",
@@ -107,9 +127,31 @@ export default function TopLeftOverview() {
           boxShadow: "0px 4px 8px rgba(109, 143, 12, 0.11)",
         }}
       >
-        <Typography>จำนวนต้นไม้ในพื้นที่</Typography>
-        <Typography>{treesInTheArea} ต้น</Typography>
-        <Typography>สำหรับ {currentArea}</Typography>
+        <Grid
+        container
+        direction="column"
+        alignItems="center"
+        justifyContent="center"
+        >
+          <Typography sx={{
+            fontSize: '18px',
+            fontWeight: "bold", 
+            color:"#65792D",
+          }}
+          marginTop={3}
+          >จำนวนต้นไม้ในพื้นที่</Typography>
+          
+          <Typography sx={{
+            fontSize: '30px',
+            fontWeight: "bold", 
+          }}>
+            {treesInTheArea} ต้น</Typography>
+          <Typography sx={{
+            fontSize: '14px', 
+            fontStyle: 'italic',
+            
+          }}>สำหรับ {currentArea} <ErrorOutlineIcon sx={{fontSize:14,}}></ErrorOutlineIcon></Typography>
+        </Grid>
         
       </Box>
     </Box>
