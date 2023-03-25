@@ -1,11 +1,17 @@
 import { Button, ButtonBase, Divider } from "@mui/material";
 import { Box, SxProps } from "@mui/system";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import useGetTrees from "../../data/hooks/useGetTrees";
+
+import SearchIcon from "@mui/icons-material/Search";
+
+import "./style/RightSideBar.css";
 
 const sideBarWidth = 372;
 // TODO apply drawer?
 export default function RightSideBar() {
   const [showSidebar, setShowSidebar] = useState(true);
+  let { isLoading, data } = useGetTrees({});
 
   function toggleShowOrHide() {
     setShowSidebar((s) => !s);
@@ -13,6 +19,7 @@ export default function RightSideBar() {
 
   return (
     <Box
+      className="treeCardContainer"
       sx={{
         position: "fixed",
         width: sideBarWidth + "px",
@@ -37,7 +44,7 @@ export default function RightSideBar() {
       <TabSwitcher
         children={[
           {
-            jsx: <AllTreesTab />,
+            jsx: <AllTreesTab trees={data} />,
             // TODO title for All Trees
             sectionTitle: "All Trees",
           },
@@ -201,11 +208,46 @@ function TabSwitcher({
 }
 
 // TODO implement <AllTreesTab/>
-function AllTreesTab() {
-  return <p style={{ color: "green" }}>All Trees Tab</p>;
+function AllTreesTab({ trees }) {
+  return (
+    <div>
+      <Search />
+      <div className="treeCardContainer">
+        {trees != undefined &&
+          trees.result.map((tree) => (
+            <TreeCard
+              name={tree.properties.commonName}
+              status={tree.properties.isAlive}
+            />
+          ))}
+      </div>
+    </div>
+  );
 }
 
 // TODO implement <FindTreesTab/>
 function FindTreesTab() {
-  return <p style={{ color: "green" }}>Find Trees Tab</p>;
+  return <p style={{ color: "green" }}> Find Trees Tab</p>;
+}
+
+function Search() {
+  return (
+    <div className="container">
+      <div className="searchBar">
+        found 200 trees <SearchIcon />
+      </div>
+    </div>
+  );
+}
+
+function TreeCard({ name, status }) {
+  return (
+    <div className="treeCard">
+      <div>
+        <div>{name}</div>
+        <div>{status.toString()}</div>
+      </div>
+      <div></div>
+    </div>
+  );
 }
