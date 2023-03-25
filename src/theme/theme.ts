@@ -1,6 +1,7 @@
 import { createTheme } from "@mui/material";
 import palette from "./palette";
 import typography from "./typography";
+import lineSeedSansTH from "../assets/fonts/LINE_Seed_Sans_TH";
 
 const {
   common,
@@ -17,7 +18,6 @@ const {
 } = palette
 
 const customTheme = createTheme({
-	// TODO we import by spread operator (example ...breakpoints)
 	palette: {
 		common,
     primary,
@@ -32,6 +32,7 @@ const customTheme = createTheme({
     action, 
 	},
     typography: {
+      fontFamily: 'LINE Seed Sans TH',
       ...typography
     }
 });

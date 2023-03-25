@@ -4,7 +4,7 @@ import {
 	Text,
 	Background,
 	ActionColor,
-} from "./type";
+} from "./type"
 
 import { PaletteColorOptions } from "@mui/material";
 
