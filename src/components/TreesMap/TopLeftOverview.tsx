@@ -30,7 +30,7 @@ export default function TopLeftOverview() {
   const handleAreaChange = (event) => {
     setSelctedArea(event.target.value);
   };
-  const data = null;
+  const dataSearch = null;
   return (
     <Box
       sx={{
@@ -52,113 +52,11 @@ export default function TopLeftOverview() {
           color: "black",
         }}
       >
-        //this is dropdown
-        <Grid
-        container
-        spacing={0}
-        direction="row"
-        alignItems="center"
-        justifyContent="center"
-        margin={2}
-        >
-          <Typography display='flex' flexGrow={1}
-            sx={{
-              fontSize: "16px",
-              color:"#65792D",
-              fontWeight:'Bold'
-            }}
-            marginLeft={2}
-          >
-            พื้นที่สำรวจ
-          </Typography>
-          <FormControl
-            sx={{
-              color: "black",
-              minWidth: 150,
-              maxWidth: 150,
-              textAlign: "left",
-              mx: 2,
-              fontWeight:'Bold'
-            }}
-          >
-            <Select
-              IconComponent={KeyboardArrowDownOutlinedIcon}
-              // onChange={handleChange}
-              onChange = {handleAreaChange}
-              value = {selctedArea}
-              displayEmpty
-              inputProps={{ "aria-label": "Without label" }}
-              defaultValue={serveyArea[0]}
-              sx={{
-                "& .MuiSvgIcon-root": { color: "#333333" },
-                color: "#333333",
-                backgroundColor: "white",
-                boxShadow: "none",
-                ".MuiOutlinedInput-notchedOutline": { border: 0 },
-                "&.MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline":
-                  {
-                    border: 0,
-                  },
-                "&.MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline":
-                  {
-                    border: 0,
-                  },
-              }}
-            >
-              <MenuItem value={serveyArea[0]}><em>All</em></MenuItem>
-              <MenuItem value={serveyArea[1]}>{serveyArea[1]}</MenuItem>
-              <MenuItem value={serveyArea[2]}>{serveyArea[2]}</MenuItem>
-              <MenuItem value={serveyArea[3]}>{serveyArea[3]}</MenuItem>
-            </Select>
-          </FormControl>
-        </Grid>
-
-      </Box>
-
-      <Box
-        sx={{
-          color: "black",
-          borderRadius: "12px",
-          width: "100%",
-          height: "147px",
-          background: "white",
-          boxShadow: "0px 4px 8px rgba(109, 143, 12, 0.11)",
-        }}
-      >
-        <Grid
-        container
-        direction="column"
-        alignItems="center"
-        justifyContent="center"
-        >
-          <Typography sx={{
-            fontSize: '18px',
-            fontWeight: "bold", 
-            color:"#65792D",
-          }}
-          marginTop={3}
-          >จำนวนต้นไม้ในพื้นที่</Typography>
-          
-          <Typography sx={{
-            fontSize: '30px',
-            fontWeight: "bold", 
-          }}>
-            {treesInTheArea} ต้น</Typography>
-          <Typography 
-          sx={{
-            fontSize: '14px', 
-          }}> สำหรับ {selctedArea} <ErrorOutlineIcon sx={{fontSize:14,}}></ErrorOutlineIcon></Typography>
-          
-        </Grid>
-        //end dropdown
-        
-        //or change dropdown to searchBox
-        //{/* Search Filter */}
-        //<SearchBox/>
+        <SearchBox/>
       </Box>
 
       {
-        data?
+        dataSearch?
           <Box
           sx={{
             color: "black",
