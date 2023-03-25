@@ -22,8 +22,8 @@ const TreesMap: React.FC<TreesMapProps> = () => {
         "https://v2k-dev.vallarismaps.com/core/api/styles/1.0-beta/styles/64149d10dc84d7b8cd687c5e?api_key=" +
         // @ts-ignore
         import.meta.env.VITE_VALLARIS_API_KEY,
-
       zoom: 10,
+      attributionControl: false,
     });
 
     return () => {
@@ -36,7 +36,7 @@ const TreesMap: React.FC<TreesMapProps> = () => {
     <Box
       sx={{
         "& > div": {
-          position: "absolute",
+          position: "fixed",
           top: 0,
           bottom: 0,
           width: "100%",
