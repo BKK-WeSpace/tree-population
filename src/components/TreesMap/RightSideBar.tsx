@@ -1,6 +1,12 @@
 import { Button, ButtonBase, Divider } from "@mui/material";
 import { Box, SxProps } from "@mui/system";
 import React, { useState } from "react";
+//@ts-ignore
+import treeImage from "../../assets/treeImage.png";
+//@ts-ignore
+import logoWespace from "../../assets/logoWespace.png"
+//@ts-ignore
+import defaultImage from "../../assets/defaultImage.png"
 
 const sideBarWidth = 372;
 // TODO apply drawer?
@@ -101,8 +107,8 @@ function FunFactSection({ sx }: { sx?: SxProps }) {
           justifyContent: "space-between",
         }}
       >
-        <p>WeSpace logo</p>
-        <p>Profile Icon</p>
+        <img src={logoWespace} alt="logoWespace" style={{ width: "98px", height: "18px", top: "28px", left: "1092px"}} />
+        <img src={defaultImage} alt="defaultImage" style={{ width: "24px", height: "24px", top: "24px", left: "1384px"}} />
       </Box>
       <Box
         sx={{
@@ -117,22 +123,20 @@ function FunFactSection({ sx }: { sx?: SxProps }) {
             height: "164px",
             background: "grey",
             borderRadius: "10px",
-            margin: "auto",
+            margin: "29px",
           }}
         >
-          <span>Tree image</span>
+          <img src={treeImage} alt="treeImage"/>
         </Box>
-        <p>Do you know?</p>
+        <p style={{ color: "#65792D", fontSize: '24px', fontWeight: "bold" }}>รู้หรือไม่?</p>
         <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur
-          eos voluptatum dolores? Nesciunt fugit, architecto blanditiis sed
-          dicta aliquam obcaecati.
-        </p>
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat, cum!
+        ทุกการเก็บข้อมูลของคุณช่วยให้เราทำงาน
+        กับต้นไม้ได้ง่ายขึ้น เช่น สามารถให้ข้อมูลเเก่รุกขกร
+        ในเวลาที่รวดเร็ว โดยไม่ต้องลงใช้เวลาในการลงพื้นที่เอง
+        สามารถใช้ข้อมูลจากที่คุณให้เรา
         </p>
         <p style={{ color: "green" }}>Stepper Component</p>
-        <Button variant="contained">Upload my Tree</Button>
+        <Button variant="contained" style={{ background: "#94B044", color: "white", fontSize: "15px"}}>อัปโหลดต้นไม้ของฉัน</Button>
       </Box>
     </Box>
   );
