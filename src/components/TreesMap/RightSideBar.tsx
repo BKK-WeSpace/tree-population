@@ -36,11 +36,12 @@ import DefaultImage from "../../common/DefaultImage";
 import LogoWespace from "../../common/LogoWespace";
 
 import "./style/RightSideBar.css";
+import { SelectedTreeContext } from ".";
+import Tree from "../../types/Trees";
 
 const treeList = [Tree1, Tree2, Tree3, Tree1, Tree2];
 
 const sideBarWidth = 372;
-// TODO apply drawer?
 export default function RightSideBar() {
   const [showSidebar, setShowSidebar] = useState(true);
   let { isLoading, data } = useGetTrees({});
@@ -88,14 +89,12 @@ export default function RightSideBar() {
       <TabSwitcher
         children={[
           {
-            jsx: <AllTreesTab trees={data} />,
-            // TODO title for All Trees
-            sectionTitle: "All Trees",
+            jsx: <AllTreesTab trees={data?.result?.features ?? []} />,
+            sectionTitle: "้ต้นไม้ทั้งหมด",
           },
           {
-            jsx: <FindTreesTab trees={data} />,
-            // TODO title for Find Trees
-            sectionTitle: "Find Trees",
+            jsx: <FindTreesTab trees={data?.result?.features ?? []} />,
+            sectionTitle: "ตามหาต้นไม้",
           },
         ]}
         sx={{
@@ -219,7 +218,6 @@ function FunFactSection({ sx }: { sx?: SxProps }) {
   );
 }
 
-// TODO apply styles and functionality
 function TabSwitcher({
   sx,
   children,
@@ -281,21 +279,18 @@ function TabSwitcher({
   );
 }
 
-// TODO implement <AllTreesTab/>
-function AllTreesTab({ trees }) {
+function AllTreesTab({ trees }: { trees: Tree[] }) {
   return (
     <div style={{ backgroundColor: "white" }}>
       <Search />
       <div className="treeCardContainer">
         {trees != undefined &&
-          trees.result.map((tree, i) => (
+          trees.map((tree, i) => (
             <TreeCard
+              tree={tree}
+              index={i}
               isFindTheTreeTab={false}
-              name={tree.properties.commonName}
-              status={tree.properties.isAlive}
               treeImg={treeList[i]}
-              isVerified={tree.properties.isVerified}
-              isReward={tree.properties.isReward}
             />
           ))}
       </div>
@@ -303,20 +298,17 @@ function AllTreesTab({ trees }) {
   );
 }
 
-// TODO implement <FindTreesTab/>
-function FindTreesTab({ trees }) {
+function FindTreesTab({ trees }: { trees: Tree[] }) {
   return (
     <div style={{ backgroundColor: "white" }}>
       <div className="treeCardContainer">
         {trees != undefined &&
-          trees.result.map((tree, i) => (
+          trees.map((tree, i) => (
             <TreeCard
+              tree={tree}
+              index={i}
               isFindTheTreeTab
-              name={tree.properties.commonName}
-              status={false}
               treeImg={treeList[i]}
-              isVerified={tree.properties.isVerified}
-              isReward={tree.properties.isReward}
             />
           ))}
       </div>
@@ -335,7 +327,22 @@ function Search() {
   );
 }
 
-function TreeCard({ name, status, treeImg, isFindTheTreeTab, isVerified, isReward }) {
+function TreeCard({
+  treeImg,
+  isFindTheTreeTab,
+  tree,
+  index,
+}: {
+  treeImg: string;
+  isFindTheTreeTab: boolean;
+  tree: Tree;
+  index: number;
+}) {
+  const treeContext = React.useContext(SelectedTreeContext);
+  function onNavigateToTreeButtonClicked() {
+    treeContext.setSelectedTree(tree as Tree, index as number);
+  }
+
   return (
     <div className="tree-card">
       {isFindTheTreeTab ? (
@@ -354,12 +361,20 @@ function TreeCard({ name, status, treeImg, isFindTheTreeTab, isVerified, isRewar
 
       <div className="box">
         <div className="tree-detail">
-          <div className="tree-title"><span>{name}</span>{isVerified && <VerifiedImage/>}{isReward && <CupImage/>}</div>
-          {/* <div className="tree-title">{name}</div> */}
-          <div className="tree-status">
-            <p className="status-prompt">tree status:</p>
-            <TreeStatus status={status} isFindTheTreeTab={isFindTheTreeTab} />
+          <div className="tree-title">
+            <span>{tree.properties?.commonName}</span>
+            {tree.properties?.isVerified && <VerifiedImage />}
+            {tree.properties?.isReward && <CupImage />}
           </div>
+          {tree.properties?.isAlive !== undefined && (
+            <div className="tree-status">
+              <p className="status-prompt">tree status:</p>
+              <TreeStatus
+                status={tree.properties.isAlive}
+                isFindTheTreeTab={isFindTheTreeTab}
+              />
+            </div>
+          )}
         </div>
 
         <div className="call-to-action-container">
@@ -376,6 +391,7 @@ function TreeCard({ name, status, treeImg, isFindTheTreeTab, isVerified, isRewar
                 fontSize: "12px",
               }}
               variant="outlined"
+              onClick={onNavigateToTreeButtonClicked}
               endIcon={<MapOutlinedIcon />}
             >
               นำทาง

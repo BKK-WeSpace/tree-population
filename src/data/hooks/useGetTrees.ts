@@ -1,6 +1,6 @@
-import { default as Tree } from "../../types/Trees";
 import { FetchResult } from "../models/NetworkResult";
 import TreesRequestParams from "../models/TreesRequest";
+import { TreesResponse } from "../models/TreesResponse";
 import VallarisService from "../services/VallarisService";
 import useFetch from "./useFetch";
 
@@ -11,7 +11,7 @@ export default function useGetTrees({
   request?: TreesRequestParams;
   deps?: any[];
 }) {
-  return useFetch<FetchResult<Tree[]>>({
+  return useFetch<FetchResult<TreesResponse>>({
     callback: async () => {
       const response = await VallarisService.getAllTrees({
         ...request,
@@ -20,7 +20,7 @@ export default function useGetTrees({
 
       return {
         ...response,
-        result: response.result?.features,
+        result: response.result,
       };
     },
     deps,

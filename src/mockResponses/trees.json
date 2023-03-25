@@ -3,7 +3,7 @@
   "features": [
     {
       "type": "Feature",
-      "id": "1234",
+      "id": "lsajdflsjkdf234",
       "geometry": {
         "type": "Point",
         "coordinates": [100.541327, 13.731272]
@@ -11,7 +11,7 @@
       "properties": {
         "isReward": true,
         "isVerified": true,
-        "commonName": "Oak",
+        "commonName": null,
         "species": "Quercus",
         "genus": "Fagaceae",
         "quote": {
