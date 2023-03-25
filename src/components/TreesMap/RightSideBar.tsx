@@ -8,6 +8,9 @@ import MapOutlinedIcon from "@mui/icons-material/MapOutlined";
 import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 
+import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
+import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
+
 //@ts-ignore
 import TreeImage from "../../assets/treeImage.png";
 
@@ -56,12 +59,12 @@ export default function RightSideBar() {
         boxSizing: "border-box",
         display: "flex",
         flexDirection: "column",
-        transition: ".3s",
+        transition: ".3s"
       }}
     >
       <SidebarToggle
         onClick={toggleShowOrHide}
-        icon={<p>{showSidebar ? ">" : "<"}</p>}
+        icon={<p>{showSidebar ? <ArrowForwardIosIcon style={{ fontSize: "15px"}}></ArrowForwardIosIcon> : <ArrowBackIosNewIcon style={{ fontSize: "15px"}}></ArrowBackIosNewIcon>}</p>}
       />
       <FunFactSection
         sx={{
@@ -101,10 +104,10 @@ function SidebarToggle({
     <ButtonBase
       onClick={onClick}
       sx={{
-        position: "absolute",
+        position: "fixed",
         borderRadius: "50%",
-        width: "40px",
-        height: "40px",
+        width: "45px",
+        height: "45px",
         color: "black",
         background: "white",
         top: "147px",
@@ -112,6 +115,7 @@ function SidebarToggle({
         ":focus": {
           outline: "none",
         },
+        zIndex: 5
       }}
     >
       {icon}
@@ -170,19 +174,15 @@ function FunFactSection({ sx }: { sx?: SxProps }) {
             marginBottom: "24px",
           }}
         >
-          <img
-            src={TreeImage}
-            alt="treeImage"
-            style={{
-              width: "324px",
-              height: "138px",
-              background: "grey",
-              borderRadius: "10px",
-              // margin: "29px",
-              top: "24px",
-              left: "24px",
-            }}
-          />
+          <img src={TreeImage} alt="treeImage" style={{
+            width: "324px",
+            height: "138px",
+            background: "grey",
+            borderRadius: "10px",
+            top: "24px",
+            left: "24px",
+            objectFit: "cover"
+          }}/>
         </Box>
         <p style={{ color: "#65792D", fontSize: "24px", fontWeight: "bold" }}>
           รู้หรือไม่?
