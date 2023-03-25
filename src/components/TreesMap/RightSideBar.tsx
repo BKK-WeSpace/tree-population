@@ -8,8 +8,8 @@ import MapOutlinedIcon from "@mui/icons-material/MapOutlined";
 import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 
-import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
-import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
+import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
+import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 
 //@ts-ignore
 import TreeImage from "../../assets/treeImage.png";
@@ -31,7 +31,6 @@ import DefaultImage from "../../common/DefaultImage";
 
 //@ts-ignore
 import LogoWespace from "../../common/LogoWespace";
-
 
 import "./style/RightSideBar.css";
 
@@ -59,12 +58,24 @@ export default function RightSideBar() {
         boxSizing: "border-box",
         display: "flex",
         flexDirection: "column",
-        transition: ".3s"
+        transition: ".3s",
       }}
     >
       <SidebarToggle
         onClick={toggleShowOrHide}
-        icon={<p>{showSidebar ? <ArrowForwardIosIcon style={{ fontSize: "15px"}}></ArrowForwardIosIcon> : <ArrowBackIosNewIcon style={{ fontSize: "15px"}}></ArrowBackIosNewIcon>}</p>}
+        icon={
+          <p>
+            {showSidebar ? (
+              <ArrowForwardIosIcon
+                style={{ fontSize: "15px" }}
+              ></ArrowForwardIosIcon>
+            ) : (
+              <ArrowBackIosNewIcon
+                style={{ fontSize: "15px" }}
+              ></ArrowBackIosNewIcon>
+            )}
+          </p>
+        }
       />
       <FunFactSection
         sx={{
@@ -115,7 +126,7 @@ function SidebarToggle({
         ":focus": {
           outline: "none",
         },
-        zIndex: 5
+        zIndex: 5,
       }}
     >
       {icon}
@@ -174,15 +185,19 @@ function FunFactSection({ sx }: { sx?: SxProps }) {
             marginBottom: "24px",
           }}
         >
-          <img src={TreeImage} alt="treeImage" style={{
-            width: "324px",
-            height: "138px",
-            background: "grey",
-            borderRadius: "10px",
-            top: "24px",
-            left: "24px",
-            objectFit: "cover"
-          }}/>
+          <img
+            src={TreeImage}
+            alt="treeImage"
+            style={{
+              width: "324px",
+              height: "138px",
+              background: "grey",
+              borderRadius: "10px",
+              top: "24px",
+              left: "24px",
+              objectFit: "cover",
+            }}
+          />
         </Box>
         <p style={{ color: "#65792D", fontSize: "24px", fontWeight: "bold" }}>
           รู้หรือไม่?
@@ -287,7 +302,6 @@ function AllTreesTab({ trees }) {
 function FindTreesTab({ trees }) {
   return (
     <div style={{ backgroundColor: "white" }}>
-
       <div className="treeCardContainer">
         {trees != undefined &&
           trees.result.map((tree, i) => (
@@ -318,9 +332,17 @@ function TreeCard({ name, status, treeImg, isFindTheTreeTab }) {
   return (
     <div className="tree-card">
       {isFindTheTreeTab ? (
-        <img src={NoImage} alt="treeImage" />
+        <img
+          src={NoImage}
+          alt="treeImage"
+          style={{ width: "108px", height: "108px" }}
+        />
       ) : (
-        <img src={treeImg} alt="treeImage" />
+        <img
+          src={treeImg}
+          alt="treeImage"
+          style={{ width: "108px", height: "108px" }}
+        />
       )}
 
       <div className="box">
@@ -340,8 +362,10 @@ function TreeCard({ name, status, treeImg, isFindTheTreeTab }) {
                 color: isFindTheTreeTab ? "#A0705F" : "#94B044",
                 fontWeight: "700",
                 borderRadius: "8px",
-                padding: "4px 10px",
+                padding: "4px 7px",
                 borderColor: isFindTheTreeTab ? "#A0705F" : "#94B044",
+                height: "32px",
+                fontSize: "12px",
               }}
               variant="outlined"
               endIcon={<MapOutlinedIcon />}
@@ -354,15 +378,17 @@ function TreeCard({ name, status, treeImg, isFindTheTreeTab }) {
                 fontWeight: "700",
                 borderRadius: "8px",
                 marginLeft: "6px",
-                padding: "4px 10px",
+                padding: "4px 7px",
                 backgroundColor: isFindTheTreeTab ? "#A0705F" : "#94B044",
+                height: "32px",
+                fontSize: "12px",
               }}
               variant="contained"
               endIcon={
                 isFindTheTreeTab ? (
-                  <AddCircleOutlineIcon />
+                  <AddCircleOutlineIcon style={{ marginLeft: "0px" }} />
                 ) : (
-                  <FavoriteBorderOutlinedIcon />
+                  <FavoriteBorderOutlinedIcon style={{ marginLeft: "0px" }} />
                 )
               }
             >
