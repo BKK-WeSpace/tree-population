@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
 
-export default function SearchBox({onSelect}: {onSelect: (selectedValue: string) => void}) {
+export default function SearchBox() {
   return (
     <Autocomplete
       disablePortal
@@ -17,9 +17,6 @@ export default function SearchBox({onSelect}: {onSelect: (selectedValue: string)
         marginBottom: "20px",
         boxShadow: "0px 4px 8px rgba(109, 143, 12, 0.11)",
         color: "black",
-      }}
-      onSelect={(e) => {
-          console.log(e);
       }}
       renderInput={(params) => <TextField {...params} label="ค้นหาพื้นที่สำรวจ" />}
     />
