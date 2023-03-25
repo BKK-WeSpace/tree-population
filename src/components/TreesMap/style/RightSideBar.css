@@ -31,10 +31,14 @@
 
 .call-to-action-container {}
 
-.status-tag-active {
+.status-tag {
+    padding: 10px
+}
 
+.status-tag-active {
+    color: red
 }
 
 .status-tag-inactive {
-    
+    color: gray
 }
