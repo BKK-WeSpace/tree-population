@@ -1,24 +1,27 @@
+import maplibregl from "maplibre-gl";
 import React, { useEffect, useState } from "react";
-import maplibregl, { MapMouseEvent } from "maplibre-gl";
-import useGetStyles from "../../data/hooks/useGetStyles";
 import useGetTrees from "../../data/hooks/useGetTrees";
+import useGetStyles from "../../data/hooks/useGetStyles";
+import OverlayComponent from "./OverlayComponent";
+import { Box } from "@mui/system";
 
 interface TreesMapProps {}
 
+// TODO can someone please remove the bottom overflowing section of the map? :D
 const TreesMap: React.FC<TreesMapProps> = () => {
   const [latLong, setLatLong] = useState<[number, number]>([
     100.537682, 13.80949,
   ]);
 
-  const { data, isLoading } = useGetTrees({});
-
   useEffect(() => {
     const map = new maplibregl.Map({
       container: "map",
       center: latLong,
-      // TODO replace with the real s
+      // TODO put this style in VallarisService
       style:
-        "https://api.maptiler.com/maps/streets/style.json?key=e54KOp4sPeK6ZYaEgNWX",
+        "https://v2k-dev.vallarismaps.com/core/api/styles/1.0-beta/styles/64149d10dc84d7b8cd687c5e?api_key=" +
+        // @ts-ignore
+        import.meta.env.VITE_VALLARIS_API_KEY,
 
       zoom: 10,
     });
@@ -28,16 +31,28 @@ const TreesMap: React.FC<TreesMapProps> = () => {
     };
   }, []);
 
+  // TODO change all hard-coded values to use MUI themes
   return (
-    <div
-      id="map"
-      style={{
-        position: "absolute",
-        top: 0,
-        bottom: 0,
-        width: "100%",
+    <Box
+      sx={{
+        "& > div": {
+          position: "absolute",
+          top: 0,
+          bottom: 0,
+          width: "100%",
+          height: "100%",
+        },
       }}
-    />
+    >
+      <div id="map" />
+      <Box
+        sx={{
+          pointerEvents: "none",
+        }}
+      >
+        <OverlayComponent />
+      </Box>
+    </Box>
   );
 };
 
