@@ -4,8 +4,6 @@ import React, { useState } from "react";
 //@ts-ignore
 import TreeImage from "../../assets/treeImage.png";
 //@ts-ignore
-import DefaultImage from "../../common/DefaultImage"
-//@ts-ignore
 import LogoWespace from "../../common/LogoWespace";
 
 
@@ -108,9 +106,8 @@ function FunFactSection({ sx }: { sx?: SxProps }) {
           justifyContent: "space-between",
         }}
       >
-        <LogoWespace alt="logoWespace" style={{ width: "98px", height: "18px", top: "28px", left: "1092px"}}></LogoWespace>
-        {/* <img src={logoWespace} alt="logoWespace" style={{ width: "98px", height: "18px", top: "28px", left: "1092px"}} /> */}
-        <DefaultImage alt="defaultImage" style={{ width: "24px", height: "24px", top: "24px", left: "1384px"}}></DefaultImage>
+        <LogoWespace></LogoWespace>
+        <Button variant="contained" style={{ background: "#A0705F", color: "white", fontSize: "17px", fontWeight: "bold", borderRadius: 12, padding: 7 }}>เข้าสู่ระบบ</Button>
       </Box>
       <Box
         sx={{
@@ -121,14 +118,26 @@ function FunFactSection({ sx }: { sx?: SxProps }) {
       >
         <Box
           sx={{
-            width: "270px",
-            height: "164px",
+            width: "324px",
+            height: "138px",
             background: "grey",
             borderRadius: "10px",
-            margin: "29px",
+            // margin: "29px",
+            top: "24px",
+            left: "24px",
+            marginTop: "24px",
+            marginBottom: "24px"
           }}
         >
-          <img src={TreeImage} alt="treeImage"/>
+          <img src={TreeImage} alt="treeImage" style={{
+            width: "324px",
+            height: "138px",
+            background: "grey",
+            borderRadius: "10px",
+            // margin: "29px",
+            top: "24px",
+            left: "24px"
+          }}/>
         </Box>
         <p style={{ color: "#65792D", fontSize: '24px', fontWeight: "bold" }}>รู้หรือไม่?</p>
         <p>
@@ -140,7 +149,6 @@ function FunFactSection({ sx }: { sx?: SxProps }) {
             <br/>
                  ได้รับการดูแลที่ถูกต้อง 
         </p>
-        <Button variant="contained" style={{ background: "#94B044", color: "white", fontSize: "15px"}}>อัปโหลดต้นไม้ของฉัน</Button>
       </Box>
     </Box>
   );
