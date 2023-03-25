@@ -54,7 +54,7 @@ export default function RightSideBar() {
         boxSizing: "border-box",
         display: "flex",
         flexDirection: "column",
-        transition: ".3s",
+        transition: ".3s"
       }}
     >
       <SidebarToggle
@@ -110,6 +110,7 @@ function SidebarToggle({
         ":focus": {
           outline: "none",
         },
+        zIndex: 5
       }}
     >
       {icon}
