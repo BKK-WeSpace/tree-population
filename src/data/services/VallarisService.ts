@@ -3,9 +3,11 @@ import TreesRequestParams from "../models/TreesRequest";
 import { TreesResponse } from "../models/TreesResponse";
 import UpdateTreeInfoBody from "../models/UpdateTreeInfoBody";
 import NetworkRequestHandler from "./NetworkRequestHandler";
-import mockJson from "../../mockResponses/trees.json";
+//@ts-ignore
+import lumphini from "../../mockResponses/lumphini.json";
+//@ts-ignore
+import benja from "../../mockResponses/benja.json";
 
-// TODO implement simple caching with a map to prevent multiple network calls. Thsi way, we can just think of all trees as server state and fetch on demand (whenever).
 export default class VallarisService {
   private static _networkHandler = new NetworkRequestHandler({
     baseUrl: "https://v2k-dev.vallarismaps.com/core/api",
@@ -16,8 +18,8 @@ export default class VallarisService {
     request?: TreesRequestParams,
     fromCacheIfExists = true
   ): Promise<FetchResult<TreesResponse>> {
-    //TODO join all data from all collections and including the local mock one.
-    return { result: mockJson as TreesResponse, fromCache: true };
+    const local1 = benja as TreesResponse;
+    const local2 = lumphini as TreesResponse;
     const path = `/features/1.0/collections/${VallarisService._collectionId}/items`;
     const data = await VallarisService._networkHandler.handle<TreesResponse>({
       fromCacheIfExists,
@@ -32,6 +34,14 @@ export default class VallarisService {
         bbox: request?.boundingBox?.join(" ,"),
       },
     });
+
+    if (data.result) {
+      data.result.features = [
+        ...data.result.features,
+        ...local1.features,
+        ...local2.features,
+      ];
+    }
 
     return data;
   }

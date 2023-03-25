@@ -61,9 +61,9 @@ const TreesMap: React.FC<{}> = () => {
         data: treesData.result!,
         generateId: true,
         // TODO cluster and make colors
-        // cluster: true,
-        // clusterMaxZoom: 14,
-        // clusterRadius: 40,
+        cluster: true,
+        clusterMaxZoom: 14,
+        clusterRadius: 40,
       });
 
       map.current!.addLayer({
