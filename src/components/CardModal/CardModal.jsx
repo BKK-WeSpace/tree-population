@@ -44,13 +44,6 @@ const useStyles = makeStyles((theme) => ({
     color: 'rgb(101, 121, 45)',
     fontWeight: 'bold',
   },
-  navigateButton: {
-    width: '100%',
-    border: '1px solid rgb(101, 121, 45)',
-    borderRadius: 10,
-    color: 'rgb(101, 121, 45)',
-    fontWeight: 'bold',
-  },
   pageContainer: {
     marginTop: 24,
     display: 'flex',
