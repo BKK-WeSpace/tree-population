@@ -1,6 +1,6 @@
 import { Button, ButtonBase, Divider } from "@mui/material";
 import { Box, SxProps } from "@mui/system";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import useGetTrees from "../../data/hooks/useGetTrees";
 
 import SearchIcon from "@mui/icons-material/Search";
@@ -35,11 +35,12 @@ import DefaultImage from "../../common/DefaultImage";
 import LogoWespace from "../../common/LogoWespace";
 
 import "./style/RightSideBar.css";
+import Tree from "../../types/Trees";
+import { SelectedTreeContext } from ".";
 
 const treeList = [Tree1, Tree2, Tree3, Tree1, Tree2];
 
 const sideBarWidth = 372;
-// TODO apply drawer?
 export default function RightSideBar() {
   const [showSidebar, setShowSidebar] = useState(true);
   let { isLoading, data } = useGetTrees({});
@@ -88,13 +89,12 @@ export default function RightSideBar() {
         children={[
           {
             jsx: <AllTreesTab trees={data?.result?.features} />,
-            // TODO title for All Trees
-            sectionTitle: "All Trees",
+            sectionTitle: "ต้นไม้ทั้งหมด",
           },
           {
             jsx: <FindTreesTab trees={data} />,
             // TODO title for Find Trees
-            sectionTitle: "Find Trees",
+            sectionTitle: "ตามหาต้นไม้",
           },
         ]}
         sx={{
@@ -294,7 +294,7 @@ function TabSwitcher({
 }
 
 // TODO implement <AllTreesTab/>
-function AllTreesTab({ trees }) {
+function AllTreesTab({ trees }: { trees?: Tree[] }) {
   return (
     <div style={{ backgroundColor: "white" }}>
       <Search />
@@ -310,6 +310,7 @@ function AllTreesTab({ trees }) {
               isVerified={tree.properties.isVerified}
               isReward={tree.properties.isReward}
             />
+            <TreeCard key={i} tree={tree} treeImgSrc={treeList[i]} />
           ))}
       </div>
     </div>
@@ -335,6 +336,8 @@ function FindTreesTab({ trees }) {
       </div>
     </div>
   );
+function FindTreesTab() {
+  return <p style={{ color: "green" }}> Find Trees Tab</p>;
 }
 
 function Search() {
@@ -356,6 +359,12 @@ function TreeCard({
   isVerified,
   isReward,
 }) {
+  const treeContext = useContext(SelectedTreeContext);
+
+  // TODO @khongchai if the currenntly selected tree is the same as the tree passed to this function, show it.
+  function onNavigateToTreeClicked() {
+    treeContext.setSelectedTree(tree);
+  }
   return (
     <div className="tree-card">
       {isFindTheTreeTab ? (
@@ -371,6 +380,7 @@ function TreeCard({
           style={{ width: "108px", height: "108px" }}
         />
       )}
+      <img src={treeImgSrc} alt="treeImage" />
 
       <div className="box">
         <div className="tree-detail">
@@ -401,6 +411,7 @@ function TreeCard({
               }}
               variant="outlined"
               endIcon={<MapOutlinedIcon />}
+              onClick={onNavigateToTreeClicked}
             >
               นำทาง
             </Button>
@@ -439,4 +450,6 @@ function TreeStatus({ status, isFindTheTreeTab }) {
       {isFindTheTreeTab ? "ไม่มีข้อมูลสถานะ" : "arrive"}
     </p>
   );
+function TreeStatus({ status }) {
+  return <p className={`tag-${true ? "active" : "inactive"}`}>Alive</p>;
 }

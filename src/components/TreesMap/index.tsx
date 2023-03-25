@@ -6,28 +6,48 @@ import OverlayComponent from "./OverlayComponent";
 import { Box } from "@mui/system";
 import { useTheme } from "@mui/material";
 import Tree from "../../types/Trees";
+import useTreeState from "./useTreeState";
+import { createContext } from "react";
 
-interface TreesMapProps {}
+/**
+ * A global to keep the entire application in-sync about the currently-selected tree.
+ */
+export const SelectedTreeContext = createContext<{
+  selectedTree?: Tree;
+  setSelectedTree: (tree: Tree) => void;
+}>({ selectedTree: undefined, setSelectedTree: () => {} });
 
-const TreesMap: React.FC<TreesMapProps> = () => {
+const TreesMap: React.FC<{}> = () => {
   const [latLong, setLatLong] = useState<[number, number]>([
     // 100.77916890420383, 13.723999003278182,
     100.5417, 13.7314,
   ]);
 
+  const mapTreesId = "base-trees";
+  const mapSourceId = "base-source";
   const { data: style } = useGetStyles([]);
   const { data: treesData } = useGetTrees({});
   const { palette } = useTheme();
-  const clickedStateId = useRef<undefined | number | string>(undefined);
-  const [selectedTree, setSelectedTree] = useState<Tree | null>(null);
+  const map = useRef<maplibregl.Map>();
+  const { selectedTree, setSelectedTree } = useTreeState({
+    map,
+    mapSourceId,
+  });
 
-  const mapTreesId = "base-trees";
-  const mapSourceId = "base-source";
+  function flyToTree(tree: Tree) {
+    map.current?.flyTo({
+      center: tree.geometry.coordinates as LngLatLike,
+      animate: true,
+      essential: true, // this animation is considered essential with respect to prefers-reduced-motion
+      duration: 4000,
+      zoom: 13,
+    });
+  }
 
   useEffect(() => {
     if (!style?.result || !treesData?.result) return;
 
-    const map = new maplibregl.Map({
+    map.current = new maplibregl.Map({
       container: "map",
       center: latLong,
       style: style!.result,
@@ -35,8 +55,8 @@ const TreesMap: React.FC<TreesMapProps> = () => {
       attributionControl: false,
     });
 
-    map.on("load", () => {
-      map.addSource(mapSourceId, {
+    map.current!.on("load", () => {
+      map.current!.addSource(mapSourceId, {
         type: "geojson",
         data: treesData.result!,
         // TODO cluster and make colors
@@ -46,7 +66,7 @@ const TreesMap: React.FC<TreesMapProps> = () => {
         generateId: true,
       });
 
-      map.addLayer({
+      map.current!.addLayer({
         id: mapTreesId,
         type: "circle",
         // @ts-ignore
@@ -74,68 +94,59 @@ const TreesMap: React.FC<TreesMapProps> = () => {
       });
     });
 
-    map.on("click", mapTreesId, (e) => {
-      if (Number.isInteger(clickedStateId.current)) {
-        map.setFeatureState(
-          {
-            source: mapSourceId,
-            id: clickedStateId.current,
-          },
-          { clicked: false }
-        );
-      }
+    map.current.on("click", mapTreesId, (e) => {
       if (e.features?.length) {
-        const tree: Tree = e.features[0]! as Tree;
-        clickedStateId.current = tree.id!;
+        const tree = e.features[0] as Tree;
         setSelectedTree(tree);
-        map.setFeatureState(
-          { source: mapSourceId, id: clickedStateId.current },
-          { clicked: true }
-        );
-        map.flyTo({
-          center: tree.geometry.coordinates as LngLatLike,
-          animate: true,
-          duration: 1000,
-          essential: true, // this animation is considered essential with respect to prefers-reduced-motion
-        });
       }
     });
 
-    map.on("mouseenter", mapTreesId, () => {
-      map.getCanvas().style.cursor = "pointer";
+    map.current!.on("mouseenter", mapTreesId, () => {
+      map.current!.getCanvas().style.cursor = "pointer";
     });
 
-    map.on("mouseleave", mapTreesId, function () {
-      map.getCanvas().style.cursor = "";
+    map.current!.on("mouseleave", mapTreesId, function () {
+      map.current!.getCanvas().style.cursor = "";
     });
 
     return () => {
       // TODO @khongchai add map data source here.
-      return map.remove();
+      return map.current!.remove();
     };
   }, [style, treesData]);
 
+  useEffect(() => {
+    if (selectedTree) flyToTree(selectedTree);
+  }, [selectedTree]);
+
   return (
-    <Box
-      sx={{
-        "& > div": {
-          position: "fixed",
-          top: 0,
-          bottom: 0,
-          width: "100%",
-          height: "100%",
-        },
+    <SelectedTreeContext.Provider
+      value={{
+        setSelectedTree,
+        selectedTree,
       }}
     >
-      <div id="map" />
       <Box
         sx={{
-          pointerEvents: "none",
+          "& > div": {
+            position: "fixed",
+            top: 0,
+            bottom: 0,
+            width: "100%",
+            height: "100%",
+          },
         }}
       >
-        <OverlayComponent />
+        <div id="map" />
+        <Box
+          sx={{
+            pointerEvents: "none",
+          }}
+        >
+          <OverlayComponent />
+        </Box>
       </Box>
-    </Box>
+    </SelectedTreeContext.Provider>
   );
 };
 
