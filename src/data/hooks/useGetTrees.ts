@@ -1,4 +1,3 @@
-import { default as Tree } from "../../types/Trees";
 import { FetchResult } from "../models/NetworkResult";
 import TreesRequestParams from "../models/TreesRequest";
 import { TreesResponse } from "../models/TreesResponse";

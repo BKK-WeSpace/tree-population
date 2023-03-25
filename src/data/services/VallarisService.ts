@@ -5,8 +5,6 @@ import UpdateTreeInfoBody from "../models/UpdateTreeInfoBody";
 import NetworkRequestHandler from "./NetworkRequestHandler";
 import mockJson from "../../mockResponses/trees.json";
 
-import mockTree from "../../mockResponses/trees.json";
-
 // TODO implement simple caching with a map to prevent multiple network calls. Thsi way, we can just think of all trees as server state and fetch on demand (whenever).
 export default class VallarisService {
   private static _networkHandler = new NetworkRequestHandler({
@@ -34,7 +32,6 @@ export default class VallarisService {
       },
     });
 
-    data.result = mockTree as TreesResponse;
     return data;
   }
 

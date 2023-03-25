@@ -39,8 +39,8 @@ const TreesMap: React.FC<{}> = () => {
       center: tree.geometry.coordinates as LngLatLike,
       animate: true,
       essential: true, // this animation is considered essential with respect to prefers-reduced-motion
-      duration: 4000,
-      zoom: 13,
+      duration: 3500,
+      zoom: 15,
     });
   }
 
@@ -59,11 +59,11 @@ const TreesMap: React.FC<{}> = () => {
       map.current!.addSource(mapSourceId, {
         type: "geojson",
         data: treesData.result!,
+        generateId: true,
         // TODO cluster and make colors
         // cluster: true,
         // clusterMaxZoom: 14,
         // clusterRadius: 40,
-        generateId: true,
       });
 
       map.current!.addLayer({
@@ -72,7 +72,12 @@ const TreesMap: React.FC<{}> = () => {
         // @ts-ignore
         source: mapSourceId,
         paint: {
-          "circle-radius": 15,
+          "circle-radius": [
+            "case",
+            ["boolean", ["feature-state", "clicked"], false],
+            20,
+            12,
+          ],
           "circle-color": [
             "case",
             [

@@ -11,7 +11,7 @@ export default function useTreeState({
   const [selectedTree, setSelectedTree] = useState<Tree | undefined>();
   const clickedStateId = useRef<undefined | number | string>(undefined);
 
-  function selectTree(tree: Tree) {
+  function selectTree(tree: Tree, searchId?: number) {
     setSelectedTree(undefined);
     // Use setTimeout to allow repeated selection of the same object.
     setTimeout(() => {
@@ -24,7 +24,7 @@ export default function useTreeState({
           { clicked: false }
         );
       }
-      clickedStateId.current = tree.id!;
+      clickedStateId.current = searchId ?? tree.id!;
       setSelectedTree(tree);
       map.current!.setFeatureState(
         { source: mapSourceId, id: clickedStateId.current },

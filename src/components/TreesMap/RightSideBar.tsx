@@ -363,7 +363,7 @@ function TreeCard({
 
   // TODO @khongchai if the currenntly selected tree is the same as the tree passed to this function, show it.
   function onNavigateToTreeClicked() {
-    treeContext.setSelectedTree(tree);
+    treeContext.setSelectedTree(tree, index);
   }
   return (
     <div className="tree-card">
