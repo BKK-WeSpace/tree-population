@@ -1,35 +1,33 @@
 import { Box, Container, Grid, Stack, Typography } from "@mui/material";
 import useGetTrees from "../../data/hooks/useGetTrees";
 import * as React from "react";
-import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
-import FormHelperText from "@mui/material/FormHelperText";
 import FormControl from "@mui/material/FormControl";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
 import KeyboardArrowDownOutlinedIcon from "@mui/icons-material/KeyboardArrowDownOutlined";
 import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline';
 
-// TODO style this; apply theme, responsive, etc.
+import { useState } from "react";
+
+// TODO change 'treesInTheArea' when change 'selectedArea'
 export default function TopLeftOverview() {
   const { data, isLoading } = useGetTrees({});
   // will have to get from the useGetTrees hook.
   const treesInTheArea = isLoading ? "loading..." : data?.result?.length;
   // get array of area from ?
   const serveyArea = [
+    "All",
     "สวนลุมพินี",
     "สวนเบญ",
     "สวนจตุจักร",
     "สวนสนุก",
     "สวนน้ำ",
   ];
-  const currentArea = serveyArea[0];
 
-  console.log(data);
-
-  const [age, setAge] = React.useState("");
-
-  const handleChange = (event: SelectChangeEvent) => {
-    setAge(event.target.value);
+  const [selctedArea, setSelctedArea] = useState(serveyArea[0]);
+  
+  const handleAreaChange = (event) => {
+    setSelctedArea(event.target.value);
   };
 
   return (
@@ -83,11 +81,12 @@ export default function TopLeftOverview() {
           >
             <Select
               IconComponent={KeyboardArrowDownOutlinedIcon}
-              // value={serveyArea[0]}
-              onChange={handleChange}
+              // onChange={handleChange}
+              onChange = {handleAreaChange}
+              value = {selctedArea}
               displayEmpty
               inputProps={{ "aria-label": "Without label" }}
-              defaultValue="option1"
+              defaultValue={serveyArea[0]}
               sx={{
                 "& .MuiSvgIcon-root": { color: "#333333" },
                 color: "#333333",
@@ -104,10 +103,7 @@ export default function TopLeftOverview() {
                   },
               }}
             >
-              <MenuItem value="">
-                <em>All</em>
-              </MenuItem>
-              <MenuItem value={serveyArea[0]}>{serveyArea[0]}</MenuItem>
+              <MenuItem value={serveyArea[0]}><em>All</em></MenuItem>
               <MenuItem value={serveyArea[1]}>{serveyArea[1]}</MenuItem>
               <MenuItem value={serveyArea[2]}>{serveyArea[2]}</MenuItem>
               <MenuItem value={serveyArea[3]}>{serveyArea[3]}</MenuItem>
@@ -146,11 +142,11 @@ export default function TopLeftOverview() {
             fontWeight: "bold", 
           }}>
             {treesInTheArea} ต้น</Typography>
-          <Typography sx={{
+          <Typography 
+          sx={{
             fontSize: '14px', 
-            fontStyle: 'italic',
-            
-          }}>สำหรับ {currentArea} <ErrorOutlineIcon sx={{fontSize:14,}}></ErrorOutlineIcon></Typography>
+          }}> สำหรับ {selctedArea} <ErrorOutlineIcon sx={{fontSize:14,}}></ErrorOutlineIcon></Typography>
+          
         </Grid>
         
       </Box>
