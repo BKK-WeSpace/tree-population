@@ -29,7 +29,7 @@ const handleClose = () => setOpen(false);
             <AppBar style={{ backgroundColor:'rgba(255, 255, 255, 0.5)', boxShadow: 'none'}} elevation={0}>
             <Toolbar>
                 <Box display='flex' flexGrow={1}>
-                    <img src="./public/WeSpace-logo.svg" height={20}/>
+                    <img src="/src/assets/WeSpace-logo.svg" height={20}/>
                 </Box>
 
                 <Stack direction='row'>
