@@ -137,7 +137,6 @@ function FunFactSection({ sx }: { sx?: SxProps }) {
         ในเวลาที่รวดเร็ว โดยไม่ต้องลงใช้เวลาในการลงพื้นที่เอง
         สามารถใช้ข้อมูลจากที่คุณให้เรา
         </p>
-        <p style={{ color: "green" }}>Stepper Component</p>
         <Button variant="contained" style={{ background: "#94B044", color: "white", fontSize: "15px"}}>อัปโหลดต้นไม้ของฉัน</Button>
       </Box>
     </Box>
