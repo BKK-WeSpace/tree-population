@@ -16,6 +16,7 @@ export default class VallarisService {
     request?: TreesRequestParams,
     fromCacheIfExists = true
   ): Promise<FetchResult<TreesResponse>> {
+    //TODO join all data from all collections and including the local mock one.
     return { result: mockJson as TreesResponse, fromCache: true };
     const path = `/features/1.0/collections/${VallarisService._collectionId}/items`;
     const data = await VallarisService._networkHandler.handle<TreesResponse>({

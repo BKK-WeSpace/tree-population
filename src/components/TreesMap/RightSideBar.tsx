@@ -105,7 +105,6 @@ export default function RightSideBar() {
   );
 }
 
-// TODO style it and replace with a real chevron :p
 function SidebarToggle({
   onClick,
   icon,
@@ -136,7 +135,6 @@ function SidebarToggle({
   );
 }
 
-// TODO apply styles & functionality
 function FunFactSection({ sx }: { sx?: SxProps }) {
   return (
     <Box
@@ -282,8 +280,10 @@ function TabSwitcher({
 function AllTreesTab({ trees }: { trees: Tree[] }) {
   return (
     <div style={{ backgroundColor: "white" }}>
+      {/* TODO search functionality */}
       <Search />
       <div className="treeCardContainer">
+        {/* TODO infinite scroll */}
         {trees != undefined &&
           trees.map((tree, i) => (
             <TreeCard
@@ -298,6 +298,7 @@ function AllTreesTab({ trees }: { trees: Tree[] }) {
   );
 }
 
+// TODO show only trees that do not have names
 function FindTreesTab({ trees }: { trees: Tree[] }) {
   return (
     <div style={{ backgroundColor: "white" }}>
@@ -352,6 +353,7 @@ function TreeCard({
           style={{ width: "108px", height: "108px" }}
         />
       ) : (
+        // TODO fallback case for when there is no image.
         <img
           src={treeImg}
           alt="treeImage"
