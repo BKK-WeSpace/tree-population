@@ -24,7 +24,7 @@
 
 ## How to run the project
 
-1. `$ npm install`
+1. `$ npm install` (if that won't work try `$ npm install --legacy-peer-deps`)
 2. `$ npm run dev `
 
 ## How to contribute
@@ -36,7 +36,7 @@
 5. Wait for approval
 6. Done!
 
-## How to contribute (for memebers)
+## How to contribute (for members)
 Either do the steps above or pick an issue you would like to work on and assign it to yourself.
 
 ## Documentation
