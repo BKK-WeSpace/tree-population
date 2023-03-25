@@ -1,10 +1,36 @@
-import { Box } from "@mui/material";
-import React from "react";
+import { Box, Container, Grid, Stack, Typography } from "@mui/material";
+import useGetTrees from "../../data/hooks/useGetTrees";
+import * as React from "react";
+import MenuItem from "@mui/material/MenuItem";
+import FormControl from "@mui/material/FormControl";
+import Select, { SelectChangeEvent } from "@mui/material/Select";
+import KeyboardArrowDownOutlinedIcon from "@mui/icons-material/KeyboardArrowDownOutlined";
+import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline';
+import SearchBox from "../Search";
 
-// TODO style this; apply theme, responsive, etc.
+import { useState } from "react";
+
+// TODO change 'treesInTheArea' when change 'selectedArea'
 export default function TopLeftOverview() {
-  // will have to get from the useTrees hook.
-  const treesInTheArea = 350;
+  const { data, isLoading } = useGetTrees({});
+  // will have to get from the useGetTrees hook.
+  const treesInTheArea = isLoading ? "loading..." : data?.result?.length;
+  // get array of area from ?
+  const serveyArea = [
+    "All",
+    "สวนลุมพินี",
+    "สวนเบญ",
+    "สวนจตุจักร",
+    "สวนสนุก",
+    "สวนน้ำ",
+  ];
+
+  const [selctedArea, setSelctedArea] = useState(serveyArea[0]);
+  
+  const handleAreaChange = (event) => {
+    setSelctedArea(event.target.value);
+  };
+  const dataSearch = null;
   return (
     <Box
       sx={{
@@ -26,20 +52,25 @@ export default function TopLeftOverview() {
           color: "black",
         }}
       >
-        Test
+        <SearchBox/>
       </Box>
-      <Box
-        sx={{
-          color: "black",
-          borderRadius: "12px",
-          width: "100%",
-          height: "147px",
-          background: "white",
-          boxShadow: "0px 4px 8px rgba(109, 143, 12, 0.11)",
-        }}
-      >
-        Trees in the area {treesInTheArea}
-      </Box>
+
+      {
+        dataSearch?
+          <Box
+          sx={{
+            color: "black",
+            borderRadius: "12px",
+            width: "100%",
+            height: "147px",
+            background: "white",
+            boxShadow: "0px 4px 8px rgba(109, 143, 12, 0.11)",
+          }}
+        >
+          Trees in the area {treesInTheArea}
+        </Box>
+        : <></>
+      }
     </Box>
   );
 }

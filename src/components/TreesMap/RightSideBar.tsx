@@ -7,6 +7,14 @@ import SearchIcon from "@mui/icons-material/Search";
 
 import "./style/RightSideBar.css";
 
+//@ts-ignore
+import TreeImage from "../../assets/treeImage.png";
+//@ts-ignore
+import DefaultImage from "../../common/DefaultImage"
+//@ts-ignore
+import LogoWespace from "../../common/LogoWespace";
+
+
 const sideBarWidth = 372;
 // TODO apply drawer?
 export default function RightSideBar() {
@@ -108,8 +116,9 @@ function FunFactSection({ sx }: { sx?: SxProps }) {
           justifyContent: "space-between",
         }}
       >
-        <p>WeSpace logo</p>
-        <p>Profile Icon</p>
+        <LogoWespace alt="logoWespace" style={{ width: "98px", height: "18px", top: "28px", left: "1092px"}}></LogoWespace>
+        {/* <img src={logoWespace} alt="logoWespace" style={{ width: "98px", height: "18px", top: "28px", left: "1092px"}} /> */}
+        <DefaultImage alt="defaultImage" style={{ width: "24px", height: "24px", top: "24px", left: "1384px"}}></DefaultImage>
       </Box>
       <Box
         sx={{
@@ -124,22 +133,22 @@ function FunFactSection({ sx }: { sx?: SxProps }) {
             height: "164px",
             background: "grey",
             borderRadius: "10px",
-            margin: "auto",
+            margin: "29px",
           }}
         >
-          <span>Tree image</span>
+          <img src={TreeImage} alt="treeImage"/>
         </Box>
-        <p>Do you know?</p>
+        <p style={{ color: "#65792D", fontSize: '24px', fontWeight: "bold" }}>รู้หรือไม่?</p>
         <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur
-          eos voluptatum dolores? Nesciunt fugit, architecto blanditiis sed
-          dicta aliquam obcaecati.
+        ปัจจุบันต้นไม้ในกรุงเทพฯ ได้รับการดูแลที่ไม่ดีนัก 
+        เพราะข้อมูลที่น้อย และมีค่าใช้จ่ายสูงในการดูแล
+            <br/>
+            <br/>
+        ช่วยกันเก็บข้อมูลต้นไม้เพื่อให้น้องต้นไม้
+            <br/>
+                 ได้รับการดูแลที่ถูกต้อง 
         </p>
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat, cum!
-        </p>
-        <p style={{ color: "green" }}>Stepper Component</p>
-        <Button variant="contained">Upload my Tree</Button>
+        <Button variant="contained" style={{ background: "#94B044", color: "white", fontSize: "15px"}}>อัปโหลดต้นไม้ของฉัน</Button>
       </Box>
     </Box>
   );

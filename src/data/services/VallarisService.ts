@@ -13,10 +13,15 @@ export default class VallarisService {
   });
   private static _collectionId = "64169999e89e47973094f506";
 
-  public static async getAllTrees(request?: TreesRequestParams) {
+  public static async getAllTrees(
+    request?: TreesRequestParams,
+    fromCacheIfExists = true
+  ) {
+    const path = `/features/1.0/collections/${VallarisService._collectionId}/items`;
     const data = await VallarisService._networkHandler.handle<TreesResponse>({
+      fromCacheIfExists,
       method: "GET",
-      path: `/features/1.0/collections/${VallarisService._collectionId}/items`,
+      path: path,
       headers: {
         // @ts-ignore
         "api-key": import.meta.env.VITE_VALLARIS_API_KEY,
@@ -38,14 +43,14 @@ export default class VallarisService {
    */
   public static getMapStyle(): FetchResult<string> {
     // TODO Replace Libre map style with the actual one we're gonna be using in prod.
-    const styleId = "64169de4e89e47973094fc43";
+    const styleId = "64149d10dc84d7b8cd687c5e";
 
     return {
-      response: new Response(),
       result: `https://v2k-dev.vallarismaps.com/core/api/styles/1.0-beta/styles/${styleId}?api_key=${
         // @ts-ignore
         import.meta.env.VITE_VALLARIS_API_KEY
       }`,
+      fromCache: true,
     };
   }
 
