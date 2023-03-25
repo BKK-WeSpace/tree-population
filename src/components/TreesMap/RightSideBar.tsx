@@ -6,6 +6,7 @@ import useGetTrees from "../../data/hooks/useGetTrees";
 import SearchIcon from "@mui/icons-material/Search";
 import MapOutlinedIcon from "@mui/icons-material/MapOutlined";
 import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
+import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
@@ -23,10 +24,14 @@ import Tree2 from "../../assets/tree2.png";
 import Tree3 from "../../assets/tree3.png";
 
 //@ts-ignore
+import NoImage from "../../assets/noImage.png";
+
+//@ts-ignore
 import DefaultImage from "../../common/DefaultImage";
 
 //@ts-ignore
 import LogoWespace from "../../common/LogoWespace";
+
 
 import "./style/RightSideBar.css";
 
@@ -74,7 +79,7 @@ export default function RightSideBar() {
             sectionTitle: "All Trees",
           },
           {
-            jsx: <FindTreesTab />,
+            jsx: <FindTreesTab trees={data} />,
             // TODO title for Find Trees
             sectionTitle: "Find Trees",
           },
@@ -134,8 +139,20 @@ function FunFactSection({ sx }: { sx?: SxProps }) {
           justifyContent: "space-between",
         }}
       >
-        <LogoWespace></LogoWespace>
-        <Button variant="contained" style={{ background: "#A0705F", color: "white", fontSize: "17px", fontWeight: "bold", borderRadius: 12, padding: 7 }}>เข้าสู่ระบบ</Button>
+        <LogoWespace />
+        <Button
+          variant="contained"
+          style={{
+            background: "#A0705F",
+            color: "white",
+            fontSize: "17px",
+            fontWeight: "bold",
+            borderRadius: 12,
+            padding: 7,
+          }}
+        >
+          เข้าสู่ระบบ
+        </Button>
       </Box>
       <Box
         sx={{
@@ -154,7 +171,7 @@ function FunFactSection({ sx }: { sx?: SxProps }) {
             top: "24px",
             left: "24px",
             marginTop: "24px",
-            marginBottom: "24px"
+            marginBottom: "24px",
           }}
         >
           <img src={TreeImage} alt="treeImage" style={{
@@ -255,6 +272,7 @@ function AllTreesTab({ trees }) {
         {trees != undefined &&
           trees.result.map((tree, i) => (
             <TreeCard
+              isFindTheTreeTab={false}
               name={tree.properties.commonName}
               status={tree.properties.isAlive}
               treeImg={treeList[i]}
@@ -266,14 +284,29 @@ function AllTreesTab({ trees }) {
 }
 
 // TODO implement <FindTreesTab/>
-function FindTreesTab() {
-  return <p style={{ color: "green" }}> Find Trees Tab</p>;
+function FindTreesTab({ trees }) {
+  return (
+    <div style={{ backgroundColor: "white" }}>
+
+      <div className="treeCardContainer">
+        {trees != undefined &&
+          trees.result.map((tree, i) => (
+            <TreeCard
+              isFindTheTreeTab
+              name={tree.properties.commonName}
+              status={false}
+              treeImg={treeList[i]}
+            />
+          ))}
+      </div>
+    </div>
+  );
 }
 
 function Search() {
   return (
     <div>
-      <br/>
+      <br />
       <div className="searchBar">
         found 200 trees <SearchIcon />
       </div>
@@ -281,17 +314,21 @@ function Search() {
   );
 }
 
-function TreeCard({ name, status, treeImg }) {
+function TreeCard({ name, status, treeImg, isFindTheTreeTab }) {
   return (
     <div className="tree-card">
-      <img src={treeImg} alt="treeImage" />
+      {isFindTheTreeTab ? (
+        <img src={NoImage} alt="treeImage" />
+      ) : (
+        <img src={treeImg} alt="treeImage" />
+      )}
 
       <div className="box">
         <div className="tree-detail">
           <div className="tree-title">{name}</div>
           <div className="tree-status">
-            <p className="status-prompt">tree status :</p>
-            <TreeStatus status={status} />
+            <p className="status-prompt">tree status:</p>
+            <TreeStatus status={status} isFindTheTreeTab={isFindTheTreeTab} />
           </div>
         </div>
 
@@ -300,10 +337,11 @@ function TreeCard({ name, status, treeImg }) {
           <div>
             <Button
               style={{
-                color: "#94B044",
+                color: isFindTheTreeTab ? "#A0705F" : "#94B044",
                 fontWeight: "700",
                 borderRadius: "8px",
                 padding: "4px 10px",
+                borderColor: isFindTheTreeTab ? "#A0705F" : "#94B044",
               }}
               variant="outlined"
               endIcon={<MapOutlinedIcon />}
@@ -317,11 +355,18 @@ function TreeCard({ name, status, treeImg }) {
                 borderRadius: "8px",
                 marginLeft: "6px",
                 padding: "4px 10px",
+                backgroundColor: isFindTheTreeTab ? "#A0705F" : "#94B044",
               }}
               variant="contained"
-              endIcon={<FavoriteBorderOutlinedIcon />}
+              endIcon={
+                isFindTheTreeTab ? (
+                  <AddCircleOutlineIcon />
+                ) : (
+                  <FavoriteBorderOutlinedIcon />
+                )
+              }
             >
-              กอดน้อง
+              {isFindTheTreeTab ? "เพิ่มข้อมูล" : "กอดน้อง"}
             </Button>
           </div>
         </div>
@@ -330,6 +375,10 @@ function TreeCard({ name, status, treeImg }) {
   );
 }
 
-function TreeStatus({ status }) {
-  return <p className={`tag-${true ? "active" : "inactive"}`}>arrive</p>;
+function TreeStatus({ status, isFindTheTreeTab }) {
+  return (
+    <p className={`tag-${status ? "active" : "inactive"}`}>
+      {isFindTheTreeTab ? "ไม่มีข้อมูลสถานะ" : "arrive"}
+    </p>
+  );
 }
