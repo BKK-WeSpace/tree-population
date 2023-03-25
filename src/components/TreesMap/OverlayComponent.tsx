@@ -2,6 +2,7 @@ import { Box } from "@mui/system";
 import React from "react";
 import RightSideBar from "./RightSideBar";
 import TopLeftOverview from "./TopLeftOverview";
+import MapAttributionInfo from "./MapAttributionInfo";
 
 export default function OverlayComponent() {
   return (
@@ -18,6 +19,7 @@ export default function OverlayComponent() {
     >
       <TopLeftOverview />
       <RightSideBar />
+      <MapAttributionInfo />
     </Box>
   );
 }

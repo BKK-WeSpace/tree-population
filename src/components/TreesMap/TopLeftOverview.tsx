@@ -7,6 +7,8 @@ import Select, { SelectChangeEvent } from "@mui/material/Select";
 import KeyboardArrowDownOutlinedIcon from "@mui/icons-material/KeyboardArrowDownOutlined";
 import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline';
 import SearchBox from "../Search";
+import IconLeaf from "../../common/IconLeaf";
+import AlertImage from "../../common/AlertImage";
 
 import { useState } from "react";
 
@@ -30,7 +32,7 @@ export default function TopLeftOverview() {
   const handleAreaChange = (event) => {
     setSelctedArea(event.target.value);
   };
-  const dataSearch = null;
+  const [dataSearch, setDataSearch] = useState('');
   return (
     <Box
       sx={{
@@ -52,7 +54,7 @@ export default function TopLeftOverview() {
           color: "black",
         }}
       >
-        <SearchBox/>
+        <SearchBox setDataSearch={setDataSearch}/>
       </Box>
 
       {
@@ -62,12 +64,22 @@ export default function TopLeftOverview() {
             color: "black",
             borderRadius: "12px",
             width: "100%",
-            height: "147px",
+            height: "170px",
             background: "white",
             boxShadow: "0px 4px 8px rgba(109, 143, 12, 0.11)",
           }}
         >
-          Trees in the area {treesInTheArea}
+          <br/>
+          <div>
+            <span style={{ fontSize: "25px", fontWeight: "bold", color: "#94B044"}}>จำนวนต้นไม้ในพื้นที่</span>
+            <IconLeaf></IconLeaf>
+          </div>
+          <span style={{ fontSize: "48px", fontWeight: "bold"}}>{dataSearch.amount} ต้น</span>
+          <br/>
+          <div style={{display: "flex", justifyContent: "center"}}>
+             <span style={{ fontSize: "14px", fontWeight: "shape"}}>สำหรับ (พื้นที่สำรวจ)&nbsp;</span>
+             <AlertImage></AlertImage>
+          </div>
         </Box>
         : <></>
       }
