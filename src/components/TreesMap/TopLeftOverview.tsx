@@ -6,6 +6,7 @@ import FormControl from "@mui/material/FormControl";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
 import KeyboardArrowDownOutlinedIcon from "@mui/icons-material/KeyboardArrowDownOutlined";
 import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline';
+import SearchBox from "../Search";
 
 import { useState } from "react";
 
@@ -29,7 +30,7 @@ export default function TopLeftOverview() {
   const handleAreaChange = (event) => {
     setSelctedArea(event.target.value);
   };
-
+  const data = null;
   return (
     <Box
       sx={{
@@ -51,6 +52,7 @@ export default function TopLeftOverview() {
           color: "black",
         }}
       >
+        //this is dropdown
         <Grid
         container
         spacing={0}
@@ -148,8 +150,29 @@ export default function TopLeftOverview() {
           }}> สำหรับ {selctedArea} <ErrorOutlineIcon sx={{fontSize:14,}}></ErrorOutlineIcon></Typography>
           
         </Grid>
+        //end dropdown
         
+        //or change dropdown to searchBox
+        //{/* Search Filter */}
+        //<SearchBox/>
       </Box>
+
+      {
+        data?
+          <Box
+          sx={{
+            color: "black",
+            borderRadius: "12px",
+            width: "100%",
+            height: "147px",
+            background: "white",
+            boxShadow: "0px 4px 8px rgba(109, 143, 12, 0.11)",
+          }}
+        >
+          Trees in the area {treesInTheArea}
+        </Box>
+        : <></>
+      }
     </Box>
   );
 }
