@@ -1,45 +1,22 @@
 import { Button, ButtonBase, Divider } from "@mui/material";
 import { Box, SxProps } from "@mui/system";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import useGetTrees from "../../data/hooks/useGetTrees";
 
-import SearchIcon from "@mui/icons-material/Search";
-import MapOutlinedIcon from "@mui/icons-material/MapOutlined";
-import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
-import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
-
-import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
-
-import CupImage from "../../common/CupImage";
-import VerifiedImage from "../../common/VerifiedImage";
+import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 
 //@ts-ignore
 import TreeImage from "../../assets/treeImage.png";
 
 //@ts-ignore
-import Tree1 from "../../assets/tree1.png";
-
-//@ts-ignore
-import Tree2 from "../../assets/tree2.png";
-
-//@ts-ignore
-import Tree3 from "../../assets/tree3.png";
-
-//@ts-ignore
-import NoImage from "../../assets/noImage.png";
-
-//@ts-ignore
-import DefaultImage from "../../common/DefaultImage";
-
-//@ts-ignore
 import LogoWespace from "../../common/LogoWespace";
 
-import "./style/RightSideBar.css";
 import { SelectedTreeContext } from ".";
 import Tree from "../../types/Trees";
-
-const treeList = [Tree1, Tree2, Tree3, Tree1, Tree2];
+import AllTreesTab from "./AllTreesTab";
+import "./style/RightSideBar.css";
+import TreeCard from "./TreeCard";
 
 const sideBarWidth = 372;
 export default function RightSideBar() {
@@ -277,27 +254,6 @@ function TabSwitcher({
   );
 }
 
-function AllTreesTab({ trees }: { trees: Tree[] }) {
-  return (
-    <div style={{ backgroundColor: "white" }}>
-      {/* TODO search functionality */}
-      <Search />
-      <div className="treeCardContainer">
-        {/* TODO infinite scroll */}
-        {trees != undefined &&
-          trees.map((tree, i) => (
-            <TreeCard
-              tree={tree}
-              index={i}
-              isFindTheTreeTab={false}
-              treeImg={treeList[i]}
-            />
-          ))}
-      </div>
-    </div>
-  );
-}
-
 // TODO show only trees that do not have names
 function FindTreesTab({ trees }: { trees: Tree[] }) {
   return (
@@ -305,132 +261,9 @@ function FindTreesTab({ trees }: { trees: Tree[] }) {
       <div className="treeCardContainer">
         {trees != undefined &&
           trees.map((tree, i) => (
-            <TreeCard
-              tree={tree}
-              index={i}
-              isFindTheTreeTab
-              treeImg={treeList[i]}
-            />
+            <TreeCard tree={tree} index={i} isFindTheTreeTab />
           ))}
       </div>
     </div>
-  );
-}
-
-function Search() {
-  return (
-    <div>
-      <br />
-      <div className="searchBar">
-        found 200 trees <SearchIcon />
-      </div>
-    </div>
-  );
-}
-
-function TreeCard({
-  treeImg,
-  isFindTheTreeTab,
-  tree,
-  index,
-}: {
-  treeImg: string;
-  isFindTheTreeTab: boolean;
-  tree: Tree;
-  index: number;
-}) {
-  const treeContext = React.useContext(SelectedTreeContext);
-  function onNavigateToTreeButtonClicked() {
-    treeContext.setSelectedTree(tree as Tree, index as number);
-  }
-
-  return (
-    <div className="tree-card">
-      {isFindTheTreeTab ? (
-        <img
-          src={NoImage}
-          alt="treeImage"
-          style={{ width: "108px", height: "108px" }}
-        />
-      ) : (
-        // TODO fallback case for when there is no image.
-        <img
-          src={treeImg}
-          alt="treeImage"
-          style={{ width: "108px", height: "108px" }}
-        />
-      )}
-
-      <div className="box">
-        <div className="tree-detail">
-          <div className="tree-title">
-            <span>{tree.properties?.commonName}</span>
-            {tree.properties?.isVerified && <VerifiedImage />}
-            {tree.properties?.isReward && <CupImage />}
-          </div>
-          {tree.properties?.isAlive !== undefined && (
-            <div className="tree-status">
-              <p className="status-prompt">tree status:</p>
-              <TreeStatus
-                status={tree.properties.isAlive}
-                isFindTheTreeTab={isFindTheTreeTab}
-              />
-            </div>
-          )}
-        </div>
-
-        <div className="call-to-action-container">
-          <div></div>
-          <div>
-            <Button
-              style={{
-                color: isFindTheTreeTab ? "#A0705F" : "#94B044",
-                fontWeight: "700",
-                borderRadius: "8px",
-                padding: "4px 7px",
-                borderColor: isFindTheTreeTab ? "#A0705F" : "#94B044",
-                height: "32px",
-                fontSize: "12px",
-              }}
-              variant="outlined"
-              onClick={onNavigateToTreeButtonClicked}
-              endIcon={<MapOutlinedIcon />}
-            >
-              นำทาง
-            </Button>
-            <Button
-              style={{
-                color: "white",
-                fontWeight: "700",
-                borderRadius: "8px",
-                marginLeft: "6px",
-                padding: "4px 7px",
-                backgroundColor: isFindTheTreeTab ? "#A0705F" : "#94B044",
-                height: "32px",
-                fontSize: "12px",
-              }}
-              variant="contained"
-              endIcon={
-                isFindTheTreeTab ? (
-                  <AddCircleOutlineIcon style={{ marginLeft: "0px" }} />
-                ) : (
-                  <FavoriteBorderOutlinedIcon style={{ marginLeft: "0px" }} />
-                )
-              }
-            >
-              {isFindTheTreeTab ? "เพิ่มข้อมูล" : "กอดน้อง"}
-            </Button>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function TreeStatus({ status, isFindTheTreeTab }) {
-  return (
-    <p className={`tag-${status ? "active" : "inactive"}`}>
-      {isFindTheTreeTab ? "ไม่มีข้อมูลสถานะ" : "arrive"}
-    </p>
   );
 }
