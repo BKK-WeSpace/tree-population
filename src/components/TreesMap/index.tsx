@@ -14,7 +14,7 @@ import { createContext } from "react";
  */
 export const SelectedTreeContext = createContext<{
   selectedTree?: Tree;
-  setSelectedTree: (tree: Tree) => void;
+  setSelectedTree: (tree: Tree, index?: number) => void;
 }>({ selectedTree: undefined, setSelectedTree: () => {} });
 
 const TreesMap: React.FC<{}> = () => {
