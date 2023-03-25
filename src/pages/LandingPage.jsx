@@ -11,7 +11,7 @@ import ContributeUs from '../components/ContributeUs/ContributeUs';
 import reactLogo from '../assets/react.svg';
 
 import useGetTrees from '../data/hooks/useGetTrees';
-import { useTheme } from '../theme/ThemeContext';
+// import { useTheme } from '../theme/ThemeContext';
 
 import CardModal from '../components/CardModal/CardModal';
 import TreesMap from '../components/TreesMap';
@@ -19,7 +19,7 @@ import TreesMap from '../components/TreesMap';
 
 function LandingPage() {
   const [count, setCount] = useState(0);
-  const {handleTheme,mode} = useTheme()
+  // const {handleTheme,mode} = useTheme()
 
   // const { isLoading, data } = useGetTrees({}); // How to get tree from data hooks
   // console.log(isLoading, data?.result, data?.error); // Delete this line when the frontend work begins.

@@ -3,13 +3,6 @@ type CommonColor = {
 	white?: string;
 };
 
-type ColorLevel = {
-	main?: string;
-	light?: string;
-	dark?: string;
-	contrastText?: string;
-};
-
 type GreyColorLevel = {
 	50?: string;
 	100?: string;
@@ -55,7 +48,6 @@ type ActionColor = {
 
 export type {
 	CommonColor,
-	ColorLevel,
 	GreyColorLevel,
 	Text,
 	Background,
