@@ -127,7 +127,7 @@ const arrLngLat = [
     [13.736042703964694, 100.56205312053194],
 ]
 
-const ans = arrLngLat.map((v, i) => ({
+export const asokTrees = arrLngLat.map((v, i) => ({
   ...data,
   id:`${v[1]}`,
   geometry: {
@@ -135,5 +135,3 @@ const ans = arrLngLat.map((v, i) => ({
     coordinates: [v[1], v[0]]
   }
 }));
-console.log(ans)
-
