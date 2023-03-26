@@ -200,37 +200,30 @@ export default function FindTreesTab({ trees }: { trees: Tree[] }) {
                   type="file"
                   hidden
                 />
-                <div
+                <Button
                   style={{
-                    display: "flex",
-                    alignItems: "center",
-                    marginBottom: "20px",
+                    marginRight: "10px",
+                    width: "200px",
+                    marginBottom: "10px",
                   }}
+                  variant="outlined"
+                  onClick={() => filePicekerRef.current.click()}
                 >
-                  <Button
-                    style={{
-                      marginRight: "10px",
-                      width: "200px",
-                    }}
-                    variant="outlined"
-                    onClick={() => filePicekerRef.current.click()}
-                  >
-                    Choose
-                  </Button>
-
-                  {imagePreview && (
-                    <CloseIcon
-                      style={{ cursor: "pointer", color: "red" }}
-                      onClick={clearFiles}
-                    />
-                  )}
-                </div>
+                  Choose tree image
+                </Button>
               </div>
             </div>
 
             <div className="preview">
               {imagePreview != null && <img src={imagePreview} alt="" />}
             </div>
+
+            {imagePreview && (
+              <CloseIcon
+                style={{ cursor: "pointer", color: "red" }}
+                onClick={clearFiles}
+              />
+            )}
 
             <Button
               variant="contained"
