@@ -18,8 +18,6 @@ export default class VallarisService {
     request?: TreesRequestParams,
     fromCacheIfExists = true
   ): Promise<FetchResult<TreesResponse>> {
-    const local1 = benja as TreesResponse;
-    const local2 = lumphini as TreesResponse;
     const path = `/features/1.0/collections/${VallarisService._collectionId}/items`;
     const data = await VallarisService._networkHandler.handle<TreesResponse>({
       fromCacheIfExists,
@@ -34,14 +32,6 @@ export default class VallarisService {
         bbox: request?.boundingBox?.join(" ,"),
       },
     });
-
-    if (data.result) {
-      data.result.features = [
-        ...data.result.features,
-        ...local1.features,
-        ...local2.features,
-      ];
-    }
 
     return data;
   }

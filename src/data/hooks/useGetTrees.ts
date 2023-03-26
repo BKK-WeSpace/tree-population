@@ -15,7 +15,7 @@ export default function useGetTrees({
     callback: async () => {
       const response = await VallarisService.getAllTrees({
         ...request,
-        limit: request?.limit ?? 1000,
+        limit: request?.limit ?? 10000,
       });
 
       return {

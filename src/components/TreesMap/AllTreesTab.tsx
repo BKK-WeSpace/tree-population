@@ -14,7 +14,12 @@ export default function AllTreesTab({ trees }: { trees: Tree[] }) {
       <div className="treeCardContainer">
         {/* TODO infinite scroll */}
         {trees.map((tree, i) => (
-          <TreeCard tree={tree} index={i} isFindTheTreeTab={false} />
+          <TreeCard
+            tree={tree}
+            index={i}
+            isFindTheTreeTab={false}
+            onAddInformationPressed={() => {}}
+          />
         ))}
       </div>
     </div>

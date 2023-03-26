@@ -62,7 +62,7 @@ const TreesMap: React.FC<{}> = () => {
         generateId: true,
         // TODO cluster and make colors
         cluster: true,
-        clusterMaxZoom: 15,
+        clusterMaxZoom: 13,
         clusterRadius: 30,
       });
 
