@@ -7,12 +7,15 @@ import {
   FormHelperText,
   Input,
   InputLabel,
+  TextField,
 } from "@mui/material";
 import React from "react";
-import { useState, useContext } from "react";
+import { useState, useContext, useRef } from "react";
 import { SelectedTreeContext } from ".";
 import Tree from "../../types/Trees";
 import TreeCard from "./TreeCard";
+
+import CloseIcon from "@mui/icons-material/Close";
 
 //TODO Sync UI with Figma
 export default function FindTreesTab({ trees }: { trees: Tree[] }) {
@@ -20,7 +23,33 @@ export default function FindTreesTab({ trees }: { trees: Tree[] }) {
   const [cardState, setCardState] = useState<"treesList" | "treeDetail">(
     "treesList"
   );
+  const filePicekerRef = useRef(null);
   const [isDrawerOpened, setIsDrawerOpened] = useState(false);
+
+  const [imagePreview, setImagePreview] = useState(null);
+  const [videoPreview, setVideoPreview] = useState(null);
+
+  function previewFile(e) {
+    const reader = new FileReader();
+
+    const selectedFile = e.target.files[0];
+    if (selectedFile) {
+      reader.readAsDataURL(selectedFile);
+    }
+
+    reader.onload = (readerEvent) => {
+      if (selectedFile.type.includes("image")) {
+        setImagePreview(readerEvent.target.result);
+      } else if (selectedFile.type.includes("video")) {
+        setVideoPreview(readerEvent.target.result);
+      }
+    };
+  }
+
+  function clearFiles() {
+    setImagePreview(null);
+    setVideoPreview(null);
+  }
 
   function onUploadTreeButtonClicked() {
     setIsDrawerOpened(true);
@@ -148,25 +177,73 @@ export default function FindTreesTab({ trees }: { trees: Tree[] }) {
         >
           อัพโหลดข้อมูลต้นไม้
         </Button>
-        {/* TODO Polish Drawer UI */}
-        <Drawer
-          style={{ padding: "40px", height: "500px" }}
-          anchor={"bottom"}
-          open={isDrawerOpened}
-          onClose={toggleDrawer}
-        >
-          <FormControl>
-            <InputLabel htmlFor="my-input">ชื่อต้นไม้</InputLabel>
-            <Input id="my-input" aria-describedby="my-helper-text" />
 
-            <InputLabel htmlFor="my-input">ภาพต้นไม้</InputLabel>
-            <Input
-              id="my-input"
-              aria-describedby="my-helper-text"
-              type="file"
-            />
+        <Drawer anchor={"bottom"} open={isDrawerOpened} onClose={toggleDrawer}>
+          <FormControl
+            style={{ height: "400px", alignItems: "center", marginTop: "30px" }}
+          >
+            <div style={{ width: "200px" }}>
+              <TextField label="ชื่อต้นไม้" variant="outlined" />
+            </div>
 
-            <Button>อัพโหลดข้อมูลต้นไม้</Button>
+            <div
+              style={{
+                marginTop: "10px",
+                width: "200px",
+              }}
+            >
+              <div className="btn-container">
+                <input
+                  ref={filePicekerRef}
+                  accept="image/*, video/*"
+                  onChange={previewFile}
+                  type="file"
+                  hidden
+                />
+                <div
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    marginBottom: "20px",
+                  }}
+                >
+                  <Button
+                    style={{
+                      marginRight: "10px",
+                      width: "200px",
+                    }}
+                    variant="outlined"
+                    onClick={() => filePicekerRef.current.click()}
+                  >
+                    Choose
+                  </Button>
+
+                  {imagePreview && (
+                    <CloseIcon
+                      style={{ cursor: "pointer", color: "red" }}
+                      onClick={clearFiles}
+                    />
+                  )}
+                </div>
+              </div>
+            </div>
+
+            <div className="preview">
+              {imagePreview != null && <img src={imagePreview} alt="" />}
+            </div>
+
+            <Button
+              variant="contained"
+              style={{
+                fontSize: "17px",
+                width: "200px",
+                marginTop: "30px",
+                marginBottom: "30px",
+                color: "white",
+              }}
+            >
+              อัพโหลดข้อมูลต้นไม้
+            </Button>
           </FormControl>
         </Drawer>
       </Box>
