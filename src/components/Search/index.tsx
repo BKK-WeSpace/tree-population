@@ -66,7 +66,7 @@ const mockTopListsSearch = [
   {
     label: "สวนเบญจกิติ",
     value: "สวนเบญจกิติ",
-    amount: "2677",
+    amount: "1882",
     geometry: {
       type: "Point",
       coordinates: [100.559471, 13.720874],
