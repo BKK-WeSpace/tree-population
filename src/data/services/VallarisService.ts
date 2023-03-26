@@ -4,9 +4,8 @@ import { TreesResponse } from "../models/TreesResponse";
 import UpdateTreeInfoBody from "../models/UpdateTreeInfoBody";
 import NetworkRequestHandler from "./NetworkRequestHandler";
 //@ts-ignore
-import lumphini from "../../mockResponses/lumphini.json";
-//@ts-ignore
-import benja from "../../mockResponses/benja.json";
+import mockJson from "../../mockResponses/mock.json";
+import Tree from "../../types/Trees";
 
 export default class VallarisService {
   private static _networkHandler = new NetworkRequestHandler({
@@ -32,6 +31,13 @@ export default class VallarisService {
         bbox: request?.boundingBox?.join(" ,"),
       },
     });
+
+    if (data?.result?.features) {
+      data!.result.features = [
+        ...data.result.features,
+        ...(mockJson.features as Tree[]),
+      ];
+    }
 
     return data;
   }

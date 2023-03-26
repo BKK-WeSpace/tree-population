@@ -1,5 +1,13 @@
 import { ChevronLeft } from "@mui/icons-material";
-import { Box, Button } from "@mui/material";
+import {
+  Box,
+  Button,
+  Drawer,
+  FormControl,
+  FormHelperText,
+  Input,
+  InputLabel,
+} from "@mui/material";
 import React from "react";
 import { useState, useContext } from "react";
 import { SelectedTreeContext } from ".";
@@ -12,6 +20,15 @@ export default function FindTreesTab({ trees }: { trees: Tree[] }) {
   const [cardState, setCardState] = useState<"treesList" | "treeDetail">(
     "treesList"
   );
+  const [isDrawerOpened, setIsDrawerOpened] = useState(false);
+
+  function onUploadTreeButtonClicked() {
+    setIsDrawerOpened(true);
+  }
+
+  function toggleDrawer() {
+    setIsDrawerOpened(false);
+  }
 
   function onBackToTreesListClicked() {
     setCardState("treesList");
@@ -127,9 +144,31 @@ export default function FindTreesTab({ trees }: { trees: Tree[] }) {
           }}
           variant="contained"
           color="secondary"
+          onClick={onUploadTreeButtonClicked}
         >
           อัพโหลดข้อมูลต้นไม้
         </Button>
+        {/* TODO Polish Drawer UI */}
+        <Drawer
+          style={{ padding: "40px", height: "500px" }}
+          anchor={"bottom"}
+          open={isDrawerOpened}
+          onClose={toggleDrawer}
+        >
+          <FormControl>
+            <InputLabel htmlFor="my-input">ชื่อต้นไม้</InputLabel>
+            <Input id="my-input" aria-describedby="my-helper-text" />
+
+            <InputLabel htmlFor="my-input">ภาพต้นไม้</InputLabel>
+            <Input
+              id="my-input"
+              aria-describedby="my-helper-text"
+              type="file"
+            />
+
+            <Button>อัพโหลดข้อมูลต้นไม้</Button>
+          </FormControl>
+        </Drawer>
       </Box>
     </Box>
   );
