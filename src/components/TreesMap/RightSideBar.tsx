@@ -86,7 +86,7 @@ export default function RightSideBar() {
         children={[
           {
             jsx: <AllTreesTab trees={allTreesSpliced ?? []} />,
-            sectionTitle: "้ต้นไม้ทั้งหมด",
+            sectionTitle: "ต้นไม้ทั้งหมด",
           },
           {
             jsx: <FindTreesTab trees={treesThatDoNotHaveNameSpliced ?? []} />,
