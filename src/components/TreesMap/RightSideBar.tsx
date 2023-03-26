@@ -17,6 +17,7 @@ import AllTreesTab from "./AllTreesTab";
 import "./style/RightSideBar.css";
 import TreeCard from "./TreeCard";
 import { Margin } from "@mui/icons-material";
+import FindTreesTab from "./FindTreesTab";
 
 const sideBarWidth = 372;
 export default function RightSideBar() {
@@ -27,8 +28,20 @@ export default function RightSideBar() {
     setShowSidebar((s) => !s);
   }
 
-  const filteredTrees = React.useMemo(() => {
+  const allTreesSpliced = React.useMemo(() => {
     return data?.result?.features.splice(0, 10);
+  }, [data]);
+
+  const treesThatDoNotHaveNameSpliced = React.useMemo(() => {
+    const trees: Tree[] = [];
+    if (data?.result?.features) {
+      for (const tree of data?.result?.features) {
+        if (trees.length == 10) break;
+        if (!tree?.properties?.commonName) trees.push(tree);
+      }
+
+      return trees;
+    }
   }, [data]);
 
   return (
@@ -72,11 +85,11 @@ export default function RightSideBar() {
       <TabSwitcher
         children={[
           {
-            jsx: <AllTreesTab trees={filteredTrees ?? []} />,
+            jsx: <AllTreesTab trees={allTreesSpliced ?? []} />,
             sectionTitle: "้ต้นไม้ทั้งหมด",
           },
           {
-            jsx: <FindTreesTab trees={filteredTrees ?? []} />,
+            jsx: <FindTreesTab trees={treesThatDoNotHaveNameSpliced ?? []} />,
             sectionTitle: "ตามหาต้นไม้",
           },
         ]}
@@ -284,19 +297,5 @@ function TabSwitcher({
         );
       })}
     </Box>
-  );
-}
-
-// TODO show only trees that do not have names
-function FindTreesTab({ trees }: { trees: Tree[] }) {
-  return (
-    <div style={{ backgroundColor: "white" }}>
-      <div className="treeCardContainer">
-        {trees != undefined &&
-          trees.map((tree, i) => (
-            <TreeCard tree={tree} index={i} isFindTheTreeTab />
-          ))}
-      </div>
-    </div>
   );
 }
