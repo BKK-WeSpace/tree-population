@@ -34,6 +34,7 @@ const TreesMap: React.FC<{}> = () => {
     mapSourceId,
   });
 
+  // TODO flyToTree still is not highlighting some trees due to the generated id.
   function flyToTree(tree: Tree) {
     map.current?.flyTo({
       center: tree.geometry.coordinates as LngLatLike,

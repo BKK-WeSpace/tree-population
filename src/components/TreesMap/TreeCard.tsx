@@ -108,7 +108,7 @@ export default function TreeCard({
 function TreeStatus({ status, isFindTheTreeTab }) {
   return (
     <p className={`tag-${status ? "active" : "inactive"}`}>
-      {isFindTheTreeTab ? "ไม่มีข้อมูลสถานะ" : "arrive"}
+      {isFindTheTreeTab ? "ไม่มีข้อมูลสถานะ" : "Alive"}
     </p>
   );
 }
