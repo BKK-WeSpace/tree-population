@@ -10,6 +10,15 @@ import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import TreeImage from "../../assets/treeImage.png";
 
 //@ts-ignore
+import TreeImage1 from "../../assets/tree1.png";
+
+//@ts-ignore
+import TreeImage2 from "../../assets/tree2.png";
+
+//@ts-ignore
+import TreeImage3 from "../../assets/tree3.png";
+
+//@ts-ignore
 import LogoWespace from "../../common/LogoWespace";
 
 import Tree from "../../types/Trees";
@@ -22,6 +31,9 @@ import CarouselImageSecond from "../../common/CarouselImageSecond";
 import CarouselImageThird from "../../common/CarouselImageThird";
 
 const sideBarWidth = 372;
+
+const mockTree = [TreeImage1, TreeImage2, TreeImage3, TreeImage1, TreeImage2];
+
 export default function RightSideBar() {
   const [showSidebar, setShowSidebar] = useState(true);
   let { isLoading, data } = useGetTrees({});
@@ -93,8 +105,13 @@ export default function RightSideBar() {
       <TabSwitcher
         children={[
           {
-            jsx: <AllTreesTab trees={allTrees.treesWithName} />,
-            sectionTitle: "ต้นไม้ที่มีข้อมูล",
+            jsx: (
+              <AllTreesTab
+                trees={allTrees.treesWithName ?? []}
+                mockTree={mockTree}
+              />
+            ),
+            sectionTitle: "ต้นไม้ทั้งหมด",
           },
           {
             jsx: <FindTreesTab trees={allTrees.treesWithoutName} />,

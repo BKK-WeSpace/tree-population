@@ -4,7 +4,7 @@ import SearchIcon from "@mui/icons-material/Search";
 import TreeCard from "./TreeCard";
 
 // TODO tree-reporting-flow
-export default function AllTreesTab({ trees }: { trees: Tree[] }) {
+export default function AllTreesTab({ trees, mockTree }: { trees: Tree[], mockTree: string[] }) {
   // This is a temp limit until we implement pagination.
 
   return (
@@ -13,14 +13,19 @@ export default function AllTreesTab({ trees }: { trees: Tree[] }) {
       <Search />
       <div className="treeCardContainer">
         {/* TODO infinite scroll */}
-        {trees.map((tree, i) => (
-          <TreeCard
-            tree={tree}
-            index={i}
-            isFindTheTreeTab={false}
-            onAddInformationPressed={() => {}}
-          />
-        ))}
+        {trees.map((tree, i) => {
+          let index = i % mockTree.length;
+          tree.properties ??= {};
+          tree.properties!.imgId = mockTree[index];
+          return (
+            <TreeCard
+              tree={tree}
+              index={i}
+              isFindTheTreeTab={false}
+              onAddInformationPressed={() => {}}
+            />
+          );
+        })}
       </div>
     </div>
   );
