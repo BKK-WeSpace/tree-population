@@ -4,12 +4,23 @@ import TextField from "@mui/material/TextField";
 import Autocomplete from "@mui/material/Autocomplete";
 import { SelectedTreeContext } from "../TreesMap";
 import Tree from "../../types/Trees";
+import useGetTrees from "../../data/hooks/useGetTrees";
 
 export default function SearchBox({ setDataSearch }) {
   const [selectedOption, setSelectedOption] = useState(null);
   const [searchQuery, setSearchQuery] = useState("");
 
   const treeContext = React.useContext(SelectedTreeContext);
+
+//   const {data: hardcodedBenjakitiParkTreeCount} = useGetTrees({
+//       request: {
+//           boundingBox: [
+//             100.55185868371865, 13.725279746063677, 100.56045339710738, 13.733855759373782
+//           ]
+//       } 
+//    });
+
+//   console.log(hardcodedBenjakitiParkTreeCount);
 
   const handleOptionChange = (event, newValue) => {
     console.log(newValue);
@@ -55,7 +66,7 @@ const mockTopListsSearch = [
   {
     label: "สวนเบญจกิติ",
     value: "สวนเบญจกิติ",
-    amount: "360",
+    amount: "2677",
     geometry: {
       type: "Point",
       coordinates: [100.559471, 13.720874],
@@ -64,7 +75,7 @@ const mockTopListsSearch = [
   {
     label: "สวนลุมพินี",
     value: "สวนลุมพินี",
-    amount: "190",
+    amount: "1468",
     geometry: {
       type: "Point",
       coordinates: [100.5395044, 13.7314281],
@@ -73,7 +84,7 @@ const mockTopListsSearch = [
   {
     label: "สวนลานพระจอม",
     value: "สวนลานพระจอม",
-    amount: "90",
+    amount: "197",
     geometry: {
       type: "Point",
       coordinates: [100.776415, 13.7305036],
@@ -82,7 +93,7 @@ const mockTopListsSearch = [
   {
     label: "สวนหลวง ร.9",
     value: "สวนหลวง ร.9",
-    amount: "120",
+    amount: "0",
     geometry: {
       type: "Point",
       coordinates: [100.6601213, 13.6871027],
@@ -92,7 +103,7 @@ const mockTopListsSearch = [
   {
     label: "สวนจตุจักร",
     value: "สวนจตุจักร",
-    amount: "60",
+    amount: "0",
     geometry: {
       type: "Point",
       coordinates: [100.5532258, 13.807484],
@@ -101,7 +112,7 @@ const mockTopListsSearch = [
   {
     label: "สวนวชิรเบญจทัศ สวนรถไฟ",
     value: "สวนวชิรเบญจทัศ สวนรถไฟ",
-    amount: "80",
+    amount: "0",
     geometry: {
       type: "Point",
       coordinates: [100.551316, 13.816283],
