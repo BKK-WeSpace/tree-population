@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import {
   Modal,
@@ -7,6 +7,7 @@ import {
   CardMedia,
   CardContent,
   IconButton,
+  Switch,
 } from '@material-ui/core';
 import CloseIcon from '@material-ui/icons/Close';
 import { display } from '@mui/system';
@@ -44,13 +45,6 @@ const useStyles = makeStyles((theme) => ({
     color: 'rgb(101, 121, 45)',
     fontWeight: 'bold',
   },
-  navigateButton: {
-    width: '100%',
-    border: '1px solid rgb(101, 121, 45)',
-    borderRadius: 10,
-    color: 'rgb(101, 121, 45)',
-    fontWeight: 'bold',
-  },
   pageContainer: {
     marginTop: 24,
     display: 'flex',
@@ -61,18 +55,38 @@ const useStyles = makeStyles((theme) => ({
     border: '1px solid rgb(236, 226, 223)',
     padding: '4px 8px 4px 8px',
   },
+  darkCard: {
+    backgroundColor: '#333',
+    color: '#fff',
+  },
+  darkBadge: {
+    backgroundColor: '#666',
+  },
+  darkNavigateButton: {
+    border: '1px solid #ccc',
+    color: '#ccc',
+  },
+  darkChangePageButton: {
+    color: '#ccc',
+    border: '1px solid #ccc',
+  },
 }));
 
 const CardModal = ({ image, name, height, isOpen, onClose }) => {
   const classes = useStyles();
+  const [isDarkMode, setIsDarkMode] = useState(false);
 
   const handleClose = () => {
     onClose();
   };
 
+  const handleToggle = () => {
+    setIsDarkMode(!isDarkMode);
+  }
+
   return (
     <Modal open={isOpen} onClose={handleClose} className={classes.modal}>
-      <Card className={classes.card}>
+      <Card className={`$classes.card} ${isDarkMode ? classes.darkCard : ''}`}>
         <CardHeader
           action={
             <IconButton aria-label="close" onClick={handleClose}>
@@ -81,7 +95,7 @@ const CardModal = ({ image, name, height, isOpen, onClose }) => {
           }
         />
 
-        <CardMedia className={classes.media} image={image}>
+        <CardMedia className={`${classes.media} ${isDarkMode ? classes.darkCard : ''}`} image={image}>
           <img
             src={image}
             alt={name}
@@ -90,9 +104,18 @@ const CardModal = ({ image, name, height, isOpen, onClose }) => {
         </CardMedia>
 
         <CardContent>
-          <h2 style={{ display: 'inline' }}>{name} </h2>
-          <span className={classes.badge}>สภาพ: สมบูรณ์</span>
+        <h2 className={`${isDarkMode ? classes.darkText : ''}`} style={{ display: 'inline' }}>{name} </h2>
+        <span className={`${classes.badge} ${isDarkMode ? classes.darkBadge : ''}`}>สภาพ: สมบูรณ์</span>
           <p>ส่วนสูง: {height}</p>
+
+          <div className={classes.navigateButton}>
+            <span>{isDarkMode ? 'Dark Mode' : 'Light Mode'}</span>
+            <Switch
+              checked={isDarkMode}
+              onChange={handleToggle}
+              color="primary"
+            />
+          </div>
 
           <button className={classes.navigateButton}>นำทาง</button>
 

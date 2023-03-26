@@ -1,4 +1,5 @@
 export type FetchResult<T> = {
+  [x: string]: any;
   result?: T;
   error?: FetchError;
   /**
