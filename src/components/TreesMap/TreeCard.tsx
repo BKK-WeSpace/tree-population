@@ -1,5 +1,5 @@
 import { Button } from "@mui/material";
-import React from "react";
+import React, { useState } from "react";
 import { SelectedTreeContext } from ".";
 import CupImage from "../../common/CupImage";
 import VerifiedImage from "../../common/VerifiedImage";
@@ -16,16 +16,17 @@ export default function TreeCard({
   isFindTheTreeTab,
   tree,
   index,
+  onAddInformationPressed,
 }: {
   isFindTheTreeTab: boolean;
   tree: Tree;
   index: number;
+  onAddInformationPressed: VoidFunction;
 }) {
   const treeContext = React.useContext(SelectedTreeContext);
   function onNavigateToTreeButtonClicked() {
     treeContext.setSelectedTree(tree as Tree, index as number);
   }
-
   return (
     <div className="tree-card">
       <img
@@ -82,6 +83,8 @@ export default function TreeCard({
                 height: "32px",
                 fontSize: "12px",
               }}
+              // TODO Hug Tree
+              onClick={isFindTheTreeTab ? onAddInformationPressed : () => {}}
               variant="contained"
               endIcon={
                 isFindTheTreeTab ? (

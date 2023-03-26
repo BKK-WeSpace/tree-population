@@ -62,8 +62,8 @@ const TreesMap: React.FC<{}> = () => {
         generateId: true,
         // TODO cluster and make colors
         cluster: true,
-        clusterMaxZoom: 14,
-        clusterRadius: 40,
+        clusterMaxZoom: 13,
+        clusterRadius: 30,
       });
 
       map.current!.addLayer({
@@ -76,7 +76,7 @@ const TreesMap: React.FC<{}> = () => {
             "case",
             ["boolean", ["feature-state", "clicked"], false],
             20,
-            12,
+            6,
           ],
           "circle-color": [
             "case",

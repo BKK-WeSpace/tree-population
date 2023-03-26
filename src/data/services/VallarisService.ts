@@ -4,9 +4,8 @@ import { TreesResponse } from "../models/TreesResponse";
 import UpdateTreeInfoBody from "../models/UpdateTreeInfoBody";
 import NetworkRequestHandler from "./NetworkRequestHandler";
 //@ts-ignore
-import lumphini from "../../mockResponses/lumphini.json";
-//@ts-ignore
-import benja from "../../mockResponses/benja.json";
+import mockJson from "../../mockResponses/mock.json";
+import Tree from "../../types/Trees";
 
 export default class VallarisService {
   private static _networkHandler = new NetworkRequestHandler({
@@ -18,8 +17,6 @@ export default class VallarisService {
     request?: TreesRequestParams,
     fromCacheIfExists = true
   ): Promise<FetchResult<TreesResponse>> {
-    const local1 = benja as TreesResponse;
-    const local2 = lumphini as TreesResponse;
     const path = `/features/1.0/collections/${VallarisService._collectionId}/items`;
     const data = await VallarisService._networkHandler.handle<TreesResponse>({
       fromCacheIfExists,
@@ -35,11 +32,10 @@ export default class VallarisService {
       },
     });
 
-    if (data.result) {
-      data.result.features = [
+    if (data?.result?.features) {
+      data!.result.features = [
         ...data.result.features,
-        ...local1.features,
-        ...local2.features,
+        ...(mockJson.features as Tree[]),
       ];
     }
 
