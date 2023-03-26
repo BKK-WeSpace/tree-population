@@ -25,6 +25,8 @@ export default function TreeCard({
 }) {
   const treeContext = React.useContext(SelectedTreeContext);
   function onNavigateToTreeButtonClicked() {
+    console.log("-> tree", tree);
+    console.log("-> index", index);
     treeContext.setSelectedTree(tree as Tree, index as number);
   }
   return (
