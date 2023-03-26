@@ -17,6 +17,8 @@ export interface TreeProperties {
    * Whether or not the tree has been verified by a human.
    */
   isVerified: boolean;
+  imgLink: string;
+  isReward: boolean;
   commonName: string;
   species: string;
   genus: string;

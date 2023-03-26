@@ -1,0 +1,45 @@
+.preview {
+	width: min(400px, 90%);
+	position: relative;
+	margin: 20px auto;
+}
+
+
+.preview > img {
+	width: 100%;
+}
+
+.preview > video {
+	width: 100%;
+	object-fit: contain;
+}
+
+.btn-container {
+	display: flex;
+	justify-content: center;
+	gap: 10px;
+}
+
+.close {
+	padding: 10px 15px;
+	border-radius: 999px;
+	outline: none;
+	border: none;
+	font-weight: 600;
+	background-color: rgba(0, 0, 0, 0.1);
+	cursor: pointer;
+}
+
+.btn {
+	padding: 8px 18px;
+	border: none;
+	cursor: pointer;
+	transition: 100ms ease-in-out;
+	background-color: black;
+	color: white;
+	border: 2px solid black;
+	border-radius: 999px;
+}
+.btn:hover {
+	opacity: 0.8;
+}

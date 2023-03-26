@@ -1,18 +1,56 @@
 import { Button, ButtonBase, Divider } from "@mui/material";
 import { Box, SxProps } from "@mui/system";
 import React, { useState } from "react";
+import useGetTrees from "../../data/hooks/useGetTrees";
+
+import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
+import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
+
+//@ts-ignore
+import TreeImage from "../../assets/treeImage.png";
+
+//@ts-ignore
+import LogoWespace from "../../common/LogoWespace";
+
+import Tree from "../../types/Trees";
+import AllTreesTab from "./AllTreesTab";
+import "./style/RightSideBar.css";
+import TreeCard from "./TreeCard";
+import { Margin } from "@mui/icons-material";
+import FindTreesTab from "./FindTreesTab";
+
+import CarouselImageFirst from "../../common/CarouselImageFirst";
+import CarouselImageSecond from "../../common/CarouselImageSecond";
+import CarouselImageThird from  "../../common/CarouselImageThird";
 
 const sideBarWidth = 372;
-// TODO apply drawer?
 export default function RightSideBar() {
   const [showSidebar, setShowSidebar] = useState(true);
+  let { isLoading, data } = useGetTrees({});
 
   function toggleShowOrHide() {
     setShowSidebar((s) => !s);
   }
 
+  const allTreesSpliced = React.useMemo(() => {
+    return data?.result?.features.splice(0, 10);
+  }, [data]);
+
+  const treesThatDoNotHaveNameSpliced = React.useMemo(() => {
+    const trees: Tree[] = [];
+    if (data?.result?.features) {
+      for (const tree of data?.result?.features) {
+        if (trees.length == 10) break;
+        if (!tree?.properties?.commonName) trees.push(tree);
+      }
+
+      return trees;
+    }
+  }, [data]);
+
   return (
     <Box
+      className="treeCardContainer"
       sx={{
         position: "fixed",
         width: sideBarWidth + "px",
@@ -27,24 +65,36 @@ export default function RightSideBar() {
     >
       <SidebarToggle
         onClick={toggleShowOrHide}
-        icon={<p>{showSidebar ? ">" : "<"}</p>}
+        icon={
+          <p>
+            {showSidebar ? (
+              <ArrowForwardIosIcon
+                style={{ fontSize: "15px" }}
+              ></ArrowForwardIosIcon>
+            ) : (
+              <ArrowBackIosNewIcon
+                style={{ fontSize: "15px" }}
+              ></ArrowBackIosNewIcon>
+            )}
+          </p>
+        }
       />
       <FunFactSection
-        sx={{
-          padding: "24px 32px 0 24px",
-        }}
+        sx={
+          {
+            // padding: "24px 24px 0 24px",
+          }
+        }
       />
       <TabSwitcher
         children={[
           {
-            jsx: <AllTreesTab />,
-            // TODO title for All Trees
-            sectionTitle: "All Trees",
+            jsx: <AllTreesTab trees={allTreesSpliced ?? []} />,
+            sectionTitle: "ต้นไม้ทั้งหมด",
           },
           {
-            jsx: <FindTreesTab />,
-            // TODO title for Find Trees
-            sectionTitle: "Find Trees",
+            jsx: <FindTreesTab trees={treesThatDoNotHaveNameSpliced ?? []} />,
+            sectionTitle: "ตามหาต้นไม้",
           },
         ]}
         sx={{
@@ -55,7 +105,6 @@ export default function RightSideBar() {
   );
 }
 
-// TODO style it and replace with a real chevron :p
 function SidebarToggle({
   onClick,
   icon,
@@ -67,10 +116,10 @@ function SidebarToggle({
     <ButtonBase
       onClick={onClick}
       sx={{
-        position: "absolute",
+        position: "fixed",
         borderRadius: "50%",
-        width: "40px",
-        height: "40px",
+        width: "45px",
+        height: "45px",
         color: "black",
         background: "white",
         top: "147px",
@@ -78,6 +127,7 @@ function SidebarToggle({
         ":focus": {
           outline: "none",
         },
+        zIndex: 5,
       }}
     >
       {icon}
@@ -85,7 +135,6 @@ function SidebarToggle({
   );
 }
 
-// TODO apply styles & functionality
 function FunFactSection({ sx }: { sx?: SxProps }) {
   return (
     <Box
@@ -93,16 +142,67 @@ function FunFactSection({ sx }: { sx?: SxProps }) {
         ...sx,
         color: "black",
         fontSize: "14px",
+        alignItem: "center",
       }}
     >
       <Box
         sx={{
+          paddingLeft: "26px",
+          paddingRight: "26px",
+          paddingTop: "14px",
+          paddingBottom: "14px",
+          backgroundColor: "white",
           display: "flex",
           justifyContent: "space-between",
+          alignItems: "center",
+          marginBottom: "14px",
         }}
       >
-        <p>WeSpace logo</p>
-        <p>Profile Icon</p>
+        <LogoWespace />
+        <Button
+          variant="contained"
+          style={{
+            background: "#A0705F",
+            color: "white",
+            fontSize: "12px",
+            fontWeight: "bold",
+            borderRadius: 12,
+            padding: 7,
+            textAlign: "center",
+          }}
+        >
+          เข้าสู่ระบบ
+        </Button>
+      </Box>
+
+      {/* img */}
+      <Box
+        sx={{
+          position: "",
+          width: "324px",
+          height: "138px",
+          background: "grey",
+          borderRadius: "10px",
+          marginTop: "24px",
+          marginLeft: "24px",
+          marginRight: "24px",
+          // top: "24px",
+          // left: "24px",
+        }}
+      >
+        <img
+          src={TreeImage}
+          alt="treeImage"
+          style={{
+            width: "324px",
+            height: "138px",
+            background: "grey",
+            borderRadius: "10px",
+            top: "24px",
+            left: "24px",
+            objectFit: "cover",
+          }}
+        />
       </Box>
       <Box
         sx={{
@@ -111,34 +211,43 @@ function FunFactSection({ sx }: { sx?: SxProps }) {
           },
         }}
       >
-        <Box
-          sx={{
-            width: "270px",
-            height: "164px",
-            background: "grey",
-            borderRadius: "10px",
-            margin: "auto",
+        <p
+          style={{
+            color: "#65792D",
+            fontSize: "24px",
+            fontWeight: "bold",
+            marginTop: "16px",
+            marginBottom: "16px",
           }}
         >
-          <span>Tree image</span>
-        </Box>
-        <p>Do you know?</p>
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur
-          eos voluptatum dolores? Nesciunt fugit, architecto blanditiis sed
-          dicta aliquam obcaecati.
+          รู้หรือไม่?
         </p>
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat, cum!
+        <p
+          style={{
+            marginTop: "16px",
+            marginBottom: "16px",
+            marginLeft: "24px",
+            marginRight: "24px",
+          }}
+        >
+          ปัจจุบันต้นไม้ในกรุงเทพฯ ได้รับการดูแลที่ไม่ดีนัก เพราะข้อมูลที่น้อย
+          และมีค่าใช้จ่ายสูงในการดูแล
+          <br />
+          <br />
+          ช่วยกันเก็บข้อมูลต้นไม้เพื่อให้น้องต้นไม้
+          <br />
+          ได้รับการดูแลที่ถูกต้อง
         </p>
-        <p style={{ color: "green" }}>Stepper Component</p>
-        <Button variant="contained">Upload my Tree</Button>
+        <div style={{ display: "flex", gap: "10px", justifyContent: "center"}}>
+          <CarouselImageFirst/>
+          <CarouselImageSecond/>
+          <CarouselImageThird/>
+        </div>
       </Box>
     </Box>
   );
 }
 
-// TODO apply styles and functionality
 function TabSwitcher({
   sx,
   children,
@@ -198,14 +307,4 @@ function TabSwitcher({
       })}
     </Box>
   );
-}
-
-// TODO implement <AllTreesTab/>
-function AllTreesTab() {
-  return <p style={{ color: "green" }}>All Trees Tab</p>;
-}
-
-// TODO implement <FindTreesTab/>
-function FindTreesTab() {
-  return <p style={{ color: "green" }}>Find Trees Tab</p>;
 }
