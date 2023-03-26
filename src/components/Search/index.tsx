@@ -12,15 +12,15 @@ export default function SearchBox({ setDataSearch }) {
 
   const treeContext = React.useContext(SelectedTreeContext);
 
-//   const {data: hardcodedBenjakitiParkTreeCount} = useGetTrees({
-//       request: {
-//           boundingBox: [
-//             100.55185868371865, 13.725279746063677, 100.56045339710738, 13.733855759373782
-//           ]
-//       } 
-//    });
+  //   const {data: hardcodedBenjakitiParkTreeCount} = useGetTrees({
+  //       request: {
+  //           boundingBox: [
+  //             100.55185868371865, 13.725279746063677, 100.56045339710738, 13.733855759373782
+  //           ]
+  //       }
+  //    });
 
-//   console.log(hardcodedBenjakitiParkTreeCount);
+  //   console.log(hardcodedBenjakitiParkTreeCount);
 
   const handleOptionChange = (event, newValue) => {
     console.log(newValue);
@@ -88,6 +88,15 @@ const mockTopListsSearch = [
     geometry: {
       type: "Point",
       coordinates: [100.776415, 13.7305036],
+    },
+  },
+  {
+    label: "อโศก",
+    value: "อโศก",
+    amount: "197",
+    geometry: {
+      type: "Point",
+      coordinates: [100.5591346, 13.7425754],
     },
   },
   {

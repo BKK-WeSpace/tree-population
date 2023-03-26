@@ -40,7 +40,11 @@ export default function TreeCard({
       <div className="box">
         <div className="tree-detail">
           <div className="tree-title">
-            <span>{tree.properties?.commonName}</span>
+            <span
+              style={{ color: tree.properties?.commonName ? "black" : "gray" }}
+            >
+              {tree.properties?.commonName || "ไม่มีชื่อ"}
+            </span>
             {tree.properties?.isVerified && <VerifiedImage />}
             {tree.properties?.isReward && <CupImage />}
           </div>
