@@ -10,18 +10,20 @@ export default function MapAttributionInfo() {
         left:0,
         
         backgroundColor: 'white',
-        padding:1,
+        padding:"0px 5px 0px 5px",
 
         borderRadius: "10px 10px 0 0",
 
         fontSize: "12px",
-        fontWeight: "700",
+        fontWeight: "300",
 
         marginLeft:1,
-        boxShadow: 1,
+        boxShadow: 3,
+
+        height:"4%",
 
     }} >
-        <a href="https://www.openstreetmap.org/">© OpenStreetMap</a>
+        <p><a href="https://www.openstreetmap.org/">© OpenStreetMap</a> contributors</p>
     </Box>
   );
 }

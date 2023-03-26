@@ -17,6 +17,7 @@ import Tree from "../../types/Trees";
 import AllTreesTab from "./AllTreesTab";
 import "./style/RightSideBar.css";
 import TreeCard from "./TreeCard";
+import { Margin } from "@mui/icons-material";
 
 const sideBarWidth = 372;
 export default function RightSideBar() {
@@ -40,6 +41,7 @@ export default function RightSideBar() {
         display: "flex",
         flexDirection: "column",
         transition: ".3s",
+
       }}
     >
       <SidebarToggle
@@ -60,14 +62,14 @@ export default function RightSideBar() {
       />
       <FunFactSection
         sx={{
-          padding: "24px 32px 0 24px",
+          // padding: "24px 24px 0 24px",
         }}
       />
       <TabSwitcher
         children={[
           {
             jsx: <AllTreesTab trees={data?.result?.features ?? []} />,
-            sectionTitle: "้ต้นไม้ทั้งหมด",
+            sectionTitle: "ต้นไม้ทั้งหมด",
           },
           {
             jsx: <FindTreesTab trees={data?.result?.features ?? []} />,
@@ -119,12 +121,21 @@ function FunFactSection({ sx }: { sx?: SxProps }) {
         ...sx,
         color: "black",
         fontSize: "14px",
+        alignItem:"center",
+        
       }}
     >
       <Box
         sx={{
+          paddingLeft:"26px",
+          paddingRight:"26px",
+          paddingTop:"14px",
+          paddingBottom:"14px",
+          backgroundColor: 'white',
           display: "flex",
           justifyContent: "space-between",
+          alignItems:"center",
+          marginBottom:"14px",
         }}
       >
         <LogoWespace />
@@ -133,33 +144,31 @@ function FunFactSection({ sx }: { sx?: SxProps }) {
           style={{
             background: "#A0705F",
             color: "white",
-            fontSize: "17px",
+            fontSize: "12px",
             fontWeight: "bold",
             borderRadius: 12,
             padding: 7,
+            textAlign:"center",
           }}
         >
           เข้าสู่ระบบ
         </Button>
+        
       </Box>
+
+      {/* img */}
       <Box
-        sx={{
-          "& > * + *": {
-            marginBottom: "13px",
-          },
-        }}
-      >
-        <Box
           sx={{
+            position:"",
             width: "324px",
             height: "138px",
             background: "grey",
             borderRadius: "10px",
-            // margin: "29px",
-            top: "24px",
-            left: "24px",
             marginTop: "24px",
-            marginBottom: "24px",
+            marginLeft: "24px",
+            marginRight: "24px",
+            // top: "24px",
+            // left: "24px",
           }}
         >
           <img
@@ -175,11 +184,32 @@ function FunFactSection({ sx }: { sx?: SxProps }) {
               objectFit: "cover",
             }}
           />
+          
         </Box>
-        <p style={{ color: "#65792D", fontSize: "24px", fontWeight: "bold" }}>
+      <Box
+        sx={{
+          "& > * + *": {
+            marginBottom: "13px",
+          },
+        }}
+      >
+        <p style={{
+          color: "#65792D",
+          fontSize: "24px",
+          fontWeight: "bold",
+          marginTop: '16px',
+          marginBottom: '16px',
+          }}>
           รู้หรือไม่?
         </p>
-        <p>
+        <p
+        style={{
+          marginTop: '16px',
+          marginBottom: '16px',
+          marginLeft: "24px",
+          marginRight: "24px",
+          }}
+        >
           ปัจจุบันต้นไม้ในกรุงเทพฯ ได้รับการดูแลที่ไม่ดีนัก เพราะข้อมูลที่น้อย
           และมีค่าใช้จ่ายสูงในการดูแล
           <br />
@@ -207,9 +237,11 @@ function TabSwitcher({
 
   return (
     <Box sx={{ ...sx, overflow: "visible", position: "relative" }}>
+      
       <Box sx={{ top: "-31px", display: "flex" }}>
         {children.map((c, i) => {
           return (
+            
             <ButtonBase
               key={c.sectionTitle + i}
               onClick={() => setSelectedSection(i)}
