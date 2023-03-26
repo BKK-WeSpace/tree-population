@@ -19,6 +19,10 @@ import TreeCard from "./TreeCard";
 import { Margin } from "@mui/icons-material";
 import FindTreesTab from "./FindTreesTab";
 
+import CarouselImageFirst from "../../common/CarouselImageFirst";
+import CarouselImageSecond from "../../common/CarouselImageSecond";
+import CarouselImageThird from  "../../common/CarouselImageThird";
+
 const sideBarWidth = 372;
 export default function RightSideBar() {
   const [showSidebar, setShowSidebar] = useState(true);
@@ -234,6 +238,11 @@ function FunFactSection({ sx }: { sx?: SxProps }) {
           <br />
           ได้รับการดูแลที่ถูกต้อง
         </p>
+        <div style={{ display: "flex", gap: "10px", justifyContent: "center"}}>
+          <CarouselImageFirst/>
+          <CarouselImageSecond/>
+          <CarouselImageThird/>
+        </div>
       </Box>
     </Box>
   );
