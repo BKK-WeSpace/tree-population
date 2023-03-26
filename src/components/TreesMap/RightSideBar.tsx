@@ -15,13 +15,11 @@ import LogoWespace from "../../common/LogoWespace";
 import Tree from "../../types/Trees";
 import AllTreesTab from "./AllTreesTab";
 import "./style/RightSideBar.css";
-import TreeCard from "./TreeCard";
-import { Margin } from "@mui/icons-material";
 import FindTreesTab from "./FindTreesTab";
 
 import CarouselImageFirst from "../../common/CarouselImageFirst";
 import CarouselImageSecond from "../../common/CarouselImageSecond";
-import CarouselImageThird from  "../../common/CarouselImageThird";
+import CarouselImageThird from "../../common/CarouselImageThird";
 
 const sideBarWidth = 372;
 export default function RightSideBar() {
@@ -32,20 +30,26 @@ export default function RightSideBar() {
     setShowSidebar((s) => !s);
   }
 
-  const allTreesSpliced = React.useMemo(() => {
-    return data?.result?.features.splice(0, 10);
-  }, [data]);
-
-  const treesThatDoNotHaveNameSpliced = React.useMemo(() => {
-    const trees: Tree[] = [];
+  const allTrees: {
+    treesWithName: Tree[];
+    treesWithoutName: Tree[];
+  } = React.useMemo(() => {
+    const treesWithName: Tree[] = [];
+    const treesWithoutName: Tree[] = [];
     if (data?.result?.features) {
       for (const tree of data?.result?.features) {
-        if (trees.length == 10) break;
-        if (!tree?.properties?.commonName) trees.push(tree);
+        if (treesWithName.length > 10 && treesWithoutName.length > 10) break;
+        if (tree.properties?.commonName) {
+          treesWithName.length <= 10 && treesWithName.push(tree);
+        } else {
+          treesWithoutName.length <= 10 && treesWithoutName.push(tree);
+        }
       }
-
-      return trees;
     }
+    return {
+      treesWithName,
+      treesWithoutName,
+    };
   }, [data]);
 
   return (
@@ -89,11 +93,11 @@ export default function RightSideBar() {
       <TabSwitcher
         children={[
           {
-            jsx: <AllTreesTab trees={allTreesSpliced ?? []} />,
-            sectionTitle: "ต้นไม้ทั้งหมด",
+            jsx: <AllTreesTab trees={allTrees.treesWithName} />,
+            sectionTitle: "ต้นไม้ที่มีข้อมูล",
           },
           {
-            jsx: <FindTreesTab trees={treesThatDoNotHaveNameSpliced ?? []} />,
+            jsx: <FindTreesTab trees={allTrees.treesWithoutName} />,
             sectionTitle: "ตามหาต้นไม้",
           },
         ]}
@@ -238,10 +242,10 @@ function FunFactSection({ sx }: { sx?: SxProps }) {
           <br />
           ได้รับการดูแลที่ถูกต้อง
         </p>
-        <div style={{ display: "flex", gap: "10px", justifyContent: "center"}}>
-          <CarouselImageFirst/>
-          <CarouselImageSecond/>
-          <CarouselImageThird/>
+        <div style={{ display: "flex", gap: "10px", justifyContent: "center" }}>
+          <CarouselImageFirst />
+          <CarouselImageSecond />
+          <CarouselImageThird />
         </div>
       </Box>
     </Box>
