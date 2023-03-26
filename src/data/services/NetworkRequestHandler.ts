@@ -8,6 +8,7 @@ type _BaseNetworkHandlerArgs = {
   queryParams?: Record<string, any>;
   timeoutSeconds?: number;
   fromCacheIfExists?: boolean;
+  blobExpected?: boolean;
 };
 
 export type NetworkHandlerArgs = _BaseNetworkHandlerArgs &
@@ -16,10 +17,10 @@ export type NetworkHandlerArgs = _BaseNetworkHandlerArgs &
 // TODO write test cases for this handler.
 // Maybe we'll just move to React Query. We'll see.
 export default class NetworkRequestHandler {
-  private _baseUrl: string;
+  public baseUrl: string;
 
   constructor({ baseUrl }: { baseUrl: string }) {
-    this._baseUrl = baseUrl;
+    this.baseUrl = baseUrl;
   }
 
   // Bruh, why didn't I just use React Query?!
@@ -31,6 +32,7 @@ export default class NetworkRequestHandler {
     path = "",
     timeoutSeconds = 10,
     queryParams,
+    blobExpected,
     ...rest
   }: NetworkHandlerArgs): Promise<FetchResult<T>> {
     if (path && path[0] != "/") path += "/";
@@ -51,7 +53,7 @@ export default class NetworkRequestHandler {
           resolve({ error: new TimeoutError({}), fromCache: false });
         }, timeoutSeconds! * 1000);
 
-        const response = await fetch(this._baseUrl + path + paramString, rest);
+        const response = await fetch(this.baseUrl + path + paramString, rest);
 
         if (!response.ok) {
           const responseError = await response.json();

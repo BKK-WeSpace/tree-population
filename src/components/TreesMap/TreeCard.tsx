@@ -32,7 +32,7 @@ export default function TreeCard({
   return (
     <div className="tree-card">
       <img
-        src={tree.properties?.imgLink ?? NoImage}
+        src={tree.properties?.imgId ?? NoImage}
         alt="treeImage"
         style={{ width: "108px", height: "108px" }}
       />

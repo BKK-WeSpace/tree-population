@@ -6,9 +6,10 @@ import NetworkRequestHandler from "./NetworkRequestHandler";
 //@ts-ignore
 import mockJson from "../../mockResponses/mock.json";
 import Tree from "../../types/Trees";
+import UploadImageResponse from "../models/UploadImageResponse";
 
 export default class VallarisService {
-  private static _networkHandler = new NetworkRequestHandler({
+  static _networkHandler = new NetworkRequestHandler({
     baseUrl: "https://v2k-dev.vallarismaps.com/core/api",
   });
   private static _collectionId = "641eb96d476571350cabeac3";
@@ -40,6 +41,39 @@ export default class VallarisService {
     }
 
     return data;
+  }
+
+  public static async upload(
+    filePath: string
+  ): Promise<FetchResult<UploadImageResponse>> {
+    const formdata = new FormData();
+    formdata.append("files", filePath, "[PROXY]");
+
+    const response = await this._networkHandler.handle<UploadImageResponse>({
+      method: "POST",
+      body: formdata,
+      redirect: "follow",
+      path: "/utilities/1.0/files",
+    });
+
+    return response;
+  }
+
+  public static async downloadTreeImage(tree: Tree): Promise<Blob> {
+    if (!tree.properties?.imgId) {
+      throw new Error("The image id of this tree is null");
+    }
+
+    // TODO use network handler.
+    const response = await fetch(
+      this._networkHandler.baseUrl +
+        "/utilities/1.0/files/" +
+        tree.properties.imgId +
+        "/download"
+    );
+    const result = await response.blob();
+
+    return result;
   }
 
   /**
