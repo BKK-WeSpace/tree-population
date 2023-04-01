@@ -32,7 +32,7 @@
 
 		npm install
 
-	if the command above doesn't work try
+	If the command above doesn't work try
 
 		npm install --legacy-peer-deps
 
