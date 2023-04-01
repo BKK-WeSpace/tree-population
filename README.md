@@ -32,7 +32,7 @@
 
 		npm install
 
-	If the command above doesn't work try
+	If the command above doesn't work, try
 
 		npm install --legacy-peer-deps
 
@@ -52,7 +52,7 @@
 
 ### For members
 
-Either do the steps above or pick an issue you would like to work on and assign it to yourself.
+Follow the steps above, or pick an issue you'd like to work on and assign it to yourself.
 
 ## Documentation
 
