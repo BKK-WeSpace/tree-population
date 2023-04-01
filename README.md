@@ -22,12 +22,26 @@
 ![CSS3](https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white)
 ![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white)
 
-## How to run the project
+## Running the project
 
-1. `$ npm install` (if that won't work try `$ npm install --legacy-peer-deps`)
-2. `$ npm run dev `
+1. Clone the project
 
-## How to contribute
+		git clone https://github.com/BKK-WeSpace/tree-population.git
+
+2. Install required dependencies
+
+		npm install
+
+	if the command above doesn't work try
+
+		npm install --legacy-peer-deps
+
+3. Run the project
+
+		npm run dev
+
+
+## Contributing
 
 1. Go to BKK-WeSpace/tree-population repository and click Fork button
 2. Go to your repository and clone project
@@ -36,16 +50,17 @@
 5. Wait for approval
 6. Done!
 
-## How to contribute (for members)
+### For members
+
 Either do the steps above or pick an issue you would like to work on and assign it to yourself.
 
 ## Documentation
 
 - [Notion](https://supparat-leelee.notion.site/WeSpace-Home-3a7de14b35d243808e7e9e8d652ab88d)
 
-## Figma
+## Design
 
-- [Design](https://www.figma.com/file/eoCuDZ0ZtF77zY3oBmjLwQ/WeSpace%F0%9F%8C%B2?node-id=0-1&t=FOW6QHro1SsHehlS-0)
+- [Figma](https://www.figma.com/file/eoCuDZ0ZtF77zY3oBmjLwQ/WeSpace%F0%9F%8C%B2?node-id=0-1&t=FOW6QHro1SsHehlS-0)
 
 ## Font
 - Font use [LINE Seed Sans TH](https://seed.line.me/index_th.html)
