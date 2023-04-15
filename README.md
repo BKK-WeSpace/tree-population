@@ -1,6 +1,6 @@
 # tree-population
 
-[![](https://dcbadge.vercel.app/api/server/jMvnNHBH)](https://discord.gg/jMvnNHBH)
+[![](https://dcbadge.vercel.app/api/server/hcF8w4jeT2)](https://discord.gg/hcF8w4jeT2)
 
 ## Story
 
@@ -21,6 +21,13 @@
 ![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white)
 ![CSS3](https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white)
 ![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white)
+
+## Goals
+
+- Build a tree database, at per-tree level.
+- Develop a backend for automated editing on OpenStreetMap tree layer
+- Display a web UI which show details of a tree
+- Create a tree editor mobile app 
 
 ## Running the project
 
@@ -43,12 +50,11 @@
 
 ## Contributing
 
-1. Go to BKK-WeSpace/tree-population repository and click Fork button
-2. Go to your repository and clone project
-3. Development
-4. Open a pull request to the `main` branch
-5. Wait for approval
-6. Done!
+1. Fork the `BKK-WeSpace/tree-population` repository to your own account
+2. Clone the project from  your account to your machine
+3. Commit changes
+4. Push changes to your fork
+5. Open a pull request to our repository on the `main` branch and wait for approval
 
 ### For members
 
@@ -62,9 +68,15 @@ Follow the steps above, or pick an issue you'd like to work on and assign it to 
 
 - [Figma](https://www.figma.com/file/eoCuDZ0ZtF77zY3oBmjLwQ/WeSpace%F0%9F%8C%B2?node-id=0-1&t=FOW6QHro1SsHehlS-0)
 
-## Font
-- Font use [LINE Seed Sans TH](https://seed.line.me/index_th.html)
-- To use Bold font in HTML tag (use font-weight: "bold") and MUI Component (fontWeight: "bold") 
+## Typography
+
+Fonts used: [LINE Seed Sans TH](https://seed.line.me/index_th.html)
+
+### Using bold fonts
+
+- HTML tag `font-weight: "bold"`
+- MUI Component `fontWeight: "bold"` 
+
 <!-- TODO documentation -->
 
 <!-- TODO CI/CD -->
