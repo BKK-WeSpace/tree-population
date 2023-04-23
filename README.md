@@ -1,82 +1,33 @@
-# tree-population
-
-[![](https://dcbadge.vercel.app/api/server/hcF8w4jeT2)](https://discord.gg/hcF8w4jeT2)
-
-## Story
-
-จำนวนต้นไม้ต่อประชากร 1 คน ควรอยู่ที่ 8 ต้นต่อ 1 คน ปัจจุบันไทยอยู่ที่ 3.3 ต้น/คน ขณะที่สิงคโปร์อยู่ราวๆ 40-50 ต้น/คน
-อาจกล่าวได้ว่าเมืองที่ประสบความสำเร็จในการพัฒนาเมืองสีเขียว ส่วนหนึ่งเป็นเพราะประสบความสำเร็จในเรื่องของการปลูกต้นไม้
-
-ไอเดีย green population เกิดจากมุมมองที่เรามอง ต้นไม้ เป็นเหมือน ประชากร หนึ่งคน ทุกต้นมีชื่อ มีหมายเลขและถูกดูแลเหมือนกับชีวิตผู้คนหนึ่งชีวิต
-
-ความท้าทายของไอเดียนี้คือทำอย่างไรให้คนเมืองมาช่วยกัน contribute ภาพถ่ายหรือช่วยกันทำ green mapping
-และเป็นประเด็นที่มีความจำเป็นเร่งด่วนมากๆ เพราะเกี่ยวข้องกับอากาศที่เราหายใจในปัจจุบัน
-
-ณ ปัจจุบัน กทม.ได้มีโครงการปลูกต้นไม้ 1 ล้านต้น ซึ่งก็อาจจะยังไม่เพียงพอเมื่อเทียบกับผู้คนใช้พื้นที่ในกทม.ที่มีราวๆ 10 ล้านคน
-เราอาจหา solution ที่ทำให้เป้าหมายร่วมกับกทมยั่งยืน หรือมีผลลัพธ์มากกว่าที่เขาตั้งไว้ได้
-
-หากเราสามารถสร้างความใกล้ชิดของคนเมืองกับต้นไม้ได้ ในระยะยาวความตระหนักในเรื่องพื้นที่สีเขียวในภาคประชาชนจะมากขึ้น และส่งผลกระทบเชิงนโยบายอย่างยั่งยืนได้ (นักการเมืองก็ต้องตอบรับประชาชน ออกนโยบายที่สอดคล้อง) และเราก็จะมีเมืองที่ยั่งยืน (ใน 10-20 ปี)
-
-![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)
-![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white)
-![CSS3](https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white)
-![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white)
-
-## Goals
-
-- Build a tree database, at per-tree level.
-- Develop a backend for automated editing on OpenStreetMap tree layer
-- Display a web UI which show details of a tree
-- Create a tree editor mobile app 
-
-## Running the project
-
-1. Clone the project
-
-		git clone https://github.com/BKK-WeSpace/tree-population.git
-
-2. Install required dependencies
-
-		npm install
-
-	If the command above doesn't work, try
-
-		npm install --legacy-peer-deps
-
-3. Run the project
-
-		npm run dev
-
+# Wespace 
 
 ## Contributing
 
-1. Fork the `BKK-WeSpace/tree-population` repository to your own account
-2. Clone the project from  your account to your machine
-3. Commit changes
-4. Push changes to your fork
-5. Open a pull request to our repository on the `main` branch and wait for approval
+This project uses the standard T3 folder structure. We might migrate to a monorepo structure with separate packages later. But for the time being, we see no need to do so. Those already familiar with T3 should be able to make contributions right away.
 
-### For members
+# About 
+TODO
 
-Follow the steps above, or pick an issue you'd like to work on and assign it to yourself.
+# General TODO list 
 
-## Documentation
+[x] Bring in maplibre
+[x] Integrate with Vallaris (requires a good backend architecture to make it not Vallaris-dependent).
+[] TODO to issues
 
-- [Notion](https://supparat-leelee.notion.site/WeSpace-Home-3a7de14b35d243808e7e9e8d652ab88d)
+[] Integrate https://github.com/jlalmes/trpc-openapi to integrate open-api specs (and also document it here)
+[] Open source the map style
+[] Code of conduct
+[] More stuff to this todo list
+[] TODO to issues
+[] CI/CD -> Deployment, linting, testing, etc.
+[] Add alicense file
+[] Add a testing library
 
-## Design
+# TODO list for docs (what we need to add to this file)
+[] Better docs
+[] Getting Started
+[] How to contribute
+[] Main reviewers
+[] Branch naming conventions
 
-- [Figma](https://www.figma.com/file/eoCuDZ0ZtF77zY3oBmjLwQ/WeSpace%F0%9F%8C%B2?node-id=0-1&t=FOW6QHro1SsHehlS-0)
-
-## Typography
-
-Fonts used: [LINE Seed Sans TH](https://seed.line.me/index_th.html)
-
-### Using bold fonts
-
-- HTML tag `font-weight: "bold"`
-- MUI Component `fontWeight: "bold"` 
-
-<!-- TODO documentation -->
-
-<!-- TODO CI/CD -->
+# SD-TEAM dependent
+[] Theme system with MUI (once we have the design)
