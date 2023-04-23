@@ -15,6 +15,8 @@ const TreesMap = () => {
         if (map.current) return;
         map.current = new maplibreGl.Map({
             container: "map",
+            // TODO replace with a real or local style. If we make the style local (as json in this repo), instead of hosted somewhere, people
+            // will be able to contribute styling suggestions.
             style: "https://demotiles.maplibre.org/style.json",
             center: [-74.5, 40],
             zoom: 9,
