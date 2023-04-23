@@ -2,7 +2,7 @@
     "compilerOptions": {
         "target": "es2017",
         "lib": ["dom", "dom.iterable", "esnext"],
-        "types": ["@emotion/core"],
+        "types": ["@emotion/react/types/css-prop"],
         "allowJs": true,
         "checkJs": true,
         "skipLibCheck": true,
