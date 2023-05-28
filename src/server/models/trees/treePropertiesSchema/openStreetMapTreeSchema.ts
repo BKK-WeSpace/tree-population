@@ -42,41 +42,4 @@ export class OpenStreetMapTreeSchema {
         this.diameterCrown = data?.diameterCrown;
         this.leafCycle = data?.leafCycle;
     }
-
-    // TODO this is too verbose for serialization...find a better way
-    public static toJson<T extends OpenStreetMapTreeSchema>(
-        properties: T
-    ): string {
-        const {
-            natural,
-            leafType,
-            genus,
-            species,
-            speciesWikidata,
-            taxon,
-            sex,
-            circumference,
-            diameter,
-            estHeight,
-            height,
-            diameterCrown,
-            leafCycle,
-        } = properties;
-
-        return JSON.stringify({
-            natural,
-            leafType,
-            genus,
-            species,
-            speciesWikidata,
-            taxon,
-            sex,
-            circumference,
-            diameter,
-            estHeight,
-            height,
-            diameterCrown,
-            leafCycle,
-        });
-    }
 }
