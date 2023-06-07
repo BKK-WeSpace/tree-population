@@ -4,6 +4,10 @@ import { TreesResponse } from "~/server/models/trees/treesResponse";
 import { createTRPCRouter, publicProcedure } from "../trpc";
 
 export const treesRouter = createTRPCRouter({
+    // TODO @khongchai continue here.
+    // upload: publicProcedure.input().query(async ({ ctx, input }) => {
+    //     await ctx.vallarisRepository.upload();
+    // }),
     getAll: publicProcedure
         .input(
             z.object({
@@ -34,7 +38,7 @@ export const treesRouter = createTRPCRouter({
                     code: "BAD_REQUEST",
                 });
             }
-            const trees: TreesResponse = await ctx.vallarisService.getTrees({
+            const trees: TreesResponse = await ctx.vallarisRepository.getTrees({
                 // @ts-expect-error
                 boundingBox: boundingBox,
                 limit: limit,

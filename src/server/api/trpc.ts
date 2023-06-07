@@ -31,7 +31,7 @@ type CreateContextOptions = Record<string, never>;
  */
 const createInnerTRPCContext = (_opts: CreateContextOptions) => {
     return {
-        vallarisService: vallarisRepository,
+        vallarisRepository,
     };
 };
 

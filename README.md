@@ -2,6 +2,14 @@
 
 This is a new wespace documentation and is under construction.
 
+# Getting Started
+
+```
+npm install
+
+npm run dev
+```
+
 ## Contributing
 
 This project uses the standard T3 folder structure. We might migrate to a monorepo structure with separate packages later. But for the time being, we see no need to do so. Those already familiar with T3 should be able to make contributions right away.
