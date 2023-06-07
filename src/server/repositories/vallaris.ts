@@ -67,6 +67,12 @@ const vallarisRepository = {
             } as TreesResponse);
         }
     },
+    /**
+     * The public endpoint that is exposed to everyone.
+     *
+     * TODO @khongchai need to rate limit this to some arbitrary values.
+     */
+    upload: async function () {},
 };
 
 export default vallarisRepository;
