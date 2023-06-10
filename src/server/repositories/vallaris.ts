@@ -1,6 +1,7 @@
 import axios from "axios";
-import TreesRequestParams from "../models/trees/treesRequest";
-import { TreesResponse } from "../models/trees/treesResponse";
+import { TreesRequestSchema } from "../models/trees/treesRequest";
+import { z } from "zod";
+import { TreesResponseSchema } from "../models/trees/treesResponse";
 
 /**
  * TODO (big maybe, this might not be necessary at all, because we have the trpc router doing a bit of abstraction already.)
@@ -40,8 +41,8 @@ const vallarisRepository = {
     baseURL: process.env.VALLARIS_ENDPOINT,
     collectionId: "6444e234b4b978478bef26f1",
     getTrees: async function (
-        request: TreesRequestParams
-    ): Promise<TreesResponse> {
+        request: z.infer<typeof TreesRequestSchema>
+    ): Promise<z.infer<typeof TreesResponseSchema>> {
         // TODO have a common axios config for stuff like base url, headers, timeout, etc.
         try {
             const data = await axios({
@@ -64,7 +65,7 @@ const vallarisRepository = {
             return Promise.resolve({
                 type: "FeatureCollection",
                 features: [],
-            } as TreesResponse);
+            });
         }
     },
     /**

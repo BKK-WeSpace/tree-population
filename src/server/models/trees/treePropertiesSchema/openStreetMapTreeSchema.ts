@@ -1,45 +1,30 @@
+import { z } from "zod";
+
 /**
  * All possible tags of a tree on open street map as specified in
  * https://wiki.openstreetmap.org/wiki/Tag:natural%3Dtree
  *
  * The tags are represented in a geojson as properties of a point, while in OSM, the
- * tags are a properties in an XML-like document. To convert between the two formats, we'll
+ * tags are properties in an XML-like document. To convert between the two formats, we'll
  * have to use some of the tools discussed here https://wiki.openstreetmap.org/wiki/GeoJSON
  */
-export class OpenStreetMapTreeSchema {
-    public natural: "tree";
-    public leafType?: "broadleaved" | "needleleaved";
-    public genus?: string;
-    public species?: string;
-    public speciesWikidata?: string;
-    public taxon?: string;
-    public sex?: "male" | "female";
-    public protected?: "yes" | "no";
-    public circumference?: number; // assuming in metres
-    public diameter?: number; // assuming in millimetres
-    public estHeight?: number; // assuming in metres
-    public height?: number; // assuming in metres
-    public diameterCrown?: number; // assuming in metres
-    public leafCycle?:
-        | "deciduous"
-        | "evergreen"
-        | "semi_deciduous"
-        | "semi_evergreen";
-
-    constructor(data: Omit<OpenStreetMapTreeSchema, "natural">) {
-        this.natural = "tree";
-        this.leafType = data?.leafType;
-        this.genus = data?.genus;
-        this.species = data?.species;
-        this.speciesWikidata = data?.speciesWikidata;
-        this.taxon = data?.taxon;
-        this.sex = data?.sex;
-        this.protected = data?.protected;
-        this.circumference = data?.circumference;
-        this.diameter = data?.diameter;
-        this.estHeight = data?.estHeight;
-        this.height = data?.height;
-        this.diameterCrown = data?.diameterCrown;
-        this.leafCycle = data?.leafCycle;
-    }
-}
+export const OpenStreetMapTreeSchema = z.object({
+    natural: z.literal("tree").default("tree"),
+    leafType: z
+        .union([z.literal("broadleaved"), z.literal("needleleaved")])
+        .nullish(),
+    genus: z.string().nullish(),
+    species: z.string().nullish(),
+    speciesWikidata: z.string().nullish(),
+    taxon: z.string().nullish(),
+    sex: z.union([z.literal("male"), z.literal("female")]).nullish(),
+    protected: z.union([z.literal("yes"), z.literal("no")]).nullish(),
+    circumference: z.number().nullish(), // assuming in metres
+    diameter: z.number().nullish(), // assuming in millimetres
+    estHeight: z.number().nullish(), // assuming in metres
+    height: z.number().nullish(), // assuming in metres
+    diameterCrown: z.number().nullish(), // assuming in metres
+    leafCycle: z
+        .enum(["deciduous", "evergreen", "smi_deciduous", "semi_evergreen"])
+        .nullish(),
+});

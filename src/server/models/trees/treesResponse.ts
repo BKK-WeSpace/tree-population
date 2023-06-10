@@ -1,6 +1,7 @@
-import Tree from "./trees";
+import { z } from "zod";
+import { TreeSchema } from "./trees";
 
-export interface TreesResponse {
-    type: "FeatureCollection";
-    features: Tree[];
-}
+export const TreesResponseSchema = z.object({
+    type: z.literal("FeatureCollection"),
+    features: z.array(TreeSchema),
+});

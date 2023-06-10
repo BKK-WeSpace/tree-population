@@ -1,35 +1,29 @@
 import { TRPCError } from "@trpc/server";
 import { z } from "zod";
-import { TreesResponse } from "~/server/models/trees/treesResponse";
 import { createTRPCRouter, publicProcedure } from "../trpc";
+import { TreesRequestSchema } from "~/server/models/trees/treesRequest";
+import { TreesResponseSchema } from "~/server/models/trees/treesResponse";
 
 export const treesRouter = createTRPCRouter({
-    // TODO @khongchai continue here.
-    // upload: publicProcedure.input().query(async ({ ctx, input }) => {
-    //     await ctx.vallarisRepository.upload();
-    // }),
-    getAll: publicProcedure
+    upload: publicProcedure
         .input(
             z.object({
-                // TODO can we do zod validation that asserts for an array of length 4?
-                boundingBox: z.array(z.number()).optional(),
-                limit: z.number().optional(),
-            })
-        )
-        .output(
-            z.object({
-                type: z.string(),
-                // Just provide the check for mandatory fields.
-                // For now, we're only checking if the returned objct comes with the coordinates.
-                features: z.array(
+                trees: z.array(
                     z.object({
                         geometry: z.object({
-                            coordinates: z.array(z.number()),
+                            type: z.string(),
+                            coordinates: z.array(z.number()).max(2),
                         }),
                     })
                 ),
             })
         )
+        .query(async ({ ctx, input }) => {
+            // await ctx.vallarisRepository.upload();
+        }),
+    getAll: publicProcedure
+        .input(TreesRequestSchema)
+        .output(TreesResponseSchema)
         .query(async ({ ctx, input }) => {
             const { boundingBox, limit } = input;
             if (boundingBox && boundingBox.length !== 4) {
@@ -38,11 +32,11 @@ export const treesRouter = createTRPCRouter({
                     code: "BAD_REQUEST",
                 });
             }
-            const trees: TreesResponse = await ctx.vallarisRepository.getTrees({
-                // @ts-expect-error
-                boundingBox: boundingBox,
-                limit: limit,
-            });
+            const trees: z.infer<typeof TreesResponseSchema> =
+                await ctx.vallarisRepository.getTrees({
+                    boundingBox: boundingBox,
+                    limit: limit,
+                });
 
             return trees;
         }),
