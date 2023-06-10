@@ -14,5 +14,5 @@ export const VallarisTreeMetadata = z.object({
 
 export const TreesUploadResponse = z.object({
     type: z.literal("FeatureCollection"),
-    features: z.intersection(TreeSchema, VallarisTreeMetadata),
+    features: z.array(z.intersection(TreeSchema, VallarisTreeMetadata)),
 });

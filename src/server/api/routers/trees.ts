@@ -49,7 +49,10 @@ export const treesRouter = createTRPCRouter({
                 const result = await ctx.vallarisRepository.upload(input);
                 return result;
             } catch (e) {
-                console.log(e);
+                console.error(
+                    "Unexpected error. Input: " + JSON.stringify(input.trees)
+                );
+                console.error(e);
                 throw new TRPCError({
                     code: "INTERNAL_SERVER_ERROR",
                     message: "Unknown error while uploading tree",

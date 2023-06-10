@@ -74,23 +74,23 @@ const vallarisRepository = {
     /**
      * The public endpoint that is exposed to everyone.
      *
-     * TODO need to rate limit this to some arbitrary values.
+     * TODO need to rate limit the public endpoint for this to some arbitrary values.
      */
     upload: async function (
         request: z.infer<typeof TreesUploadRequestSchema>
     ): Promise<z.infer<typeof TreesUploadResponse>> {
         const data = await axios({
-            method: "get",
+            method: "post",
             baseURL:
                 this.baseURL +
-                `/features/1.0/collections/${this.collectionId}/items`,
+                `/features/1.0-beta/collections/${this.collectionId}/items`,
             headers: {
                 "content-Type": "application/json",
                 "api-key": process.env.VALLARIS_API_KEY,
             },
-            params: {
+            data: {
                 type: "FeatureCollection",
-                features: request,
+                features: request.trees,
             },
             timeout: this.defaultTimeoutMillis,
         });
