@@ -1,45 +1,47 @@
 {
-  "name": "wespace_stack_test",
-  "version": "0.1.0",
-  "private": true,
-  "scripts": {
-    "build": "next build",
-    "dev": "next dev",
-    "lint": "next lint",
-    "start": "next start"
-  },
-  "dependencies": {
-    "@emotion/react": "^11.10.6",
-    "@emotion/styled": "^11.10.6",
-    "@mui/material": "^5.12.1",
-    "@tanstack/react-query": "^4.28.0",
-    "@trpc/client": "^10.18.0",
-    "@trpc/next": "^10.18.0",
-    "@trpc/react-query": "^10.18.0",
-    "@trpc/server": "^10.18.0",
-    "axios": "^1.3.6",
-    "maplibre-gl": "^2.4.0",
-    "mongodb": "^5.2.0",
-    "next": "^13.2.4",
-    "react": "18.2.0",
-    "react-dom": "18.2.0",
-    "superjson": "1.12.2",
-    "zod": "^3.21.4",
-    "zustand": "^4.3.7"
-  },
-  "devDependencies": {
-    "@types/eslint": "^8.21.3",
-    "@types/geojson": "^7946.0.10",
-    "@types/node": "^18.15.11",
-    "@types/react": "^18.0.28",
-    "@types/react-dom": "^18.0.11",
-    "@typescript-eslint/eslint-plugin": "^5.56.0",
-    "@typescript-eslint/parser": "^5.56.0",
-    "eslint": "^8.36.0",
-    "eslint-config-next": "^13.2.4",
-    "typescript": "^5.0.2"
-  },
-  "ct3aMetadata": {
-    "initVersion": "7.11.0"
-  }
+    "name": "wespace_stack_test",
+    "version": "0.1.0",
+    "private": true,
+    "scripts": {
+        "build": "next build",
+        "dev": "next dev",
+        "lint": "next lint",
+        "start": "next start"
+    },
+    "dependencies": {
+        "@emotion/react": "^11.10.6",
+        "@emotion/styled": "^11.10.6",
+        "@mui/material": "^5.12.1",
+        "@tanstack/react-query": "^4.28.0",
+        "@trpc/client": "^10.18.0",
+        "@trpc/next": "^10.18.0",
+        "@trpc/react-query": "^10.18.0",
+        "@trpc/server": "^10.18.0",
+        "axios": "^1.3.6",
+        "maplibre-gl": "^2.4.0",
+        "mongodb": "^5.2.0",
+        "next": "^13.2.4",
+        "nextjs-cors": "^2.1.2",
+        "react": "18.2.0",
+        "react-dom": "18.2.0",
+        "superjson": "1.12.2",
+        "trpc-openapi": "^1.1.2",
+        "zod": "^3.21.4",
+        "zustand": "^4.3.7"
+    },
+    "devDependencies": {
+        "@types/eslint": "^8.21.3",
+        "@types/geojson": "^7946.0.10",
+        "@types/node": "^18.15.11",
+        "@types/react": "^18.0.28",
+        "@types/react-dom": "^18.0.11",
+        "@typescript-eslint/eslint-plugin": "^5.56.0",
+        "@typescript-eslint/parser": "^5.56.0",
+        "eslint": "^8.36.0",
+        "eslint-config-next": "^13.2.4",
+        "typescript": "^5.0.2"
+    },
+    "ct3aMetadata": {
+        "initVersion": "7.11.0"
+    }
 }

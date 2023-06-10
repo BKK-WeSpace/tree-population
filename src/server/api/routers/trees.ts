@@ -7,7 +7,41 @@ import { createTRPCRouter, publicProcedure } from "../trpc";
 import { TRPCError } from "@trpc/server";
 
 export const treesRouter = createTRPCRouter({
+    getAll: publicProcedure
+        .meta({
+            openapi: {
+                method: "GET",
+                path: "/public/trees",
+                summary: "Get all trees from the database.",
+            },
+        })
+        .input(
+            z
+                .object({
+                    /**
+                     * a string-serialized array of length 4.
+                     */
+                    boundingBox: z.string(),
+                    limit: z.number(),
+                })
+                .partial()
+        )
+        .output(TreesResponseSchema)
+        .query(async ({ ctx, input }) => {
+            const parsedInput = TreesRequestSchema.parse(input);
+            const trees: z.infer<typeof TreesResponseSchema> =
+                await ctx.vallarisRepository.getTrees(parsedInput);
+
+            return trees;
+        }),
     upload: publicProcedure
+        .meta({
+            openapi: {
+                method: "POST",
+                path: "/public/upload-trees",
+                summary: "Upload trees to the database",
+            },
+        })
         .input(TreesUploadRequestSchema)
         .output(TreesUploadResponse)
         .query(async ({ ctx, input }) => {
@@ -21,18 +55,5 @@ export const treesRouter = createTRPCRouter({
                     message: "Unknown error while uploading tree",
                 });
             }
-        }),
-    getAll: publicProcedure
-        .input(TreesRequestSchema)
-        .output(TreesResponseSchema)
-        .query(async ({ ctx, input }) => {
-            const { boundingBox, limit } = input;
-            const trees: z.infer<typeof TreesResponseSchema> =
-                await ctx.vallarisRepository.getTrees({
-                    boundingBox: boundingBox,
-                    limit: limit,
-                });
-
-            return trees;
         }),
 });
