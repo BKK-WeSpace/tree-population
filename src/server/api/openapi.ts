@@ -6,7 +6,7 @@ import { appRouter } from "./root";
  */
 
 export const openApiDocument = generateOpenApiDocument(appRouter, {
-    title: "WeSpace OpenAPI document",
+    title: "WeSpace OpenAPI documentation",
     version: "0.0.1",
     baseUrl: "http://localhost:3000",
 });

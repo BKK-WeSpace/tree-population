@@ -10,9 +10,7 @@ import { z } from "zod";
  */
 export const OpenStreetMapTreeSchema = z.object({
     natural: z.literal("tree").default("tree"),
-    leafType: z
-        .union([z.literal("broadleaved"), z.literal("needleleaved")])
-        .nullish(),
+    leafType: z.enum(["broadleaved", "needleleaved"]).nullish(),
     genus: z.string().nullish(),
     species: z.string().nullish(),
     speciesWikidata: z.string().nullish(),

@@ -45,7 +45,7 @@ export const WeSpaceTreeSchema = z.object({
     quote: TreeQuoteSchema.nullish(),
     code: z.string().nullish(),
     isAlive: z.boolean().nullish(),
-    health: z.union([z.literal("healthy"), z.literal("unhealthy")]).nullish(),
+    health: z.enum(["healthy", "unhealthy"]).nullish(),
     crownSizeMeter: z.number().nullish(),
     crownShape: z.string().nullish(),
     lifeExpectancyYear: z.number().nullish(),
