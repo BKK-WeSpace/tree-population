@@ -1,6 +1,9 @@
 import axios from "axios";
-import TreesRequestParams from "../models/trees/treesRequest";
-import { TreesResponse } from "../models/trees/treesResponse";
+import { TreesRequestSchema } from "../models/trees/treesRequest";
+import { z } from "zod";
+import { TreesResponseSchema } from "../models/trees/treesResponse";
+import { TreesUploadRequestSchema } from "../models/trees/treesUploadRequest";
+import { TreesUploadResponse } from "../models/trees/treesUploadResponse";
 
 /**
  * TODO (big maybe, this might not be necessary at all, because we have the trpc router doing a bit of abstraction already.)
@@ -39,9 +42,10 @@ import { TreesResponse } from "../models/trees/treesResponse";
 const vallarisRepository = {
     baseURL: process.env.VALLARIS_ENDPOINT,
     collectionId: "6444e234b4b978478bef26f1",
+    defaultTimeoutMillis: 30 * 1000,
     getTrees: async function (
-        request: TreesRequestParams
-    ): Promise<TreesResponse> {
+        request: z.infer<typeof TreesRequestSchema>
+    ): Promise<z.infer<typeof TreesResponseSchema>> {
         // TODO have a common axios config for stuff like base url, headers, timeout, etc.
         try {
             const data = await axios({
@@ -54,9 +58,9 @@ const vallarisRepository = {
                     "api-key": process.env.VALLARIS_API_KEY,
                 },
                 params: request,
-                timeout: 30 * 1000,
+                timeout: this.defaultTimeoutMillis,
             });
-            return data.data;
+            return TreesResponseSchema.parse(data.data);
         } catch (error) {
             console.error(error);
             // TODO maybe handle this error differently for a better UX?
@@ -64,8 +68,33 @@ const vallarisRepository = {
             return Promise.resolve({
                 type: "FeatureCollection",
                 features: [],
-            } as TreesResponse);
+            });
         }
+    },
+    /**
+     * The public endpoint that is exposed to everyone.
+     *
+     * TODO need to rate limit the public endpoint for this to some arbitrary values.
+     */
+    upload: async function (
+        request: z.infer<typeof TreesUploadRequestSchema>
+    ): Promise<z.infer<typeof TreesUploadResponse>> {
+        const data = await axios({
+            method: "post",
+            baseURL:
+                this.baseURL +
+                `/features/1.0-beta/collections/${this.collectionId}/items`,
+            headers: {
+                "content-Type": "application/json",
+                "api-key": process.env.VALLARIS_API_KEY,
+            },
+            data: {
+                type: "FeatureCollection",
+                features: request.trees,
+            },
+            timeout: this.defaultTimeoutMillis,
+        });
+        return TreesUploadResponse.parse(data.data);
     },
 };
 

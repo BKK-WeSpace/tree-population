@@ -31,7 +31,7 @@ type CreateContextOptions = Record<string, never>;
  */
 const createInnerTRPCContext = (_opts: CreateContextOptions) => {
     return {
-        vallarisService: vallarisRepository,
+        vallarisRepository,
     };
 };
 
@@ -56,23 +56,26 @@ import { initTRPC } from "@trpc/server";
 import superjson from "superjson";
 import { ZodError } from "zod";
 import vallarisRepository from "../repositories/vallaris";
+import { OpenApiMeta } from "trpc-openapi";
 
-// TODO @khongchai find out how this type inferral works.
-const t = initTRPC.context<typeof createTRPCContext>().create({
-    transformer: superjson,
-    errorFormatter({ shape, error }) {
-        return {
-            ...shape,
-            data: {
-                ...shape.data,
-                zodError:
-                    error.cause instanceof ZodError
-                        ? error.cause.flatten()
-                        : null,
-            },
-        };
-    },
-});
+const t = initTRPC
+    .context<typeof createTRPCContext>()
+    .meta<OpenApiMeta>()
+    .create({
+        transformer: superjson,
+        errorFormatter({ shape, error }) {
+            return {
+                ...shape,
+                data: {
+                    ...shape.data,
+                    zodError:
+                        error.cause instanceof ZodError
+                            ? error.cause.flatten()
+                            : null,
+                },
+            };
+        },
+    });
 
 /**
  * 3. ROUTER & PROCEDURE (THE IMPORTANT BIT)
