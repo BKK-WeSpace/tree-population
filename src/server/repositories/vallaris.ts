@@ -2,6 +2,8 @@ import axios from "axios";
 import { TreesRequestSchema } from "../models/trees/treesRequest";
 import { z } from "zod";
 import { TreesResponseSchema } from "../models/trees/treesResponse";
+import { TreesUploadRequestSchema } from "../models/trees/treesUploadRequest";
+import { TreesUploadResponse } from "../models/trees/treesUploadResponse";
 
 /**
  * TODO (big maybe, this might not be necessary at all, because we have the trpc router doing a bit of abstraction already.)
@@ -40,6 +42,7 @@ import { TreesResponseSchema } from "../models/trees/treesResponse";
 const vallarisRepository = {
     baseURL: process.env.VALLARIS_ENDPOINT,
     collectionId: "6444e234b4b978478bef26f1",
+    defaultTimeoutMillis: 30 * 1000,
     getTrees: async function (
         request: z.infer<typeof TreesRequestSchema>
     ): Promise<z.infer<typeof TreesResponseSchema>> {
@@ -55,9 +58,9 @@ const vallarisRepository = {
                     "api-key": process.env.VALLARIS_API_KEY,
                 },
                 params: request,
-                timeout: 30 * 1000,
+                timeout: this.defaultTimeoutMillis,
             });
-            return data.data;
+            return TreesResponseSchema.parse(data.data);
         } catch (error) {
             console.error(error);
             // TODO maybe handle this error differently for a better UX?
@@ -71,9 +74,28 @@ const vallarisRepository = {
     /**
      * The public endpoint that is exposed to everyone.
      *
-     * TODO @khongchai need to rate limit this to some arbitrary values.
+     * TODO need to rate limit this to some arbitrary values.
      */
-    upload: async function () {},
+    upload: async function (
+        request: z.infer<typeof TreesUploadRequestSchema>
+    ): Promise<z.infer<typeof TreesUploadResponse>> {
+        const data = await axios({
+            method: "get",
+            baseURL:
+                this.baseURL +
+                `/features/1.0/collections/${this.collectionId}/items`,
+            headers: {
+                "content-Type": "application/json",
+                "api-key": process.env.VALLARIS_API_KEY,
+            },
+            params: {
+                type: "FeatureCollection",
+                features: request,
+            },
+            timeout: this.defaultTimeoutMillis,
+        });
+        return TreesUploadResponse.parse(data.data);
+    },
 };
 
 export default vallarisRepository;
